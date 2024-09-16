@@ -1,1 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Webcam Screenshot and Save</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+        video, canvas {
+            border: 1px solid black;
+            margin: 10px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Webcam Screenshot and Save</h1>
+    <video id="webcam" autoplay></video>
+    <button id="screenshot-button">Take Screenshot</button>
+    <canvas id="screenshot-canvas" style="display:none;"></canvas>
+    <a id="download-link" download="screenshot.png">Download Screenshot</a>
 
+    <script>
+        const video = document.getElementById('webcam');
+        const canvas = document.getElementById('screenshot-canvas');
+        const button = document.getElementById('screenshot-button');
+        const downloadLink = document.getElementById('download-link');
+        const context = canvas.getContext('2d');
+
+        // Access the webcam
+        navigator.mediaDevices.getUserMedia({ video: true })
+            .then(stream => {
+                video.srcObject = stream;
+            })
+            .catch(error => {
+                console.error('Error accessing webcam:', error);
+            });
+
+        // Take a screenshot and save it
+        button.addEventListener('click', () => {
+            canvas.width = video.videoWidth;
+            canvas.height = video.videoHeight;
+            context.drawImage(video, 0, 0, canvas.width, canvas.height);
+            canvas.toBlob(blob => {
+                const url = URL.createObjectURL(blob);
+                downloadLink.href = url;
+                downloadLink.click();
+            });
+        });
+    </script>
+</body>
+</html>
