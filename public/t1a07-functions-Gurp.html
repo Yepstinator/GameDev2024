@@ -4,4 +4,8 @@
     return document.getElementById(myIn)
   }
 </script>
-Input:<input type=text id="myFirstN
+Input:<input type=text id="myFirstName" value="john">
+<input type=button value="Show on page" onclick="{
+  myVar('myDiv01).innerHTML = 'Your name is ' + myVar('myFirstName').value
+}">
+<div id="myDiv01">...</div>
