@@ -15,6 +15,8 @@ Input:<input type=text id="myFirstName" value="john">
 <button onclick="showDate()">Show Date</button>
     <button onclick="hideDate()">Hide Date</button>
 
+<p id="date" class="hidden"></p>
+
 <script>
  function showDate() {
             document.getElementById("date").innerText = new Date().toDateString();
