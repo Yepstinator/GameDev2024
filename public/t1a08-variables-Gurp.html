@@ -1,1 +1,29 @@
+<h1 align=center>t1a08-variables-Gurp>
+  Input: <input type=text id="myIn01" value="5">
+  Input 2:<input type=text id="myIn02" value"7">
+  <input type=button value="Add and fix" onclick="{
+    myTotal = document.getElementById('myIn01').value + document.getElementById('myIn02').value
+      document.getElementById('myDiv01').InnerHTML = 'Your answer is ' + myTotal
+  }">
 
+  <div id="myDiv01">...</div>
+  Copy and fix.  parseInt() or parseFloat() try not to use var use let or const<br>
+
+  <input type=button value="Add2 and fix" onclick="{
+    let myX = document.getElementById('myIn01').value
+    let myY = document.getElementById('myIn02').value
+    let myTotal = myX = myY
+    document.getElementById('myDiv01').innerHTML = 'Your answer is ' + myTotal
+    }"><br><br>
+
+  other programming languages use defined variables
+  <pre>
+    boolean
+    int8 or byte
+    int
+    double
+    float
+    char
+    string
+
+  </pre>
