@@ -3,7 +3,7 @@
   Input 2:<input type=text id="myIn02" value="7"><br>
   <input type=button value="Add and fix" onclick="{
     myTotal = document.getElementById('myIn01').value + document.getElementById('myIn02').value
-      document.getElementById('myDiv01').InnerHTML = 'Your answer is ' + myTotal
+      document.getElementById('myDiv01').innerHTML = 'Your answer is ' + myTotal
   }">
 
   <div id="myDiv01">...</div>
@@ -11,7 +11,7 @@
   <input type=button value="Add2 and fix" onclick="{
     let myX = document.getElementById('myIn01').value
     let myY = document.getElementById('myIn02').value
-    let myTotal = myX = myY
+    let myTotal = myX + myY
     document.getElementById('myDiv01').innerHTML = 'Your answer is ' + myTotal
     }"><br><br>
 
