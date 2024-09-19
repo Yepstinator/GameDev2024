@@ -3,24 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Character Variable Example</title>
+    <title>Variables Example</title>
     <style>
-        #charDisplay {
-            color: green;
-            font-size: 24px;
+        #output {
+            color: blue;
+            font-size: 20px;
         }
     </style>
 </head>
 <body>
-    <h1>Display a Character</h1>
-    <button onclick="displayChar()">Show Character</button>
-    <p id="charDisplay"></p>
+    <h1>Using Variables in JavaScript</h1>
+    <button onclick="showVariables()">Show Variables</button>
+    <p id="output"></p>
 
     <script>
-        let char = 'A';
+        // Declaring different types of variables
+        let number = 42;
+        let text = "Hello, world!";
+        let isTrue = true;
+        let character = 'A';
 
-        function displayChar() {
-            document.getElementById('charDisplay').innerText = char;
+        function showVariables() {
+            let output = `Number: ${number}<br>
+                          Text: ${text}<br>
+                          Boolean: ${isTrue}<br>
+                          Character: ${character}`;
+            document.getElementById('output').innerHTML = output;
         }
     </script>
 </body>
