@@ -14,7 +14,18 @@
     let myTotal = myX + myY
     document.getElementById('myDiv01').innerHTML = 'Your answer is ' + myTotal
     }"><br><br>
+<body>
+    <h1>Welcome to My Simple Webpage</h1>
+    <button onclick="showMessage()">Click Me!</button>
+    <p id="message"></p>
 
+    <script>
+        let message = "Hello, this is a simple message!";
+
+        function showMessage() {
+            document.getElementById('message').innerText = message;
+        }
+    </script>
 
   other programming languages use defined variables
   <pre>
