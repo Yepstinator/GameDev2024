@@ -1,61 +1,30 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>My Fun Webpage</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Boolean Variable Example</title>
     <style>
-        body { font-family: Arial, sans-serif; }
-        .hidden { display: none; }
+        #message {
+            display: none;
+            color: blue;
+            font-size: 20px;
+        }
     </style>
 </head>
 <body>
-    <h1>Welcome to My Fun Webpage!</h1>
-    <p id="greeting">Hello, friend!</p>
-    <button onclick="changeGreeting()">Change Greeting</button>
-    <button onclick="showMessage()">Show Secret Message</button>
-    <button onclick="hideMessage()">Hide Secret Message</button>
-    <button onclick="changeColor()">Change Background Color</button>
-    <button onclick="addText()">Add Some Text</button>
-    <button onclick="removeText()">Remove Text</button>
-    <button onclick="showDate()">Show Date</button>
-    <button onclick="hideDate()">Hide Date</button>
-
-    <p id="secretMessage" class="hidden">This is a secret message!</p>
-    <p id="extraText" class="hidden">Here is some extra text!</p>
-    <p id="date" class="hidden"></p>
+    <h1>Toggle Message Visibility</h1>
+    <button onclick="toggleMessage()">Toggle Message</button>
+    <p id="message">Hello, this is a toggled message!</p>
 
     <script>
-        function changeGreeting() {
-            document.getElementById("greeting").innerText = "Hi there!";
-        }
+        let isVisible = false;
 
-        function showMessage() {
-            document.getElementById("secretMessage").classList.remove("hidden");
-        }
-
-        function hideMessage() {
-            document.getElementById("secretMessage").classList.add("hidden");
-        }
-
-        function changeColor() {
-            document.body.style.backgroundColor = "lightblue";
-        }
-
-        function addText() {
-            document.getElementById("extraText").classList.remove("hidden");
-        }
-
-        function removeText() {
-            document.getElementById("extraText").classList.add("hidden");
-        }
-
-        function showDate() {
-            document.getElementById("date").innerText = new Date().toDateString();
-            document.getElementById("date").classList.remove("hidden");
-        }
-
-        function hideDate() {
-            document.getElementById("date").classList.add("hidden");
+        function toggleMessage() {
+            isVisible = !isVisible;
+            document.getElementById('message').style.display = isVisible ? 'block' : 'none';
         }
     </script>
 </body>
 </html>
+
