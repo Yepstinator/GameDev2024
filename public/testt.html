@@ -3,28 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Boolean Variable Example</title>
+    <title>Character Variable Example</title>
     <style>
-        #message {
-            display: none;
-            color: blue;
-            font-size: 20px;
+        #charDisplay {
+            color: green;
+            font-size: 24px;
         }
     </style>
 </head>
 <body>
-    <h1>Toggle Message Visibility</h1>
-    <button onclick="toggleMessage()">Toggle Message</button>
-    <p id="message">Hello, this is a toggled message!</p>
+    <h1>Display a Character</h1>
+    <button onclick="displayChar()">Show Character</button>
+    <p id="charDisplay"></p>
 
     <script>
-        let isVisible = false;
+        let char = 'A';
 
-        function toggleMessage() {
-            isVisible = !isVisible;
-            document.getElementById('message').style.display = isVisible ? 'block' : 'none';
+        function displayChar() {
+            document.getElementById('charDisplay').innerText = char;
         }
     </script>
 </body>
 </html>
-
