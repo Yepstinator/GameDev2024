@@ -15,13 +15,24 @@
     document.getElementById('myDiv01').innerHTML = 'Your answer is ' + myTotal
     }"><br><br>
 
-
-button onclick="showVariables()">Show Variables</button>
+<button onclick="showVariables()">Show Variables</button>
     <p id="output"></p>
 
-    <script>
-    
-        let number = 42;
+<script>
+        // Let's create some variables!
+        let age = 10;
+        let favoriteColor = "blue";
+        let isHappy = true;
+        let initial = 'A';
+
+        function showVariables() {
+            // Display the variables in a fun way
+            let output = `I am ${age} years old.<br>
+                          My favorite color is ${favoriteColor}.<br>
+                          Am I happy? ${isHappy}.<br>
+                          My initial is ${initial}.`;
+            document.getElementById('output').innerHTML = output;
+        }
     </script>
   other programming languages use defined variables
   <pre>
