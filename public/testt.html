@@ -3,32 +3,57 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Variables Example</title>
+    <title>Mini Calculator</title>
     <style>
-        #output {
-            color: blue;
-            font-size: 20px;
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+        }
+        .calculator {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .calculator input, .calculator button {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0;
+            font-size: 18px;
+        }
+        .calculator button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        .calculator button:hover {
+            background-color: #45a049;
         }
     </style>
 </head>
 <body>
-    <h1>Using Variables in JavaScript</h1>
-    <button onclick="showVariables()">Show Variables</button>
-    <p id="output"></p>
+    <div class="calculator">
+        <input type="text" id="num1" placeholder="Enter first number">
+        <input type="text" id="num2" placeholder="Enter second number">
+        <button onclick="calculate()">Calculate</button>
+        <p id="result"></p>
+    </div>
 
     <script>
-        // Declaring different types of variables
-        let number = 42;
-        let text = "Hello, world!";
-        let isTrue = true;
-        let character = 'A';
-
-        function showVariables() {
-            let output = `Number: ${number}<br>
-                          Text: ${text}<br>
-                          Boolean: ${isTrue}<br>
-                          Character: ${character}`;
-            document.getElementById('output').innerHTML = output;
+        function calculate() {
+            let num1 = parseFloat(document.getElementById('num1').value);
+            let num2 = parseFloat(document.getElementById('num2').value);
+            if (isNaN(num1) || isNaN(num2)) {
+                document.getElementById('result').innerText = "Please enter valid numbers.";
+                return;
+            }
+            let sum = num1 + num2;
+            document.getElementById('result').innerText = "Result: " + sum;
         }
     </script>
 </body>
