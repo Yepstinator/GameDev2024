@@ -3,40 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fun with Variables</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            background-color: #f0f8ff;
-        }
-        #output {
-            color: blue;
-            font-size: 24px;
-            margin-top: 20px;
-        }
-    </style>
+    <title>Basic Variable Example</title>
 </head>
 <body>
-    <h1>Let's Play with Variables!</h1>
-    <button onclick="showVariables()">Show Variables</button>
-    <p id="output"></p>
+    <h1>Welcome to My Simple Webpage</h1>
+    <button onclick="showMessage()">Click Me!</button>
+    <p id="message"></p>
 
     <script>
-        // Let's create some variables!
-        let age = 10;
-        let favoriteColor = "blue";
-        let isHappy = true;
-        let initial = 'A';
+        let message = "Hello, this is a simple message!";
 
-        function showVariables() {
-            // Display the variables in a fun way
-            let output = `I am ${age} years old.<br>
-                          My favorite color is ${favoriteColor}.<br>
-                          Am I happy? ${isHappy}.<br>
-                          My initial is ${initial}.`;
-            document.getElementById('output').innerHTML = output;
+        function showMessage() {
+            document.getElementById('message').innerText = message;
         }
     </script>
 </body>
 </html>
+
