@@ -3,57 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mini Calculator</title>
+    <title>Fun with Variables</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            background-color: #f0f0f0;
+            text-align: center;
+            background-color: #f0f8ff;
         }
-        .calculator {
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-        .calculator input, .calculator button {
-            width: 100%;
-            padding: 10px;
-            margin: 5px 0;
-            font-size: 18px;
-        }
-        .calculator button {
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            cursor: pointer;
-        }
-        .calculator button:hover {
-            background-color: #45a049;
+        #output {
+            color: blue;
+            font-size: 24px;
+            margin-top: 20px;
         }
     </style>
 </head>
 <body>
-    <div class="calculator">
-        <input type="text" id="num1" placeholder="Enter first number">
-        <input type="text" id="num2" placeholder="Enter second number">
-        <button onclick="calculate()">Calculate</button>
-        <p id="result"></p>
-    </div>
+    <h1>Let's Play with Variables!</h1>
+    <button onclick="showVariables()">Show Variables</button>
+    <p id="output"></p>
 
     <script>
-        function calculate() {
-            let num1 = parseFloat(document.getElementById('num1').value);
-            let num2 = parseFloat(document.getElementById('num2').value);
-            if (isNaN(num1) || isNaN(num2)) {
-                document.getElementById('result').innerText = "Please enter valid numbers.";
-                return;
-            }
-            let sum = num1 + num2;
-            document.getElementById('result').innerText = "Result: " + sum;
+        // Let's create some variables!
+        let age = 10;
+        let favoriteColor = "blue";
+        let isHappy = true;
+        let initial = 'A';
+
+        function showVariables() {
+            // Display the variables in a fun way
+            let output = `I am ${age} years old.<br>
+                          My favorite color is ${favoriteColor}.<br>
+                          Am I happy? ${isHappy}.<br>
+                          My initial is ${initial}.`;
+            document.getElementById('output').innerHTML = output;
         }
     </script>
 </body>
