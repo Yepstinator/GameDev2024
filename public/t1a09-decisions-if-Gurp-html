@@ -1,1 +1,8 @@
  <h1 align=center> T1A09-Decisions-if-Gurp</h1> 
+
+Input:<input type=text id="myFirstName" value="infact a masterpiece">
+<input type=button value="Show On page" onclick="{
+    // Commentating
+  document.getElementById('myDiv01').innerHTML = ' ' +
+      document.getElementById('myFirstName').value
+}">
