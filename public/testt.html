@@ -3,15 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Basic Variable Example</title>
+    <title>t1a08-variables-Gurp</title>
 </head>
 <body>
-    <h1>Welcome to My Simple Webpage</h1>
+    <h1 align="center">t1a08-variables-Gurp</h1>
+    Input 1: <input type="text" id="myIn01" value="5"><br>
+    Input 2: <input type="text" id="myIn02" value="7"><br>
+    <input type="button" value="Add and fix" onclick="{
+        let myTotal = parseFloat(document.getElementById('myIn01').value) + parseFloat(document.getElementById('myIn02').value);
+        document.getElementById('myDiv01').innerHTML = 'Your answer is ' + myTotal;
+    }"><br>
+    <div id="myDiv01">...</div><br>
+    <input type="button" value="Add2 and fix" onclick="{
+        let myX = parseFloat(document.getElementById('myIn01').value);
+        let myY = parseFloat(document.getElementById('myIn02').value);
+        let myTotal = myX + myY;
+        document.getElementById('myDiv01').innerHTML = 'Your answer is ' + myTotal;
+    }"><br><br>
     <button onclick="showMessage()">Click Me!</button>
     <p id="message"></p>
 
     <script>
-        let message = "Hello, this is a simple message!";
+        let message = "Hey Mr. Ellis";
 
         function showMessage() {
             document.getElementById('message').innerText = message;
@@ -19,4 +32,5 @@
     </script>
 </body>
 </html>
+
 
