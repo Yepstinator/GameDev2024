@@ -3,28 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Number Guessing Game</title>
+    <title>Number Range Checker</title>
 </head>
 <body>
-    <h1>Guess the Number</h1>
+    <h1>Number Range Checker</h1>
     <p>Enter a number between 1 and 100:</p>
     <input type="number" id="userInput" min="1" max="100">
     <button onclick="checkNumber()">Check</button>
     <p id="result"></p>
 
     <script>
-        const correctNumber = Math.floor(Math.random() * 100) + 1;
-
         function checkNumber() {
             const userNumber = document.getElementById('userInput').value;
             const result = document.getElementById('result');
 
-            if (userNumber == correctNumber) {
-                result.textContent = 'Congratulations! You guessed the correct number!';
+            if (userNumber >= 1 && userNumber <= 100) {
+                result.textContent = 'The number is within the range!';
             } else {
-                result.textContent = 'Sorry, try again.';
+                result.textContent = 'The number is out of range. Please enter a number between 1 and 100.';
             }
         }
     </script>
 </body>
+</html>
+
 </html>
