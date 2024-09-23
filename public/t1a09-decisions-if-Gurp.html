@@ -23,10 +23,22 @@
         }
     }"><br>
 </body>
-let numberCount = 56
-if (numberCount !=56) {
-document.write("That's not it")
-} else {
-    document.write("WOW, first try?)
-}
-let testvalue = false
+ <p>Enter a number between 1 and 100:</p>
+    <input type="number" id="userInput" min="1" max="100">
+    <button onclick="checkNumber()">Check</button>
+    <p id="result"></p>
+
+    <script>
+        const correctNumber = Math.floor(Math.random() * 100) + 1;
+
+        function checkNumber() {
+            const userNumber = document.getElementById('userInput').value;
+            const result = document.getElementById('result');
+
+            if (userNumber == correctNumber) {
+                result.textContent = 'WOAH!!!! First try!!';
+            } else {
+                result.textContent = 'Thats not it.';
+            }
+        }
+    </script>
