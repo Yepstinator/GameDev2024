@@ -1,30 +1,32 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Number Range Checker</title>
-</head>
 <body>
-    <h1>Number Range Checker</h1>
-    <p>Enter a number between 1 and 100:</p>
-    <input type="number" id="userInput" min="1" max="100">
-    <button onclick="checkNumber()">Check</button>
-    <p id="result"></p>
+    <h1>Collatz Sequence Generator</h1>
+    <label for="number">Enter a number:</label>
+    <input type="number" id="number" min="1" value="10">
+    <button onclick="generateCollatz()">Generate Sequence</button>
+    <h2>Collatz Sequence:</h2>
+    <div id="collatzSequence"></div>
 
     <script>
-        function checkNumber() {
-            const userNumber = document.getElementById('userInput').value;
-            const result = document.getElementById('result');
-
-            if (userNumber >= 1 && userNumber <= 100) {
-                result.textContent = 'The number is within the range!';
-            } else {
-                result.textContent = 'The number is out of range. Please enter a number between 1 and 100.';
+        function collatz(n) {
+            const sequence = [];
+            while (n !== 1) {
+                sequence.push(n);
+                if (n % 2 === 0) {
+                    n = n / 2;
+                } else {
+                    n = 3 * n + 1;
+                }
             }
+            sequence.push(1); // Add the final 1 to the sequence
+            return sequence;
+        }
+
+        function generateCollatz() {
+            const number = document.getElementById('number').value;
+            const collatzSequenceDiv = document.getElementById('collatzSequence');
+            collatzSequenceDiv.innerHTML = '';
+
+            const sequence = collatz(Number(number));
+            collatzSequenceDiv.innerHTML = sequence.join(' ');
         }
     </script>
-</body>
-</html>
-
-</html>
