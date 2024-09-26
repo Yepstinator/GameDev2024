@@ -1,1 +1,25 @@
+<h1 align=center><t1a11-arrays-Gurp.html</h1>
 
+<script>
+    let myMax = 6
+    let myArray = new Array(myMax)
+</script>
+
+input:<input type=text id="myFirstName" value="Fred">
+
+<input type=button value="Set Array" onclick="{
+    myArray[0] = 'Fred'
+    myArray[1] = 'Mary'
+    myArray[2] = 'Peter'
+
+    document.getElementbyId('myDiv01').innerHTML = 'You set the Array'
+}"> <br>
+<input type=button value="Show Array" onclick="{
+    for (myLoop=0; myLoop < 3; myLoop++){
+        document.getElementById('myDiv01').innerHTML += 'myArray[' + myLoop + '] = ' +
+        myArray[myLoop] + '<br>'
+
+    }
+}"><br>
+
+<div id="myDiv01">...</div>
