@@ -14,7 +14,9 @@ input:<input type=text id="myFirstName" value="Fred"><br>
 
     document.getElementbyId('myDiv01').innerHTML = 'You set the Array'
 }"> <br>
+
 <input type=button value="Show Array" onclick="{
+    document.getElementById('myDiv01').innerHTML = ''
     for (myLoop=0; myLoop < 3; myLoop++){
         document.getElementById('myDiv01').innerHTML += 'myArray[' + myLoop + '] = ' +
         myArray[myLoop] + '<br>'
