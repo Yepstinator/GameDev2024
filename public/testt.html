@@ -1,32 +1,13 @@
+<title>Crash Button</title>
+</head>
 <body>
-    <h1>Collatz Sequence Generator</h1>
-    <label for="number">Enter a number:</label>
-    <input type="number" id="number" min="1" value="10">
-    <button onclick="generateCollatz()">Generate Sequence</button>
-    <h2>Collatz Sequence:</h2>
-    <div id="collatzSequence"></div>
+    <button id="crashButton">Crash Website</button>
 
     <script>
-        function collatz(n) {
-            const sequence = [];
-            while (n !== 1) {
-                sequence.push(n);
-                if (n % 2 === 0) {
-                    n = n / 2;
-                } else {
-                    n = 3 * n + 1;
-                }
+        document.getElementById("crashButton").addEventListener("click", function() {
+            while (true) {
+                // Infinite loop to crash the browser
+                console.log("Crashing...");
             }
-            sequence.push(1); // Add the final 1 to the sequence
-            return sequence;
-        }
-
-        function generateCollatz() {
-            const number = document.getElementById('number').value;
-            const collatzSequenceDiv = document.getElementById('collatzSequence');
-            collatzSequenceDiv.innerHTML = '';
-
-            const sequence = collatz(Number(number));
-            collatzSequenceDiv.innerHTML = sequence.join(' ');
-        }
+        });
     </script>
