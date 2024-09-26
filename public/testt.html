@@ -1,22 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Array Operations</title>
+</head>
 <body>
-    <button id="combineButton">Combine Arrays</button>
+    <button id="arrayButton">Perform Array Operations</button>
     <p id="result"></p>
 
     <script>
-    let MaxMy = 6
-    let ArrayMY = new Array(MaxMY)
-</script>
+        document.getElementById("arrayButton").addEventListener("click", function() {
+            let numbers = [5, 3, 8, 1, 2, 7];
 
-    <script>
-        nput:<input type=text id="Joseph" value="Joe"><br>
+            // Sorting
+            let sortedNumbers = numbers.slice().sort((a, b) => a - b); // [1, 2, 3, 5, 7, 8]
 
-<input type=button value="Set Array" onclick="{
-            
-        document.getElementById("combineButton").addEventListener("click", function() {
-            let array1 = [1, 2, 3];
-            let array2 = [4, 5, 6];
-            let combinedArray = array1.concat(array2); // Combine arrays
-            document.getElementById("result").textContent = "Combined Array: " + combinedArray.join(", ");
+            // Filtering
+            let filteredNumbers = numbers.filter(num => num > 4); // [5, 8, 7]
+
+            // Mapping
+            let doubledNumbers = numbers.map(num => num * 2); // [10, 6, 16, 2, 4, 14]
+
+            // Reducing
+            let sum = numbers.reduce((acc, num) => acc + num, 0); // 26
+
+            // Combining Arrays
+            let moreNumbers = [9, 10];
+            let combinedArray = numbers.concat(moreNumbers); // [5, 3, 8, 1, 2, 7, 9, 10]
+
+            // Displaying results
+            let resultText = `
+                Original Array: ${numbers.join(", ")}<br>
+                Sorted Array: ${sortedNumbers.join(", ")}<br>
+                Filtered Array (greater than 4): ${filteredNumbers.join(", ")}<br>
+                Doubled Array: ${doubledNumbers.join(", ")}<br>
+                Sum of Array: ${sum}<br>
+                Combined Array: ${combinedArray.join(", ")}
+            `;
+            document.getElementById("result").innerHTML = resultText;
         });
     </script>
 </body>
