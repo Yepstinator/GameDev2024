@@ -1,48 +1,71 @@
-import random
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cool Interactive Website</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 50px;
+            background-color: #f0f0f0;
+            transition: background-color 0.5s;
+        }
+        h1 {
+            color: #333;
+        }
+        input {
+            padding: 10px;
+            margin: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            padding: 10px 15px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .color-buttons {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1 id="greeting">Welcome to My Cool Website!</h1>
+    <input type="text" id="nameInput" placeholder="Enter your name" />
+    <button onclick="updateGreeting()">Submit</button>
 
-def intro():
-    print("Welcome to the Dungeon Adventure!")
-    print("You are in a dark dungeon filled with treasures and dangers.")
-    print("Can you find the treasure and escape?")
+    <div class="color-buttons">
+        <button onclick="changeColor('lightblue')">Light Blue</button>
+        <button onclick="changeColor('lightgreen')">Light Green</button>
+        <button onclick="changeColor('lightcoral')">Light Coral</button>
+        <button onclick="changeColor('lightyellow')">Light Yellow</button>
+    </div>
 
-def choose_direction():
-    direction = input("Which direction will you go? (left/right/straight): ").lower()
-    return direction
+    <script>
+        // Variables to store user input and background color
+        let userName = '';
+        let backgroundColor = '';
 
-def encounter():
-    events = ["You found a treasure chest!", "A monster appears!", "You stumbled upon a hidden passage!"]
-    return random.choice(events)
+        function updateGreeting() {
+            const nameInput = document.getElementById('nameInput').value;
+            if (nameInput) {
+                userName = nameInput;
+                document.getElementById('greeting').innerText = `Hello, ${userName}! Welcome to my website!`;
+            }
+        }
 
-def main():
-    intro()
-    
-    treasures_collected = 0
-    encounters_faced = 0
-    
-    while True:
-        direction = choose_direction()
-        encounters_faced += 1
-        event = encounter()
-        
-        print(event)
-        
-        if "treasure" in event:
-            treasures_collected += 1
-            print("You collect the treasure! Total treasures: ", treasures_collected)
-        
-        if "monster" in event:
-            print("You have to fight the monster! You lost a treasure!")
-            if treasures_collected > 0:
-                treasures_collected -= 1
-            else:
-                print("You have no treasures to lose!")
-        
-        if encounters_faced >= 5:
-            print("You've faced enough challenges. Time to escape with your treasures!")
-            break
-    
-    print("Game Over!")
-    print("You collected a total of {} treasures.".format(treasures_collected))
-
-if __name__ == "__main__":
-    main()
+        function changeColor(color) {
+            backgroundColor = color;
+            document.body.style.backgroundColor = backgroundColor;
+        }
+    </script>
+</body>
+</html>
