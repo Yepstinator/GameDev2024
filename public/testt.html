@@ -1,45 +1,48 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Array Operations</title>
-</head>
-<body>
-    <button id="arrayButton">Perform Array Operations</button>
-    <p id="result"></p>
+import random
 
-    <script>
-        document.getElementById("arrayButton").addEventListener("click", function() {
-            let numbers = [5, 3, 8, 1, 2, 7];
+def intro():
+    print("Welcome to the Dungeon Adventure!")
+    print("You are in a dark dungeon filled with treasures and dangers.")
+    print("Can you find the treasure and escape?")
 
-            // Sorting
-            let sortedNumbers = numbers.slice().sort((a, b) => a - b); // [1, 2, 3, 5, 7, 8]
+def choose_direction():
+    direction = input("Which direction will you go? (left/right/straight): ").lower()
+    return direction
 
-            // Filtering
-            let filteredNumbers = numbers.filter(num => num > 4); // [5, 8, 7]
+def encounter():
+    events = ["You found a treasure chest!", "A monster appears!", "You stumbled upon a hidden passage!"]
+    return random.choice(events)
 
-            // Mapping
-            let doubledNumbers = numbers.map(num => num * 2); // [10, 6, 16, 2, 4, 14]
+def main():
+    intro()
+    
+    treasures_collected = 0
+    encounters_faced = 0
+    
+    while True:
+        direction = choose_direction()
+        encounters_faced += 1
+        event = encounter()
+        
+        print(event)
+        
+        if "treasure" in event:
+            treasures_collected += 1
+            print("You collect the treasure! Total treasures: ", treasures_collected)
+        
+        if "monster" in event:
+            print("You have to fight the monster! You lost a treasure!")
+            if treasures_collected > 0:
+                treasures_collected -= 1
+            else:
+                print("You have no treasures to lose!")
+        
+        if encounters_faced >= 5:
+            print("You've faced enough challenges. Time to escape with your treasures!")
+            break
+    
+    print("Game Over!")
+    print("You collected a total of {} treasures.".format(treasures_collected))
 
-            // Reducing
-            let sum = numbers.reduce((acc, num) => acc + num, 0); // 26
-
-            // Combining Arrays
-            let moreNumbers = [9, 10];
-            let combinedArray = numbers.concat(moreNumbers); // [5, 3, 8, 1, 2, 7, 9, 10]
-
-            // Displaying results
-            let resultText = `
-                Original Array: ${numbers.join(", ")}<br>
-                Sorted Array: ${sortedNumbers.join(", ")}<br>
-                Filtered Array (greater than 4): ${filteredNumbers.join(", ")}<br>
-                Doubled Array: ${doubledNumbers.join(", ")}<br>
-                Sum of Array: ${sum}<br>
-                Combined Array: ${combinedArray.join(", ")}
-            `;
-            document.getElementById("result").innerHTML = resultText;
-        });
-    </script>
-</body>
-</html>
+if __name__ == "__main__":
+    main()
