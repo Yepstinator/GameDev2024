@@ -1,28 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multiplication Table Generator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        table {
+            margin: 0 auto;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        th, td {
+            padding: 10px;
+        }
+    </style>
+</head>
 <body>
-    <h1 align="center">t1a11-arrays-Gurp.html</h1>
+    <h1>Multiplication Table Generator</h1>
+    <input type="number" id="numberInput" placeholder="Enter a number">
+    <button onclick="generateTable()">Generate Table</button>
+    <div id="tableContainer"></div>
 
     <script>
-        let myMax = 6;
-        let myArray = new Array(myMax);
-    </script>
+        function generateTable() {
+            let number = document.getElementById('numberInput').value;
+            let tableContainer = document.getElementById('tableContainer');
+            tableContainer.innerHTML = ''; // Clear previous table
 
-    <input type="text" id="myFirstName" value="Fred"><br>
-
-    <input type="button" value="Set Array" onclick="{
-        myArray = 'Fred';
-        myArray = 'Mary';
-        myArray = 'Peter';
-
-        document.getElementById('myDiv01').innerHTML = 'You set the Array';
-    }"><br>
-
-    <input type="button" value="Show Array" onclick="{
-        document.getElementById('myDiv01').innerHTML = '';
-        for (let myLoop = 0; myLoop < 3; myLoop++) {
-            document.getElementById('myDiv01').innerHTML += 'myArray[' + myLoop + '] = ' + myArray[myLoop] + '<br>';
+            if (number) {
+                let table = '<table><tr><th>Number</th><th>Multiplication</th><th>Result</th></tr>';
+                for (let i = 1; i <= 10; i++) {
+                    table += '<tr><td>' + number + '</td><td>' + i + '</td><td>' + (number * i) + '</td></tr>';
+                }
+                table += '</table>';
+                tableContainer.innerHTML = table;
+            } else {
+                tableContainer.innerHTML = 'Please enter a number.';
+            }
         }
-    }"><br>
-
-    <div id="myDiv01">...</div>
+    </script>
 </body>
 </html>
