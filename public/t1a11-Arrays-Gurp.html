@@ -26,18 +26,20 @@ input:<input type=text id="myFirstName" value="Fred"><br>
 
 <div id="myDiv01">...</div>
 
+   <body>
+
+    <h1>Array Button Example</h1>
     <div id="output"></div>
 
-
-        <button onclick="showItem(0)">Show First Item</button>
+    <button onclick="showItem(0)">Show First Item</button>
     <button onclick="showItem(1)">Show Second Item</button>
     <button onclick="showItem(2)">Show Third Item</button>
 
     <script>
-        
-        const items = ['Water', 'Bottled Water', 'Sparkling Water'];
+        // Array of items
+        const items = ['Apple', 'Banana', 'Cherry'];
 
-
+        // Function to display the item based on the index
         function showItem(index) {
             const outputDiv = document.getElementById('output');
             if (index < items.length) {
@@ -46,3 +48,7 @@ input:<input type=text id="myFirstName" value="Fred"><br>
                 outputDiv.textContent = 'Index out of range';
             }
         }
+    </script>
+
+</body>
+</html>
