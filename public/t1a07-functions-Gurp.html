@@ -27,3 +27,12 @@ Input:<input type=text id="myFirstName" value="john">
         }
 </script>
 
+    <button onclick="showMessage()">Click Me!</button>
+    <p id="message"></p>
+
+    <script>
+        let message = "Hey Mr.Ellis";
+
+        function showMessage() {
+            document.getElementById('message').innerText = message;
+        }
