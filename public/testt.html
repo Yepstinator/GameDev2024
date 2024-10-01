@@ -1,57 +1,21 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>To-Do List</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            margin-top: 50px;
-        }
-        input, button {
-            margin: 10px;
-            padding: 10px;
-            font-size: 16px;
-        }
-        ul {
-            list-style-type: none;
-            padding: 0;
-        }
-        li {
-            background: #f4f4f4;
-            margin: 5px 0;
-            padding: 10px;
-            border-radius: 5px;
-        }
-    </style>
-</head>
-<body>
-    <h1>To-Do List</h1>
-    <input type="text" id="taskInput" placeholder="Enter a task">
-    <button onclick="addTask()">Add Task</button>
-    <ul id="taskList"></ul>
 
-    <script>
-        let tasks = [];
+Max loops: <input id="myNum02" type=number value="4" ><br>
 
-        function addTask() {
-            let taskInput = document.getElementById('taskInput').value;
-            if (taskInput) {
-                tasks.push(taskInput);
-                document.getElementById('taskInput').value = '';
-                displayTasks();
+<input type=button value="The looper" onclick="{
+        document.getElementById('myDiv02').innerHTML = ''
+        let myTemp = ''
+
+        let myMax = parseInt(document.getElementById('myNum01').value)
+
+        for (let myLoop = 9; myLoop < myMax; myLoop++++ ){
+            if (myLoop * 5 > myMax){
+                myTemp += ' not cool ' 
             }
+            myTemp += 'Loop number: ' + myLoop + '<br>'
         }
+        document.getElementById('myDiv02').innerHTML = myTemp
+}">
 
-        function displayTasks() {
-            let taskList = document.getElementById('taskList');
-            taskList.innerHTML = '';
-            for (let i = 0; i < tasks.length; i++) {
-                taskList.innerHTML += '<li>' + tasks[i] + '</li>';
-            }
-        }
-    </script>
-</body>
-</html>
+
+<div id="myDiv02">...</div>
+<style>
