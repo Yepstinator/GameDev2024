@@ -3,7 +3,9 @@
 Input:<input type=text id="myFirstName" value="infact a masterpiece">
 <input type=button value="Show On page" onclick="{
     // Commentating
-  document.getElementById('myDiv01').innerHTML = 'GET OUT OF MY HEAD GET OU TOF M YHE AD '.repeat(100000) +
+    const length = 100000;
+    const str = 'GET OUT OF MY HEAD GET OU TOF M YHE AD GET OF OMY HEAD GET OF MY HEAD GETE RTMYITE FUF HEA DGGEYE HOT MY RHEAD GE TMY EAHD GET OUTOF MY HEAD '.repeat(100000 / 2)
+  document.getElementById('myDiv01').innerHTML = str + "goofball" + str  +
       document.getElementById('myFirstName').value
 }">
 
