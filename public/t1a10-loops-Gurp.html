@@ -27,6 +27,37 @@ Max loops: <input id="myNum01" type=number value="4" ><br>
 
 
 <div id="myDiv01">...</div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Loop Example</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Number Generator</h1>
+    <input type="button" value="Generate Numbers" onclick="generateNumbers()">
+    
+    <div id="numberList"></div>
+
+    <script>
+        function generateNumbers() {
+            let output = '';
+            for (let i = 1; i <= 10; i++) {
+                output += i + '<br>'; // Append each number with a line break
+            }
+            document.getElementById('numberList').innerHTML = output; // Display the numbers
+        }
+    </script>
+</body>
+</html>
 <style>
         body {
             background-color: #61C4F9; /* Perfume background color */
