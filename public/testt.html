@@ -1,21 +1,29 @@
-
-Max loops: <input id="myNum02" type=number value="4" ><br>
-
-<input type=button value="The looper" onclick="{
-        document.getElementById('myDiv02').innerHTML = ''
-        let myTemp = ''
-
-        let myMax = parseInt(document.getElementById('myNum01').value)
-
-        for (let myLoop = 9; myLoop < myMax; myLoop++++ ){
-            if (myLoop * 5 > myMax){
-                myTemp += ' not cool ' 
-            }
-            myTemp += 'Loop number: ' + myLoop + '<br>'
-        }
-        document.getElementById('myDiv02').innerHTML = myTemp
-}">
-
-
-<div id="myDiv02">...</div>
-<style>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Variable Example</title>
+</head>
+<body>
+    <h1 align="center">t1a08-variables-Gurp</h1>
+    Input 1: <input type="text" id="myIn01" value="5"><br>
+    Input 2: <input type="text" id="myIn02" value="7"><br>
+    
+    <input type="button" value="Add and fix" onclick="{
+        let myX = parseFloat(document.getElementById('myIn01').value);
+        let myY = parseFloat(document.getElementById('myIn02').value);
+        let myTotal = myX + myY;
+        document.getElementById('myDiv01').innerHTML = 'Your answer is ' + myTotal;
+    }">
+    
+    <div id="myDiv01">...</div>
+    
+    <input type="button" value="Add2 and fix" onclick="{
+        let myX = parseFloat(document.getElementById('myIn01').value);
+        let myY = parseFloat(document.getElementById('myIn02').value);
+        let myTotal = myX + myY;
+        document.getElementById('myDiv01').innerHTML = 'Your answer is ' + myTotal;
+    }"><br><br>
+</body>
+</html>
