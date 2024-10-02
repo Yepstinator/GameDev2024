@@ -34,17 +34,4 @@ Max loops: <input id="myNum01" type=number value="4" ><br>
 <html>
 <head>
 <style>
-        
-  <input type="button" value="Generate Numbers" onclick="generateNumbers()">
-    
-    <div id="numberList"></div>
 
-    <script>
-        function generateNumbers() {
-            let output = '';
-            for (let i = 1; i <= 10; i++) {
-                output += i + '<br>'; // Append each number with a line break
-            }
-            document.getElementById('numberList').innerHTML = output;
-        }
-    </script>
