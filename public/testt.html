@@ -1,22 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Loop Example</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Number Generator</h1>
+    <input type="button" value="Generate Numbers" onclick="generateNumbers()">
+    
+    <div id="numberList"></div>
 
-    <h1 align="center">t1a08-variables-Gurp</h1>
-    Input 1: <input type="text" id="myIn01" value="5"><br>
-    Input 2: <input type="text" id="myIn02" value="7"><br>
-    
-    <input type="button" value="Add and fix" onclick="{
-        let myX = parseFloat(document.getElementById('myIn01').value);
-        let myY = parseFloat(document.getElementById('myIn02').value);
-        let myTotal = myX + myY;
-        document.getElementById('myDiv01').innerHTML = 'Your answer is ' + myTotal;
-    }">
-    
-    <div id="myDiv01">...</div>
-    
-    <input type="button" value="Add2 and fix" onclick="{
-        let myX = parseFloat(document.getElementById('myIn01').value);
-        let myY = parseFloat(document.getElementById('myIn02').value);
-        let myTotal = myX + myY;
-        document.getElementById('myDiv01').innerHTML = 'Your answer is ' + myTotal;
-    }"><br><br>
+    <script>
+        function generateNumbers() {
+            let output = '';
+            for (let i = 1; i <= 10; i++) {
+                output += i + '<br>'; // Append each number with a line break
+            }
+            document.getElementById('numberList').innerHTML = output; // Display the numbers
+        }
+    </script>
 </body>
 </html>
