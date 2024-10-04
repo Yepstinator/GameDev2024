@@ -1,1 +1,24 @@
+<h1 align="center">t1a13-json-Gurp.html</h1>
 
+<script>
+    function myShowJSON(){
+        document.getElementById('myDiv1').innerHTML = 'Sent: ${myIn} '
+    }
+</script>
+
+Explanation of JSON compared to javascript objects formatted in this text area <br>
+
+textarea cols=70 ROWS=5>
+
+</textarea>
+
+Enter a json returning URL: <input type="text" id="myText1" value="https://randomfox.ca/floof/">
+<input type="button" value="show JSON" onclick="{alert('h1')}"><br><br>
+
+<select size="1" onchange="myShowJSON(this.value)">
+<option value="https://randomfox.ca/floof/">randomfox
+<option value="https://dog.ceo/api/breeds/image/random">god.ceo
+
+You make the JSON show up in the DIV<br><br>
+
+<div id="myDiv1">...</div>
