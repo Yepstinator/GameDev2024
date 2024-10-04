@@ -3,29 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simple Loop Example</title>
+    <title>Music Player</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            margin-top: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
         }
     </style>
 </head>
 <body>
-    <h1>Number Generator</h1>
-    <input type="button" value="Generate Numbers" onclick="generateNumbers()">
-    
-    <div id="numberList"></div>
-
+    <button id="playPauseBtn">Play Music</button>
+    <audio id="audio" src="your-audio-file.mp3"></audio>
     <script>
-        function generateNumbers() {
-            let output = '';
-            for (let i = 1; i <= 10; i++) {
-                output += i + '<br>'; // Append each number with a line break
+        const playPauseBtn = document.getElementById('playPauseBtn');
+        const audio = document.getElementById('audio');
+
+        playPauseBtn.addEventListener('click', () => {
+            if (audio.paused) {
+                audio.play();
+                playPauseBtn.textContent = 'Pause Music';
+            } else {
+                audio.pause();
+                playPauseBtn.textContent = 'Play Music';
             }
-            document.getElementById('numberList').innerHTML = output; // Display the numbers
-        }
+        });
     </script>
 </body>
 </html>
