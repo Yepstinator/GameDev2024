@@ -1,6 +1,6 @@
 <h1 align="center">t1a13-json-Gurp.html</h1>
 
-<script>
+<script> bv
     function myShowJSON(){
         document.getElementById('myDiv1').innerHTML = `Sent: ${myIn} `
     }
@@ -11,7 +11,7 @@ async function fetchData() {
     console.log(data);
     console.log(`data.status: ${data.status}` )
 
-    const myJson = wait JSON.stringfy(data, null, 2);
+    const myJson = await JSON.stringfy(data, null, 2);
     document.getElementById('myDiv1').innerHTML = myJson
 }
 </script>
