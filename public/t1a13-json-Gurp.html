@@ -2,8 +2,18 @@
 
 <script>
     function myShowJSON(){
-        document.getElementById('myDiv1').innerHTML = 'Sent: ${myIn} '
+        document.getElementById('myDiv1').innerHTML = `Sent: ${myIn} `
     }
+
+async function fetchData() {
+    const response = await fetch('https://dog.ceo/api/breeds/image/random');
+    const data = await response.json();
+    console.log(data);
+    console.log(`data.status: ${data.status}` )
+
+    const myJson = wait JSON.stringfy(data, null, 2);
+    document.getElementById('myDiv1').innerHTML = myJson
+}
 </script>
 
 Explanation of JSON compared to javascript objects formatted in this text area <br>
