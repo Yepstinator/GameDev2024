@@ -1,41 +1,25 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Music Player</title>
-    <style>
-        body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            background-color: #f0f0f0;
-        }
+const person1 = {
+    firstName: "Spongebob",
+    lastName: "Squarepants",
+    age: 30,
+    isEmployed: true,
+    sayHello: function(){console.log("Hi! I am Spongebob!")},
+    eat: function(){console.log("I am eating a Krabby Patty")},
+}
 
-        button {
-            padding: 10px 20px;
-            font-size: 16px;
-            cursor: pointer;
-        }
-    </style>
-</head>
-<body>
-    <button id="playPauseBtn">Play Music</button>
-    <audio id="audio" src="your-audio-file.mp3"></audio>
-    <script>
-        const playPauseBtn = document.getElementById('playPauseBtn');
-        const audio = document.getElementById('audio');
+const person2 = {
+    firstName: "Patrick",
+    lastName: "Star",
+    age: 42,
+    isEmployed: false,
+    sayHello: () => console.log("Hey, I'm Patrick..."),
+    eat: () => console.log("I am eating roast beef, chicken, and pizza"),
+}
 
-        playPauseBtn.addEventListener('click', () => {
-            if (audio.paused) {
-                audio.play();
-                playPauseBtn.textContent = 'Pause Music';
-            } else {
-                audio.pause();
-                playPauseBtn.textContent = 'Play Music';
-            }
-        });
-    </script>
-</body>
-</html>
+console.log(person1.firstName);
+console.log(person2.firstName);
+
+person1.sayHello();
+person1.eat();
+person2.sayHello();
+person2.eat();
