@@ -7,6 +7,7 @@
 </head>
 <body>
     <button id="activateButton">Activate</button>
+    <div id="output"></div>
 
     <script>
         const person1 = {
@@ -14,8 +15,8 @@
             lastName: "Squarepants",
             age: 30,
             isEmployed: true,
-            sayHello: function(){console.log("Hi! I am Spongebob!")},
-            eat: function(){console.log("I am eating a Krabby Patty")},
+            sayHello: function(){ return "Hi! I am Spongebob!"; },
+            eat: function(){ return "I am eating a Krabby Patty"; },
         }
 
         const person2 = {
@@ -23,18 +24,20 @@
             lastName: "Star",
             age: 42,
             isEmployed: false,
-            sayHello: () => console.log("Hey, I'm Patrick..."),
-            eat: () => console.log("I am eating roast beef, chicken, and pizza"),
+            sayHello: () => "Hey, I'm Patrick...",
+            eat: () => "I am eating roast beef, chicken, and pizza",
         }
 
         document.getElementById("activateButton").addEventListener("click", function() {
-            console.log(person1.firstName);
-            console.log(person2.firstName);
-
-            person1.sayHello();
-            person1.eat();
-            person2.sayHello();
-            person2.eat();
+            const outputDiv = document.getElementById("output");
+            outputDiv.innerHTML = `
+                <p>${person1.firstName} ${person1.lastName}, Age: ${person1.age}, Employed: ${person1.isEmployed}</p>
+                <p>${person1.sayHello()}</p>
+                <p>${person1.eat()}</p>
+                <p>${person2.firstName} ${person2.lastName}, Age: ${person2.age}, Employed: ${person2.isEmployed}</p>
+                <p>${person2.sayHello()}</p>
+                <p>${person2.eat()}</p>
+            `;
         });
     </script>
 </body>
