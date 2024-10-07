@@ -11,7 +11,7 @@ async function fetchData() {
     console.log(data);
     console.log(`data.status: ${data.status}` )
 
-    const myJson = await JSON.stringfy(data, null, 2);
+    const myJson = await JSON.stringify(data, null, 2);
     document.getElementById('myDiv1').innerHTML = myJson
 }
 </script>
