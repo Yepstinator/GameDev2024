@@ -62,3 +62,43 @@ the 2nd button labelled "Objects with Arrays in it"<br><br>
 </body>
 </html>
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Display Array in Object Example</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        #output {
+            margin-top: 10px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <button id="showButton">Show Array</button>
+    <div id="output"></div>
+
+    <script>
+        // Create an object containing an array
+        const myObject = {
+            name: "John Doe",
+            age: 30,
+            hobbies: ["Reading", "Coding", "Hiking"] // Array inside the object
+        };
+
+        // Function to display the array when the button is clicked
+        document.getElementById('showButton').addEventListener('click', () => {
+            const outputDiv = document.getElementById('output');
+            const hobbies = myObject.hobbies; // Access the array in the object
+            outputDiv.innerHTML = `Hobbies: ${hobbies.join(', ')}`; // Display the array as a comma-separated list
+        });
+    </script>
+</body>
+</html>
+
+
