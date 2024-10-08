@@ -1,44 +1,46 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Activate Functions</title>
-</head>
-<body>
-    <button id="activateButton">Activate</button>
-    <div id="output"></div>
+// Movie constructor function
+function Movie(title, director, releaseYear) {
+    this.title = title;
+    this.director = director;
+    this.releaseYear = releaseYear;
+    this.reviews = []; // Array to store reviews
 
-    <script>
-        const person1 = {
-            firstName: "Spongebob",
-            lastName: "Squarepants",
-            age: 30,
-            isEmployed: true,
-            sayHello: function(){ return "Hi! I am Spongebob!"; },
-            eat: function(){ return "I am eating a Krabby Patty"; },
-        }
+    // Method to add a review
+    this.addReview = function(rating, comment) {
+        const review = {
+            rating: rating,
+            comment: comment,
+            date: new Date().toLocaleDateString()
+        };
+        this.reviews.push(review);
+    };
 
-        const person2 = {
-            firstName: "Patrick",
-            lastName: "Star",
-            age: 42,
-            isEmployed: false,
-            sayHello: () => "Hey, I'm Patrick...",
-            eat: () => "I am eating roast beef, chicken, and pizza",
-        }
+    // Method to calculate average rating
+    this.getAverageRating = function() {
+        if (this.reviews.length === 0) return 0;
+        const total = this.reviews.reduce((sum, review) => sum + review.rating, 0);
+        return (total / this.reviews.length).toFixed(1);
+    };
 
-        document.getElementById("activateButton").addEventListener("click", function() {
-            const outputDiv = document.getElementById("output");
-            outputDiv.innerHTML = `
-                <p>${person1.firstName} ${person1.lastName}, Age: ${person1.age}, Employed: ${person1.isEmployed}</p>
-                <p>${person1.sayHello()}</p>
-                <p>${person1.eat()}</p>
-                <p>${person2.firstName} ${person2.lastName}, Age: ${person2.age}, Employed: ${person2.isEmployed}</p>
-                <p>${person2.sayHello()}</p>
-                <p>${person2.eat()}</p>
-            `;
+    // Method to display movie info
+    this.displayInfo = function() {
+        console.log(`Title: ${this.title}`);
+        console.log(`Director: ${this.director}`);
+        console.log(`Release Year: ${this.releaseYear}`);
+        console.log(`Average Rating: ${this.getAverageRating()}`);
+        console.log(`Reviews:`);
+        this.reviews.forEach(review => {
+            console.log(` - [${review.date}] ${review.rating}/5: ${review.comment}`);
         });
-    </script>
-</body>
-</html>
+    };
+}
+
+// Example usage
+const movie = new Movie("Inception", "Christopher Nolan", 2010);
+
+// Adding reviews
+movie.addReview(5, "Mind-blowing experience!");
+movie.addReview(4, "Great visuals but a bit confusing.");
+movie.addReview(5, "A masterpiece!");
+
+movie.displayInfo();
