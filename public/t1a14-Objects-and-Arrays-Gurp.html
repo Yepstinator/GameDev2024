@@ -20,33 +20,3 @@ ley myArray [
 
 Make 2 buttons and a div. The first button labelled "Array with Object in it" and
 the 2nd button labelled "Objects with Arrays in it"<br><br>
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Array with Object and Button</title>
-</head>
-<body>
-  <button id="showArrayButton">Show Array</button>
-  <div id="arrayDisplay"></div>
-
-  <script>
-    const arrayWithObject = [
-      {
-        name: "Alice",
-        age: 25,
-        occupation: "Engineer"
-      }
-    ];
-
-    function showArray() {
-      const arrayDisplay = document.getElementById("arrayDisplay");
-      arrayDisplay.textContent = JSON.stringify(arrayWithObject, null, 2);
-    }
-
-    document.getElementById("showArrayButton").addEventListener("click", showArray);
-  </script>
-</body>
-</html>
