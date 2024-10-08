@@ -20,3 +20,44 @@ ley myArray [
 
 Make 2 buttons and a div. The first button labelled "Array with Object in it" and
 the 2nd button labelled "Objects with Arrays in it"<br><br>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Display Object Example</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        #output {
+            margin-top: 10px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <button id="showButton">Show Object</button>
+    <div id="output"></div>
+
+    <script>
+        // Create an array with an object
+        const myArray = [
+            {
+                name: "John Doe",
+                age: 30,
+                occupation: "Software Developer"
+            }
+        ];
+
+        // Function to display the object when the button is clicked
+        document.getElementById('showButton').addEventListener('click', () => {
+            const outputDiv = document.getElementById('output');
+            const objectToShow = myArray[0]; // Access the first object in the array
+            outputDiv.innerHTML = `Name: ${objectToShow.name}, Age: ${objectToShow.age}, Occupation: ${objectToShow.occupation}`;
+        });
+    </script>
+</body>
+</html>
