@@ -21,21 +21,27 @@ ley myArray [
 Make 2 buttons and a div. The first button labelled "Array with Object in it" and
 the 2nd button labelled "Objects with Arrays in it"<br><br>
 
-<button id="myButton">Click Me</button>
+<body>
+  <button id="showArrayButton">Show Array</button>
 
-<script>
-  const arrayWithObject = [
-    {
-      name: "John",
-      age: 30,
-      occupation: "Developer"
+  <script>
+    // Create an array with an object
+    const arrayWithObject = [
+      {
+        name: "Alice",
+        age: 25,
+        occupation: "Engineer"
+      }
+    ];
+
+    // Function to handle button click
+    function showArray() {
+      console.log(arrayWithObject);
+      alert(JSON.stringify(arrayWithObject, null, 2));
     }
-  ];
 
-  function handleButtonClick() {
-    console.log(arrayWithObject);
-    alert(`Name: ${arrayWithObject.name}, Age: ${arrayWithObject.age}, Occupation: ${arrayWithObject.occupation}`);
-  }
-
-  document.getElementById("myButton").addEventListener("click", handleButtonClick);
-</script>
+    // Add event listener to the button
+    document.getElementById("showArrayButton").addEventListener("click", showArray);
+  </script>
+</body>
+</html>
