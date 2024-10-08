@@ -21,13 +21,21 @@ ley myArray [
 Make 2 buttons and a div. The first button labelled "Array with Object in it" and
 the 2nd button labelled "Objects with Arrays in it"<br><br>
 
-<Input type="Button" Value="Objects" onclick="{
-    myArray[0] = 'Fred'
-    myArray[1] = 'Mary'
-    myArray[2] = 'Peter'
+<button id="myButton">Click Me</button>
 
-    document.getElementById('myDiv2').innerHTML = 'You set the Array'
-}">
+<script>
+  const arrayWithObject = [
+    {
+      name: "John",
+      age: 30,
+      occupation: "Developer"
+    }
+  ];
 
+  function handleButtonClick() {
+    console.log(arrayWithObject);
+    alert(`Name: ${arrayWithObject.name}, Age: ${arrayWithObject.age}, Occupation: ${arrayWithObject.occupation}`);
+  }
 
-<div id="myDiv2">...</div>
+  document.getElementById("myButton").addEventListener("click", handleButtonClick);
+</script>
