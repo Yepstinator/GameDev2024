@@ -20,3 +20,14 @@ ley myArray [
 
 Make 2 buttons and a div. The first button labelled "Array with Object in it" and
 the 2nd button labelled "Objects with Arrays in it"<br><br>
+
+<Input type="Button" Value="Objects" onclick="{
+    myArray[0] = 'Fred'
+    myArray[1] = 'Mary'
+    myArray[2] = 'Peter'
+
+    document.getElementById('myDiv2').innerHTML = 'You set the Array'
+}">
+
+
+<div id="myDiv2">...</div>
