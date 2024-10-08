@@ -81,7 +81,7 @@ the 2nd button labelled "Objects with Arrays in it"<br><br>
 </head>
 <body>
     <button id="showButton">Show Array</button>
-    <div id="output"></div>
+    <div2 id="output"></div2>
 
     <script>
         // Create an object containing an array
@@ -93,9 +93,9 @@ the 2nd button labelled "Objects with Arrays in it"<br><br>
 
         // Function to display the array when the button is clicked
         document.getElementById('showButton').addEventListener('click', () => {
-            const outputDiv = document.getElementById('output');
+            const outputDiv2 = document.getElementById('output');
             const hobbies = myObject.hobbies; // Access the array in the object
-            outputDiv.innerHTML = `Hobbies: ${hobbies.join(', ')}`; // Display the array as a comma-separated list
+            outputDiv2.innerHTML = `Hobbies: ${hobbies.join(', ')}`; // Display the array as a comma-separated list
         });
     </script>
 </body>
