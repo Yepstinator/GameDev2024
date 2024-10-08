@@ -1,46 +1,38 @@
-// Movie constructor function
-function Movie(title, director, releaseYear) {
-    this.title = title;
-    this.director = director;
-    this.releaseYear = releaseYear;
-    this.reviews = []; // Array to store reviews
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car Showcase</title>
+    <style>
+        body { font-family: Arial, sans-serif; }
+        .car { margin: 20px 0; }
+    </style>
+</head>
+<body>
+    <h1>Car Showcase</h1>
+    <button onclick="displayCarDetails()">Show Car Details</button>
+    <div id="carDetails"></div>
+    <script>
+        const cars = [
+            { brand: 'Tesla', model: 'Model S', year: 2022 },
+            { brand: 'Ford', model: 'Mustang', year: 2021 },
+            { brand: 'Chevrolet', model: 'Camaro', year: 2020 }
+        ];
 
-    // Method to add a review
-    this.addReview = function(rating, comment) {
-        const review = {
-            rating: rating,
-            comment: comment,
-            date: new Date().toLocaleDateString()
-        };
-        this.reviews.push(review);
-    };
+        function displayCarDetails() {
+            const carDetailsDiv = document.getElementById('carDetails');
+            carDetailsDiv.innerHTML = ''; // Clear previous details
 
-    // Method to calculate average rating
-    this.getAverageRating = function() {
-        if (this.reviews.length === 0) return 0;
-        const total = this.reviews.reduce((sum, review) => sum + review.rating, 0);
-        return (total / this.reviews.length).toFixed(1);
-    };
-
-    // Method to display movie info
-    this.displayInfo = function() {
-        console.log(`Title: ${this.title}`);
-        console.log(`Director: ${this.director}`);
-        console.log(`Release Year: ${this.releaseYear}`);
-        console.log(`Average Rating: ${this.getAverageRating()}`);
-        console.log(`Reviews:`);
-        this.reviews.forEach(review => {
-            console.log(` - [${review.date}] ${review.rating}/5: ${review.comment}`);
-        });
-    };
-}
-
-// Example usage
-const movie = new Movie("Inception", "Christopher Nolan", 2010);
-
-// Adding reviews
-movie.addReview(5, "Mind-blowing experience!");
-movie.addReview(4, "Great visuals but a bit confusing.");
-movie.addReview(5, "A masterpiece!");
-
-movie.displayInfo();
+            cars.forEach(car => {
+                const carDiv = document.createElement('div');
+                carDiv.className = 'car';
+                carDiv.innerHTML = `<strong>Brand:</strong> ${car.brand} <br>
+                                    <strong>Model:</strong> ${car.model} <br>
+                                    <strong>Year:</strong> ${car.year}`;
+                carDetailsDiv.appendChild(carDiv);
+            });
+        }
+    </script>
+</body>
+</html>
