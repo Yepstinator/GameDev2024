@@ -68,7 +68,50 @@ div.third {
 </div>
 
 </body>
-</html>
+
+  <style>
+        .glow {
+            text-shadow: 0 0 10px #00e6e6, 0 0 20px #00cccc, 0 0 30px #00b3b3, 0 0 40px #009999;
+        }
+        .shadow {
+            text-shadow: 2px 2px #ff0000;
+        }
+        .gradient {
+            background: linear-gradient(to right, #ff7e5f, #feb47b);
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+        .outline {
+            -webkit-text-stroke: 1px black;
+        }
+        .neon {
+            color: #39ff14;
+            text-shadow: 0 0 5px #39ff14, 0 0 10px #39ff14, 0 0 20px #39ff14;
+        }
+        .rotate {
+            display: inline-block;
+            transform: rotate(-10deg);
+        }
+        .uppercase {
+            text-transform: uppercase;
+        }
+        .border {
+            border: 2px solid black;
+            padding: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>CSS Text Effects</h1>
+    <p class="glow">Glow Effect</p>
+    <p class="shadow">Shadow Effect</p>
+    <p class="gradient">Gradient Effect</p>
+    <p class="outline">Outline Effect</p>
+    <p class="neon">Neon Effect</p>
+    <p class="rotate">Rotated Text</p>
+    <p class="uppercase">Uppercase Transformation</p>
+    <p class="border">Text with Border</p>
+</body>
 
 <footer>
   <p>&copy; 2024 CSS Showcase. All rights reserved.</p>
