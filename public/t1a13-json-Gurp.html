@@ -1,19 +1,19 @@
 <h1 align="center">t1a13-json-Gurp.html</h1>
 
-<script> bv
+<script> 
     function myShowJSON(){
         document.getElementById('myDiv1').innerHTML = `Sent: ${myIn} `
     }
 
-async function fetchData() {
-    const response = await fetch('https://dog.ceo/api/breeds/image/random');
-    const data = await response.json();
-    console.log(data);
-    console.log(`data.status: ${data.status}` )
-
-    const myJson = await JSON.stringify(data, null, 2);
-    document.getElementById('myDiv1').innerHTML = myJson
+async function fetchData(myUrl) {
+document.getElementById('myDiv1').innerHTML = ''
+ const response = await fetch(myUrl);
+ const data = await response.json();
+ 
+ console.log(data)
+ const myJson = await JSON.stringify(data, null, 2);
 }
+
 </script>
 
 Explanation of JSON compared to javascript objects formatted in this text area <br>
@@ -22,15 +22,19 @@ Explanation of JSON compared to javascript objects formatted in this text area <
 
 </textarea><br><br>
 
-Enter a json returning URL: <input type="text" id="myText1" value=
+Enter a json returning URL: <input type="text" id="myText1" size="80" value=
 "https://randomfox.ca/floof/">
-<input type="button" value="show JSON" onclick="{fetchData()}"><br><br>
+<input type="button" value="show JSON" onclick="{
+    fetchData(document.getElementById('myText1').value)
+
+}"><br><br>
 
 <select size="1" onchange="myShowJSON(this.value)">
 <option value="https://randomfox.ca/floof/">randomfox
 <option value="https://dog.ceo/api/breeds/image/random">god.ceo
+
 </select><br><br>
 
-You make the JSON show up in the DIV<br><br>
+You make the JSON show up in the DIV, and include many more URL's in the select box<br><br>
 
 <div id="myDiv1">...</div>
