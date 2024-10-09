@@ -10,6 +10,16 @@
 <img width="300" src="https://pics.craiyon.com/2024-01-02/SaQwmLhJTHeiZWgv3wuTAA.webp"></img>
   <br>
   <h2 style="color:white;">Jackblack of the blackjack</h1>
+
+  <button onclick="changeColor()">Change Background Color</button>
+
+<script>
+  function changeColor() {
+    const colors = ['#FF5733', '#33FF57', '#3357FF', '#F0F', '#FF0'];
+    const randomColor = colors[Math.floor(Math.random() * colors.length)];
+    document.body.style.backgroundColor = randomColor;
+  }
+</script>
 </style>
 </head>
 <body>
