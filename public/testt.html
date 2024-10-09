@@ -1,1 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSON Fetch Example</title>
+</head>
+<body>
+    <h1 align="center">t1a13-json-Gurp.html</h1>
+
+    <script>
+        async function fetchData(url) {
+            const response = await fetch(url);
+            const data = await response.json();
+            console.log(data);
+            console.log(`data.status: ${data.status}`);
+
+            const myJson = JSON.stringify(data, null, 2);
+            document.getElementById('myDiv1').innerHTML = `<pre>${myJson}</pre>`;
+        }
+
+        function showJSON() {
+            const url = document.getElementById('myText1').value;
+            fetchData(url);
+        }
+
+        function selectJSON(url) {
+            fetchData(url);
+        }
+    </script>
+
+    <p>Explanation of JSON compared to JavaScript objects formatted in this text area:</p>
+    <textarea cols="70" rows="5"></textarea><br><br>
+
+    <label for="myText1">Enter a JSON returning URL:</label>
+    <input type="text" id="myText1" value="https://randomfox.ca/floof/">
+    <input type="button" value="Show JSON" onclick="showJSON()"><br><br>
+
+    <select size="1" onchange="selectJSON(this.value)">
+        <option value="https://randomfox.ca/floof/">randomfox</option>
+        <option value="https://dog.ceo/api/breeds/image/random">dog.ceo</option>
+    </select><br><br>
+
+    <p>You make the JSON show up in the DIV:</p><br><br>
+
+    <div id="myDiv1">...</div>
+</body>
+</html>
 
