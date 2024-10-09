@@ -1,85 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CSS Showcase</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #f0f0f0;
-      margin: 0;
-      padding: 0;
-    }
-    header {
-      background-color: #333;
-      color: white;
-      padding: 20px;
-      text-align: center;
-    }
-    nav {
-      display: flex;
-      justify-content: center;
-      background-color: #444;
-    }
-    nav a {
-      color: white;
-      padding: 14px 20px;
-      text-decoration: none;
-      transition: background-color 0.3s;
-    }
-    nav a:hover {
-      background-color: #555;
-    }
-    .container {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
-      padding: 20px;
-    }
-    .item {
-      background-color: white;
-      border: 1px solid #ccc;
-      padding: 20px;
-      text-align: center;
-      transition: transform 0.3s;
-    }
-    .item:hover {
-      transform: scale(1.05);
-    }
-    footer {
-      background-color: #333;
-      color: white;
-      padding: 20px;
-      text-align: center;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unique CSS Text Effects</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+            padding: 20px;
+        }
+        .glow {
+            text-shadow: 0 0 10px #00e6e6, 0 0 20px #00cccc, 0 0 30px #00b3b3, 0 0 40px #009999;
+        }
+        .shadow {
+            text-shadow: 2px 2px #ff0000;
+        }
+        .gradient {
+            background: linear-gradient(to right, #ff7e5f, #feb47b);
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+        .outline {
+            -webkit-text-stroke: 1px black;
+        }
+        .neon {
+            color: #39ff14;
+            text-shadow: 0 0 5px #39ff14, 0 0 10px #39ff14, 0 0 20px #39ff14;
+        }
+        .rotate {
+            display: inline-block;
+            transform: rotate(-10deg);
+        }
+        .uppercase {
+            text-transform: uppercase;
+        }
+        .border {
+            border: 2px solid black;
+            padding: 5px;
+        }
+    </style>
 </head>
 <body>
-
-<header>
-  <h1>CSS Showcase</h1>
-</header>
-
-<nav>
-  <a href="#">Home</a>
-  <a href="#">About</a>
-  <a href="#">Services</a>
-  <a href="#">Contact</a>
-</nav>
-
-<div class="container">
-  <div class="item">Item 1</div>
-  <div class="item">Item 2</div>
-  <div class="item">Item 3</div>
-  <div class="item">Item 4</div>
-  <div class="item">Item 5</div>
-  <div class="item">Item 6</div>
-</div>
-
-<footer>
-  <p>&copy; 2024 CSS Showcase. All rights reserved.</p>
-</footer>
-
+    <h1>CSS Text Effects</h1>
+    <p class="glow">Glow Effect</p>
+    <p class="shadow">Shadow Effect</p>
+    <p class="gradient">Gradient Effect</p>
+    <p class="outline">Outline Effect</p>
+    <p class="neon">Neon Effect</p>
+    <p class="rotate">Rotated Text</p>
+    <p class="uppercase">Uppercase Transformation</p>
+    <p class="border">Text with Border</p>
 </body>
 </html>
