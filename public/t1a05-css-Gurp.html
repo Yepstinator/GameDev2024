@@ -4,6 +4,16 @@
 <br>
 <i style="border-style:groove;"> This has a border right?</i>
 <p.dotted {border-style: dotted;}>awesome</p.dotted>
+<script>
+  function changeColor() {
+    const colors = ['#FF5733', '#33FF57', '#3357FF', '#F0F', '#FF0'];
+    const randomColor = colors[Math.floor(Math.random() * colors.length)];
+    document.body.style.backgroundColor = randomColor;
+  }
+</script>
+</style>
+</head>
+<body>
 
 <style>
         body {
