@@ -3,92 +3,61 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Event Handling Example</title>
+    <title>JavaScript Events Example</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
+        #hoverDiv {
+            width: 200px;
+            height: 200px;
+            background-color: lightblue;
             margin: 20px;
-            padding: 20px;
-            background-color: #f0f0f0;
+            text-align: center;
+            line-height: 200px;
         }
-        .button {
-            padding: 10px 15px;
-            background-color: #28a745;
-            color: white;
-            border: none;
-            cursor: pointer;
-            margin: 5px;
-        }
-        .hover-box {
-            width: 200px;
-            height: 100px;
-            background-color: #007bff;
-            color: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 10px 0;
-        }
-        #inputField {
-            padding: 10px;
-            width: 200px;
-            margin: 10px 0;
+        #output {
+            margin-top: 20px;
         }
     </style>
 </head>
 <body>
+    <h1>JavaScript Events Example</h1>
 
-<h1>JavaScript Event Handling Example</h1>
+    <button id="clickButton">Click Me!</button>
+    <div id="hoverDiv">Hover over me!</div>
+    <input type="text" id="textInput" placeholder="Type something...">
+    <select id="selectBox">
+        <option value="Option 1">Option 1</option>
+        <option value="Option 2">Option 2</option>
+        <option value="Option 3">Option 3</option>
+    </select>
 
-<button class="button" id="clickButton">Click Me!</button>
-<div class="hover-box" id="hoverBox">Hover over me!</div>
-<input type="text" id="inputField" placeholder="Type something..." />
-<select id="selectBox">
-    <option value="option1">Option 1</option>
-    <option value="option2">Option 2</option>
-    <option value="option3">Option 3</option>
-</select>
+    <div id="output">Event output will appear here.</div>
 
-<div id="output" style="margin-top: 20px;"></div>
+    <script>
+        document.getElementById('clickButton').addEventListener('click', function() {
+            document.getElementById('output').innerText = 'Button clicked!';
+        });
 
-<script>
-    // Click event
-    document.getElementById('clickButton').addEventListener('click', function() {
-        document.getElementById('output').innerHTML = 'Button clicked!';
-    });
+        document.getElementById('hoverDiv').addEventListener('mouseover', function() {
+            this.style.backgroundColor = 'lightgreen';
+            document.getElementById('output').innerText = 'Mouse over the div!';
+        });
 
-    // Mouseover and mouseout events
-    const hoverBox = document.getElementById('hoverBox');
-    hoverBox.addEventListener('mouseover', function() {
-        hoverBox.style.backgroundColor = '#0056b3';
-        hoverBox.innerHTML = 'Thanks for hovering!';
-    });
+        document.getElementById('hoverDiv').addEventListener('mouseout', function() {
+            this.style.backgroundColor = 'lightblue';
+            document.getElementById('output').innerText = 'Mouse out of the div!';
+        });
 
-    hoverBox.addEventListener('mouseout', function() {
-        hoverBox.style.backgroundColor = '#007bff';
-        hoverBox.innerHTML = 'Hover over me!';
-    });
+        document.getElementById('textInput').addEventListener('keydown', function(event) {
+            document.getElementById('output').innerText = `Key down: ${event.key}`;
+        });
 
-    // Focus and blur events for input
-    const inputField = document.getElementById('inputField');
-    inputField.addEventListener('focus', function() {
-        inputField.style.border = '2px solid #28a745';
-        inputField.placeholder = 'Keep typing...';
-    });
+        document.getElementById('textInput').addEventListener('keyup', function(event) {
+            document.getElementById('output').innerText = `Key up: ${event.key}`;
+        });
 
-    inputField.addEventListener('blur', function() {
-        inputField.style.border = '';
-        if (inputField.value === '') {
-            inputField.placeholder = 'Type something...';
-        }
-    });
-
-    // Change event for select box
-    const selectBox = document.getElementById('selectBox');
-    selectBox.addEventListener('change', function() {
-        document.getElementById('output').innerHTML = 'Selected: ' + selectBox.value;
-    });
-</script>
-
+        document.getElementById('selectBox').addEventListener('change', function() {
+            document.getElementById('output').innerText = `Selected: ${this.value}`;
+        });
+    </script>
 </body>
 </html>
