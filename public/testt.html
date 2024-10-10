@@ -1,42 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Handling Example</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 20px;
+            background-color: #f0f0f0;
+        }
+        .button {
+            padding: 10px 15px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            cursor: pointer;
+            margin: 5px;
+        }
+        .hover-box {
+            width: 200px;
+            height: 100px;
+            background-color: #007bff;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 10px 0;
+        }
+        #inputField {
+            padding: 10px;
+            width: 200px;
+            margin: 10px 0;
+        }
+    </style>
+</head>
 <body>
-    <h1 align="center">t1a13-json-Gurp.html</h1>
 
-    <script> 
-        async function fetchData(myUrl) {
-            document.getElementById('myDiv1').innerHTML = 'Loading...';
-            try {
-                const response = await fetch(myUrl);
-                const data = await response.json();
-                const myJson = JSON.stringify(data, null, 2);
-                document.getElementById('myDiv1').innerHTML = `<pre>${myJson}</pre>`;
-            } catch (error) {
-                document.getElementById('myDiv1').innerHTML = 'Error fetching data';
-                console.error('Error:', error);
-            }
+<h1>JavaScript Event Handling Example</h1>
+
+<button class="button" id="clickButton">Click Me!</button>
+<div class="hover-box" id="hoverBox">Hover over me!</div>
+<input type="text" id="inputField" placeholder="Type something..." />
+<select id="selectBox">
+    <option value="option1">Option 1</option>
+    <option value="option2">Option 2</option>
+    <option value="option3">Option 3</option>
+</select>
+
+<div id="output" style="margin-top: 20px;"></div>
+
+<script>
+    // Click event
+    document.getElementById('clickButton').addEventListener('click', function() {
+        document.getElementById('output').innerHTML = 'Button clicked!';
+    });
+
+    // Mouseover and mouseout events
+    const hoverBox = document.getElementById('hoverBox');
+    hoverBox.addEventListener('mouseover', function() {
+        hoverBox.style.backgroundColor = '#0056b3';
+        hoverBox.innerHTML = 'Thanks for hovering!';
+    });
+
+    hoverBox.addEventListener('mouseout', function() {
+        hoverBox.style.backgroundColor = '#007bff';
+        hoverBox.innerHTML = 'Hover over me!';
+    });
+
+    // Focus and blur events for input
+    const inputField = document.getElementById('inputField');
+    inputField.addEventListener('focus', function() {
+        inputField.style.border = '2px solid #28a745';
+        inputField.placeholder = 'Keep typing...';
+    });
+
+    inputField.addEventListener('blur', function() {
+        inputField.style.border = '';
+        if (inputField.value === '') {
+            inputField.placeholder = 'Type something...';
         }
+    });
 
-        function myShowJSON(url) {
-            fetchData(url);
-        }
-    </script>
+    // Change event for select box
+    const selectBox = document.getElementById('selectBox');
+    selectBox.addEventListener('change', function() {
+        document.getElementById('output').innerHTML = 'Selected: ' + selectBox.value;
+    });
+</script>
 
-    <p>Explanation of JSON compared to JavaScript objects formatted in this text area:</p>
-    <textarea cols="70" rows="5">
-    JSON (JavaScript Object Notation) is a lightweight data-interchange format. It is easy for humans to read and write. It is easy for machines to parse and generate. JSON is a text format that is completely language independent but uses conventions that are familiar to programmers of the C-family of languages, including C, C++, C#, Java, JavaScript, Perl, Python, and many others. These properties make JSON an ideal data-interchange language.
-    </textarea><br><br>
-
-    <p>Enter a JSON returning URL:</p>
-    <input type="text" id="myText1" size="80" value="https://randomfox.ca/floof/">
-    <input type="button" value="Show JSON" onclick="fetchData(document.getElementById('myText1').value)"><br><br>
-
-    <p>Select a URL:</p>
-    <select size="1" onchange="myShowJSON(this.value)">
-        <option value="https://randomfox.ca/floof/">randomfox</option>
-        <option value="https://dog.ceo/api/breeds/image/random">dog.ceo</option>
-        <option value="https://api.thecatapi.com/v1/images/search">thecatapi</option>
-        <option value="https://api.chucknorris.io/jokes/random">chucknorris</option>
-        <option value="https://api.coindesk.com/v1/bpi/currentprice.json">coindesk</option>
-    </select><br><br>
-
-    <div id="myDiv1">...</div>
 </body>
+</html>
