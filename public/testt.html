@@ -1,48 +1,50 @@
-<h1 align="center">t1a13-json-Gurp.html</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSON Fetch Example</title>
+</head>
+<body>
+    <h1 align="center">t1a13-json-Gurp.html</h1>
 
-<script>
-    async function fetchData(myUrl) {
-        document.getElementById('myDiv1').innerHTML = ''; // Clear previous output
-        try {
-            const response = await fetch(myUrl);
-            if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
+    <script> 
+        async function fetchData(myUrl) {
+            document.getElementById('myDiv1').innerHTML = 'Loading...';
+            try {
+                const response = await fetch(myUrl);
+                const data = await response.json();
+                const myJson = JSON.stringify(data, null, 2);
+                document.getElementById('myDiv1').innerHTML = `<pre>${myJson}</pre>`;
+            } catch (error) {
+                document.getElementById('myDiv1').innerHTML = 'Error fetching data';
+                console.error('Error:', error);
             }
-            const data = await response.json();
-            console.log(data);
-            const myJson = JSON.stringify(data, null, 2);
-            document.getElementById('myDiv1').innerHTML = `<pre>${myJson}</pre>`; // Displaying formatted JSON
-        } catch (error) {
-            document.getElementById('myDiv1').innerHTML = 'Error fetching data: ' + error.message;
         }
-    }
 
-    function myShowJSON() {
-        const selectedUrl = document.getElementById('urlSelect').value;
-        document.getElementById('myDiv1').innerHTML = `Selected URL: ${selectedUrl}`;
-        fetchData(selectedUrl);
-    }
-</script>
+        function myShowJSON(url) {
+            fetchData(url);
+        }
+    </script>
 
-Explanation of JSON compared to JavaScript objects:
-<textarea cols="70" rows="5">
-JSON (JavaScript Object Notation) is a lightweight data interchange format that is easy for humans to read and write, and easy for machines to parse and generate. 
-It is text-based and represents data as key-value pairs, arrays, and nested objects. 
-JavaScript objects, on the other hand, are a programming construct used for storing data and functionality in JavaScript. 
-While JSON is a format that can be used with JavaScript objects, they are not the same; JSON is primarily used for data exchange.
-</textarea><br><br>
+    <p>Explanation of JSON compared to JavaScript objects formatted in this text area:</p>
+    <textarea cols="70" rows="5">
+    JSON (JavaScript Object Notation) is a lightweight data-interchange format. It is easy for humans to read and write. It is easy for machines to parse and generate. JSON is a text format that is completely language independent but uses conventions that are familiar to programmers of the C-family of languages, including C, C++, C#, Java, JavaScript, Perl, Python, and many others. These properties make JSON an ideal data-interchange language.
+    </textarea><br><br>
 
-Enter a JSON returning URL: <input type="text" id="myText1" size="80" value="https://randomfox.ca/floof/">
-<input type="button" value="Show JSON" onclick="fetchData(document.getElementById('myText1').value)"><br><br>
+    <p>Enter a JSON returning URL:</p>
+    <input type="text" id="myText1" size="80" value="https://randomfox.ca/floof/">
+    <input type="button" value="Show JSON" onclick="fetchData(document.getElementById('myText1').value)"><br><br>
 
-<select id="urlSelect" size="1" onchange="myShowJSON()">
-    <option value="https://randomfox.ca/floof/">Random Fox</option>
-    <option value="https://dog.ceo/api/breeds/image/random">Random Dog</option>
-    <option value="https://jsonplaceholder.typicode.com/posts">Placeholder Posts</option>
-    <option value="https://jsonplaceholder.typicode.com/users">Placeholder Users</option>
-    <option value="https://api.coindesk.com/v1/bpi/currentprice.json">Bitcoin Price Index</option>
-    <option value="https://api.agify.io?name=michael">Age Prediction API</option>
-    <option value="https://api.genderize.io?name=alex">Gender Prediction API</option>
-</select><br><br>
+    <p>Select a URL:</p>
+    <select size="1" onchange="myShowJSON(this.value)">
+        <option value="https://randomfox.ca/floof/">randomfox</option>
+        <option value="https://dog.ceo/api/breeds/image/random">dog.ceo</option>
+        <option value="https://api.thecatapi.com/v1/images/search">thecatapi</option>
+        <option value="https://api.chucknorris.io/jokes/random">chucknorris</option>
+        <option value="https://api.coindesk.com/v1/bpi/currentprice.json">coindesk</option>
+    </select><br><br>
 
-<div id="myDiv1">...</div>
+    <div id="myDiv1">...</div>
+</body>
+</html>
