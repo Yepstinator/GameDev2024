@@ -1,18 +1,69 @@
-<h1 align=center>t1a08-variables-Gurp</h1>
-  Input 1:<input type=text id="myIn01" value="5"><br>
-  Input 2:<input type=text id="myIn02" value="7"><br>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cool Variable Demo</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f0f8ff;
+            transition: background-color 0.5s;
+        }
+        input[type="text"], input[type="button"] {
+            padding: 10px;
+            margin: 10px;
+            font-size: 16px;
+        }
+        #results {
+            margin-top: 20px;
+            font-size: 24px;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <h1>Cool Variables in Action!</h1>
+    <p>Enter a number to see its square, cube, and factorial.</p>
+    <input type="text" id="numberInput" placeholder="Enter a number" />
+    <input type="button" value="Calculate" onclick="calculate()" />
+    
+    <div id="results">...</div>
 
-  <input type=button value="Add and fix" onclick="{
-    myTotal = document.getElementById('myIn01').value + document.getElementById('myIn02').value
-      document.getElementById('myDiv01').innerHTML = 'Your answer is ' + myTotal
-  }">
+    <script>
+        function calculate() {
+            // Get user's input from the text box
+            const number = parseInt(document.getElementById('numberInput').value);
 
-  <div id="myDiv01">...</div>
+            // Check if the input is a valid number
+            if (isNaN(number)) {
+                document.getElementById('results').innerHTML = "Please enter a valid number.";
+                return;
+            }
+            
+            // Variables for results
+            const square = number * number;
+            const cube = number * number * number;
+            const factorial = calculateFactorial(number);
+            
+            // Display results
+            document.getElementById('results').innerHTML = `
+                The square of ${number} is: ${square}<br>
+                The cube of ${number} is: ${cube}<br>
+                The factorial of ${number} is: ${factorial}
+            `;
 
+            // Change background color based on input
+            document.body.style.backgroundColor = `hsl(${number * 20}, 70%, 80%)`;
+        }
 
-<input type="button" value="Add2 and fix" onclick="{
-    const myX = Number(document.getElementById('myIn01').value);
-    const myY = Number(document.getElementById('myIn02').value);
-    const myTotal = myX + myY;
-    document.getElementById('myDiv01').innerHTML = 'Your answer is ' + myTotal;
-}"><br><br>
+        // Function to calculate factorial
+        function calculateFactorial(n) {
+            if (n < 0) return "undefined"; // Factorials are not defined for negative numbers
+            if (n === 0 || n === 1) return 1; // Base case
+            return n * calculateFactorial(n - 1); // Recursive case
+        }
+    </script>
+</body>
+</html>
