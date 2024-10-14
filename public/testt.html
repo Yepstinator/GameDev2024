@@ -1,63 +1,47 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JavaScript Events Example</title>
-    <style>
-        #hoverDiv {
-            width: 200px;
-            height: 200px;
-            background-color: lightblue;
-            margin: 20px;
-            text-align: center;
-            line-height: 200px;
+<h1 align="center">t1a13-json-Gurp.html</h1>
+
+<script> 
+    async function fetchData(myUrl) {
+        // Clear the div before fetching new data
+        document.getElementById('myDiv1').innerHTML = '';
+        
+        try {
+            const response = await fetch(myUrl);
+            const data = await response.json();
+            
+            // Convert data to formatted JSON string
+            const myJson = JSON.stringify(data, null, 2);
+            
+            // Display the JSON in the div
+            document.getElementById('myDiv1').innerHTML = `<pre>${myJson}</pre>`;
+        } catch (error) {
+            document.getElementById('myDiv1').innerHTML = `Error fetching data: ${error.message}`;
         }
-        #output {
-            margin-top: 20px;
-        }
-    </style>
-</head>
-<body>
-    <h1>JavaScript Events Example</h1>
+    }
 
-    <button id="clickButton">Click Me!</button>
-    <div id="hoverDiv">Hover over me!</div>
-    <input type="text" id="textInput" placeholder="Type something...">
-    <select id="selectBox">
-        <option value="Option 1">Option 1</option>
-        <option value="Option 2">Option 2</option>
-        <option value="Option 3">Option 3</option>
-    </select>
+    function myShowJSON() {
+        // Not necessary if fetchData is called directly on button or select change
+        // If you want to show additional info, define what 'myIn' is
+    }
 
-    <div id="output">Event output will appear here.</div>
+</script>
 
-    <script>
-        document.getElementById('clickButton').addEventListener('click', function() {
-            document.getElementById('output').innerText = 'Button clicked!';
-        });
+Explanation of JSON compared to Javascript objects formatted in this text area <br>
 
-        document.getElementById('hoverDiv').addEventListener('mouseover', function() {
-            this.style.backgroundColor = 'lightgreen';
-            document.getElementById('output').innerText = 'Mouse over the div!';
-        });
+<textarea cols="70" rows="5">
+JSON is a lightweight data interchange format that is easy for humans to read and write, and easy for machines to parse and generate. JSON is text, and can be converted to and from JavaScript objects. 
 
-        document.getElementById('hoverDiv').addEventListener('mouseout', function() {
-            this.style.backgroundColor = 'lightblue';
-            document.getElementById('output').innerText = 'Mouse out of the div!';
-        });
+JavaScript objects can contain functions and are more complex, while JSON is purely a data format consisting of key-value pairs. JSON keys must be strings, while JavaScript object keys can be strings or identifiers. JSON does not support comments, while JavaScript objects can include comments.
+</textarea><br><br>
 
-        document.getElementById('textInput').addEventListener('keydown', function(event) {
-            document.getElementById('output').innerText = `Key down: ${event.key}`;
-        });
+Enter a JSON returning URL: <input type="text" id="myText1" size="80" value="https://randomfox.ca/floof/">
+<input type="button" value="show JSON" onclick="fetchData(document.getElementById('myText1').value)"><br><br>
 
-        document.getElementById('textInput').addEventListener('keyup', function(event) {
-            document.getElementById('output').innerText = `Key up: ${event.key}`;
-        });
+<select size="1" onchange="fetchData(this.value)">
+    <option value="https://randomfox.ca/floof/">randomfox</option>
+    <option value="https://dog.ceo/api/breeds/image/random">dog.ceo</option>
+</select><br><br>
 
-        document.getElementById('selectBox').addEventListener('change', function() {
-            document.getElementById('output').innerText = `Selected: ${this.value}`;
-        });
-    </script>
-</body>
-</html>
+<p>You make the JSON show up in the DIV, and include many more URL's in the select box:</p>
+
+<div id="myDiv1">...</div>
