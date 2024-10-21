@@ -1,1 +1,41 @@
+html>
+<head>
+    <link rel="stylesheet" type="text/css" href="css-Gurp.css">
+</head>
 
+<body>
+    <h2 align="center">t1a18 extend class Gurp.html</h2>
+
+    <script>
+        class MyAnimal {
+            constructor(passName, passAge) {
+                this.myName = passName;
+                this.myAge = passAge;
+            }
+            myShow() {
+                document.getElementById('myDiv01').innerHTML = 'Hello ' + this.myName + '<br>';
+            }
+        } // end class MyAnimal
+
+        class MyCat extends MyAnimal {
+            myShow() {
+                document.getElementById('myDiv01').innerHTML = this.myName + ' is a great cat <br>';
+            }
+        } // end extended class MyCat
+    </script>
+
+    <input type="button" value="Example Class Set and Show Class Animal" onClick="{
+        myDog = new MyAnimal('Snickers', 5);
+        myDog.myShow();
+    }"><br><br>
+
+    <input type="text" id="myText01" value="may be useful later"><br>
+
+    <input type="button" value="Example Extend Class Animal as Cat" onClick="{
+        myPet = new MyCat('Fluffy', 14);
+        myPet.myShow();
+    }"><br><br>
+
+    <div id="myDiv01">...</div>
+</body>
+</html>
