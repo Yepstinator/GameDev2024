@@ -3,67 +3,108 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cool Variable Demo</title>
+    <title>Swaggy Event Page</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+            background-color: #282c34;
+            color: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
             text-align: center;
-            background-color: #f0f8ff;
-            transition: background-color 0.5s;
         }
-        input[type="text"], input[type="button"] {
+
+        .container {
+            border-radius: 15px;
+            padding: 20px;
+            background: linear-gradient(45deg, #6a11cb, #2575fc);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .title {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        .swag-button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            background-color: #ff4081;
+            color: #fff;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .swag-button:hover {
+            background-color: #f50057;
+        }
+
+        .hidden {
+            display: none;
+            margin-top: 10px;
+            font-size: 1.5rem;
+            color: #64ffda;
+        }
+
+        .input-field {
             padding: 10px;
-            margin: 10px;
-            font-size: 16px;
-        }
-        #results {
             margin-top: 20px;
-            font-size: 24px;
-            color: #333;
+            border: none;
+            border-radius: 5px;
+        }
+
+        .keypress-display {
+            font-size: 1.2rem;
+            margin-top: 10px;
+        }
+
+        .footer {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
         }
     </style>
 </head>
 <body>
-    <h1>Cool Variables in Action!</h1>
-    <p>Enter a number to see its square, cube, and factorial.</p>
-    <input type="text" id="numberInput" placeholder="Enter a number" />
-    <input type="button" value="Calculate" onclick="calculate()" />
-    
-    <div id="results">...</div>
-
+    <div class="container">
+        <h1 class="title">Super Swaggy Event Page</h1>
+        <button id="clickMe" class="swag-button">Click Me!</button>
+        <div id="hoverText" class="hidden">You hovered over me!</div>
+        <input type="text" id="inputField" placeholder="Type something..." class="input-field"/>
+        <div id="keypressDisplay" class="keypress-display"></div>
+        <footer class="footer">© 2023 Swaggy Page</footer>
+    </div>
     <script>
-        function calculate() {
-            // Get user's input from the text box
-            const number = parseInt(document.getElementById('numberInput').value);
+        document.addEventListener("DOMContentLoaded", () => {
+            const clickMeButton = document.getElementById("clickMe");
+            const hoverText = document.getElementById("hoverText");
+            const inputField = document.getElementById("inputField");
+            const keypressDisplay = document.getElementById("keypressDisplay");
 
-            // Check if the input is a valid number
-            if (isNaN(number)) {
-                document.getElementById('results').innerHTML = "Please enter a valid number.";
-                return;
-            }
-            
-            // Variables for results
-            const square = number * number;
-            const cube = number * number * number;
-            const factorial = calculateFactorial(number);
-            
-            // Display results
-            document.getElementById('results').innerHTML = `
-                The square of ${number} is: ${square}<br>
-                The cube of ${number} is: ${cube}<br>
-                The factorial of ${number} is: ${factorial}
-            `;
+            // Click event
+            clickMeButton.addEventListener("click", () => {
+                alert("Button clicked! You're so swaggy!");
+            });
 
-            // Change background color based on input
-            document.body.style.backgroundColor = `hsl(${number * 20}, 70%, 80%)`;
-        }
+            // Mouse hover event
+            clickMeButton.addEventListener("mouseover", () => {
+                hoverText.classList.remove("hidden");
+            });
 
-        // Function to calculate factorial
-        function calculateFactorial(n) {
-            if (n < 0) return "undefined"; // Factorials are not defined for negative numbers
-            if (n === 0 || n === 1) return 1; // Base case
-            return n * calculateFactorial(n - 1); // Recursive case
-        }
+            clickMeButton.addEventListener("mouseleave", () => {
+                hoverText.classList.add("hidden");
+            });
+
+            // Keyboard event
+            inputField.addEventListener("keyup", (event) => {
+                keypressDisplay.textContent = `You typed: ${event.target.value}`;
+            });
+        });
     </script>
 </body>
 </html>
