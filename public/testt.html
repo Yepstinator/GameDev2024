@@ -3,107 +3,77 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Swaggy Event Page</title>
-    <style>
-        body {
-            margin: 0;
-            font-family: 'Arial', sans-serif;
-            background-color: #282c34;
-            color: #ffffff;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-            text-align: center;
-        }
-
-        .container {
-            border-radius: 15px;
-            padding: 20px;
-            background: linear-gradient(45deg, #6a11cb, #2575fc);
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
-        }
-
-        .title {
-            font-size: 2.5rem;
-            margin-bottom: 20px;
-        }
-
-        .swag-button {
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            background-color: #ff4081;
-            color: #fff;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-
-        .swag-button:hover {
-            background-color: #f50057;
-        }
-
-        .hidden {
-            display: none;
-            margin-top: 10px;
-            font-size: 1.5rem;
-            color: #64ffda;
-        }
-
-        .input-field {
-            padding: 10px;
-            margin-top: 20px;
-            border: none;
-            border-radius: 5px;
-        }
-
-        .keypress-display {
-            font-size: 1.2rem;
-            margin-top: 10px;
-        }
-
-        .footer {
-            position: absolute;
-            bottom: 10px;
-            left: 50%;
-            transform: translateX(-50%);
-        }
-    </style>
+    <title>JavaScript Events Example</title>
 </head>
 <body>
-    <div class="container">
-        <h1 class="title">Super Swaggy Event Page</h1>
-        <button id="clickMe" class="swag-button">Click Me!</button>
-        <div id="hoverText" class="hidden">You hovered over me!</div>
-        <input type="text" id="inputField" placeholder="Type something..." class="input-field"/>
-        <div id="keypressDisplay" class="keypress-display"></div>
-        <footer class="footer">© 2023 Swaggy Page</footer>
-    </div>
+    <h1>JavaScript Events Demo</h1>
+    
+    <button id="clickButton">Click Me</button>
+    <input type="text" id="textInput" placeholder="Type something" />
+    <select id="selectBox">
+        <option value="">Select an option</option>
+        <option value="Option 1">Option 1</option>
+        <option value="Option 2">Option 2</option>
+        <option value="Option 3">Option 3</option>
+    </select>
+    
+    <p id="hoverArea" style="border: 1px solid black; padding: 10px; margin: 20px 0;">Hover over me!</p>
+    
+    <input type="checkbox" id="checkBox" /> Check me
+    <p id="inputInfo"></p>
+    
+    <input type="range" id="rangeInput" min="1" max="100" />
+    <p id="rangeValue">Range value: 50</p>
+
+    <button id="resetButton">Reset</button>
+    <p id="message"></p>
+
     <script>
-        document.addEventListener("DOMContentLoaded", () => {
-            const clickMeButton = document.getElementById("clickMe");
-            const hoverText = document.getElementById("hoverText");
-            const inputField = document.getElementById("inputField");
-            const keypressDisplay = document.getElementById("keypressDisplay");
+        // 1. Button click event
+        document.getElementById('clickButton').addEventListener('click', function() {
+            alert('Button was clicked!');
+        });
 
-            // Click event
-            clickMeButton.addEventListener("click", () => {
-                alert("Button clicked! You're so swaggy!");
-            });
+        // 2. Text input event
+        document.getElementById('textInput').addEventListener('input', function() {
+            document.getElementById('message').innerText = `You typed: ${this.value}`;
+        });
 
-            // Mouse hover event
-            clickMeButton.addEventListener("mouseover", () => {
-                hoverText.classList.remove("hidden");
-            });
+        // 3. Select box change event
+        document.getElementById('selectBox').addEventListener('change', function() {
+            alert(`You selected: ${this.value}`);
+        });
 
-            clickMeButton.addEventListener("mouseleave", () => {
-                hoverText.classList.add("hidden");
-            });
+        // 4. Mouse over event
+        document.getElementById('hoverArea').addEventListener('mouseover', function() {
+            this.style.backgroundColor = '#e0e0e0';
+        });
 
-            // Keyboard event
-            inputField.addEventListener("keyup", (event) => {
-                keypressDisplay.textContent = `You typed: ${event.target.value}`;
-            });
+        // 5. Mouse out event
+        document.getElementById('hoverArea').addEventListener('mouseout', function() {
+            this.style.backgroundColor = '';
+        });
+
+        // 6. Checkbox change event
+        document.getElementById('checkBox').addEventListener('change', function() {
+            const info = this.checked ? 'Checkbox is checked!' : 'Checkbox is unchecked!';
+            document.getElementById('inputInfo').innerText = info;
+        });
+
+        // 7. Range input event
+        document.getElementById('rangeInput').addEventListener('input', function() {
+            document.getElementById('rangeValue').innerText = `Range value: ${this.value}`;
+        });
+
+        // 8. Reset button click event
+        document.getElementById('resetButton').addEventListener('click', function() {
+            document.getElementById('textInput').value = '';
+            document.getElementById('selectBox').selectedIndex = 0;
+            document.getElementById('checkBox').checked = false;
+            document.getElementById('inputInfo').innerText = '';
+            document.getElementById('rangeInput').value = 50;
+            document.getElementById('rangeValue').innerText = 'Range value: 50';
+            document.getElementById('message').innerText = '';
         });
     </script>
 </body>
