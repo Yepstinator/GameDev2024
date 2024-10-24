@@ -2,52 +2,37 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Simple Grid</title>
-    <style>
-        table {
-            border-collapse: collapse;
-            margin: 20px auto;
-        }
-        td {
-            width: 60px;
-            height: 60px;
-            text-align: center;
-            font-size: 24px;
-            border: 1px solid #000;
-            cursor: pointer;
-        }
-    </style>
+    <title>Object with Array</title>
 </head>
 <body>
-    <h1 style="text-align:center;">Interactive Grid</h1>
-    <table>
-        <tr>
-            <td onclick="changeCell(this, 0, 0)">0,0</td>
-            <td onclick="changeCell(this, 0, 1)">0,1</td>
-            <td onclick="changeCell(this, 0, 2)">0,2</td>
-        </tr>
-        <tr>
-            <td onclick="changeCell(this, 1, 0)">1,0</td>
-            <td onclick="changeCell(this, 1, 1)">1,1</td>
-            <td onclick="changeCell(this, 1, 2)">1,2</td>
-        </tr>
-        <tr>
-            <td onclick="changeCell(this, 2, 0)">2,0</td>
-            <td onclick="changeCell(this, 2, 1)">2,1</td>
-            <td onclick="changeCell(this, 2, 2)">2,2</td>
-        </tr>
-    </table>
-    <script>
-        const grid = [
-            [0, 0, 0],
-            [0, 0, 0],
-            [0, 0, 0]
-        ];
+    <button onclick="addItem()">Add Hobby</button>
+    <div id="hobbies"></div>
 
-        function changeCell(cell, row, col) {
-            grid[row][col] = grid[row][col] === 0 ? 1 : 0;
-            cell.innerHTML = grid[row][col];
+    <script>
+        const person = {
+            name: 'Jane',
+            age: 25,
+            hobbies: ['reading', 'painting']
+        };
+
+        function displayHobbies() {
+            const hobbiesDiv = document.getElementById('hobbies');
+            hobbiesDiv.innerHTML = '';
+            person.hobbies.forEach((hobby, index) => {
+                hobbiesDiv.innerHTML += `<p>${index + 1}. ${hobby}</p>`;
+            });
         }
+
+        function addItem() {
+            const newHobby = prompt('Enter a new hobby:');
+            if (newHobby) {
+                person.hobbies.push(newHobby);
+                displayHobbies();
+            }
+        }
+
+        // Display initial hobbies
+        displayHobbies();
     </script>
 </body>
 </html>
