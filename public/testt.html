@@ -1,4 +1,9 @@
-<style>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Simple Grid</title>
+    <style>
         table {
             border-collapse: collapse;
             margin: 20px auto;
@@ -14,78 +19,34 @@
     </style>
 </head>
 <body>
-    <h1 style="text-align:center;">Tic Tac Toe</h1>
+    <h1 style="text-align:center;">Interactive Grid</h1>
     <table>
         <tr>
-            <td onclick="makeMove(this, 0, 0)"></td>
-            <td onclick="makeMove(this, 0, 1)"></td>
-            <td onclick="makeMove(this, 0, 2)"></td>
+            <td onclick="changeCell(this, 0, 0)">0,0</td>
+            <td onclick="changeCell(this, 0, 1)">0,1</td>
+            <td onclick="changeCell(this, 0, 2)">0,2</td>
         </tr>
         <tr>
-            <td onclick="makeMove(this, 1, 0)"></td>
-            <td onclick="makeMove(this, 1, 1)"></td>
-            <td onclick="makeMove(this, 1, 2)"></td>
+            <td onclick="changeCell(this, 1, 0)">1,0</td>
+            <td onclick="changeCell(this, 1, 1)">1,1</td>
+            <td onclick="changeCell(this, 1, 2)">1,2</td>
         </tr>
         <tr>
-            <td onclick="makeMove(this, 2, 0)"></td>
-            <td onclick="makeMove(this, 2, 1)"></td>
-            <td onclick="makeMove(this, 2, 2)"></td>
+            <td onclick="changeCell(this, 2, 0)">2,0</td>
+            <td onclick="changeCell(this, 2, 1)">2,1</td>
+            <td onclick="changeCell(this, 2, 2)">2,2</td>
         </tr>
     </table>
     <script>
-        const board = [
-            ['', '', ''],
-            ['', '', ''],
-            ['', '', '']
+        const grid = [
+            [0, 0, 0],
+            [0, 0, 0],
+            [0, 0, 0]
         ];
-        let currentPlayer = 'X';
 
-        function makeMove(cell, row, col) {
-            if (board[row][col] === '') {
-                board[row][col] = currentPlayer;
-                cell.innerHTML = currentPlayer;
-                if (checkWinner()) {
-                    setTimeout(() => alert(currentPlayer + ' wins!'), 10);
-                    resetBoard();
-                } else if (isDraw()) {
-                    setTimeout(() => alert('Draw!'), 10);
-                    resetBoard();
-                } else {
-                    currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
-                }
-            }
-        }
-
-        function checkWinner() {
-            // Rows, columns, diagonals check
-            for (let i = 0; i < 3; i++) {
-                if (board[i][0] === currentPlayer && board[i][1] === currentPlayer && board[i][2] === currentPlayer) {
-                    return true;
-                }
-                if (board[0][i] === currentPlayer && board[1][i] === currentPlayer && board[2][i] === currentPlayer) {
-                    return true;
-                }
-            }
-            if (board[0][0] === currentPlayer && board[1][1] === currentPlayer && board[2][2] === currentPlayer) {
-                return true;
-            }
-            if (board[0][2] === currentPlayer && board[1][1] === currentPlayer && board[2][0] === currentPlayer) {
-                return true;
-            }
-            return false;
-        }
-
-        function isDraw() {
-            return board.flat().every(cell => cell !== '');
-        }
-
-        function resetBoard() {
-            for (let i = 0; i < 3; i++) {
-                for (let j = 0; j < 3; j++) {
-                    board[i][j] = '';
-                }
-            }
-            document.querySelectorAll('td').forEach(cell => cell.innerHTML = '');
+        function changeCell(cell, row, col) {
+            grid[row][col] = grid[row][col] === 0 ? 1 : 0;
+            cell.innerHTML = grid[row][col];
         }
     </script>
 </body>
