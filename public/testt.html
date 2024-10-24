@@ -3,78 +3,96 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JavaScript Events Example</title>
+    <title>Tic Tac Toe</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            margin: 20px auto;
+        }
+        td {
+            width: 60px;
+            height: 60px;
+            text-align: center;
+            font-size: 24px;
+            border: 1px solid #000;
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
-    <h1>JavaScript Events Demo</h1>
-    
-    <button id="clickButton">Click Me</button>
-    <input type="text" id="textInput" placeholder="Type something" />
-    <select id="selectBox">
-        <option value="">Select an option</option>
-        <option value="Option 1">Option 1</option>
-        <option value="Option 2">Option 2</option>
-        <option value="Option 3">Option 3</option>
-    </select>
-    
-    <p id="hoverArea" style="border: 1px solid black; padding: 10px; margin: 20px 0;">Hover over me!</p>
-    
-    <input type="checkbox" id="checkBox" /> Check me
-    <p id="inputInfo"></p>
-    
-    <input type="range" id="rangeInput" min="1" max="100" />
-    <p id="rangeValue">Range value: 50</p>
-
-    <button id="resetButton">Reset</button>
-    <p id="message"></p>
-
+    <h1 style="text-align:center;">Tic Tac Toe</h1>
+    <table>
+        <tr>
+            <td onclick="makeMove(this, 0, 0)"></td>
+            <td onclick="makeMove(this, 0, 1)"></td>
+            <td onclick="makeMove(this, 0, 2)"></td>
+        </tr>
+        <tr>
+            <td onclick="makeMove(this, 1, 0)"></td>
+            <td onclick="makeMove(this, 1, 1)"></td>
+            <td onclick="makeMove(this, 1, 2)"></td>
+        </tr>
+        <tr>
+            <td onclick="makeMove(this, 2, 0)"></td>
+            <td onclick="makeMove(this, 2, 1)"></td>
+            <td onclick="makeMove(this, 2, 2)"></td>
+        </tr>
+    </table>
     <script>
-        // 1. Button click event
-        document.getElementById('clickButton').addEventListener('click', function() {
-            alert('Button was clicked!');
-        });
+        const board = [
+            ['', '', ''],
+            ['', '', ''],
+            ['', '', '']
+        ];
+        let currentPlayer = 'X';
 
-        // 2. Text input event
-        document.getElementById('textInput').addEventListener('input', function() {
-            document.getElementById('message').innerText = `You typed: ${this.value}`;
-        });
+        function makeMove(cell, row, col) {
+            if (board[row][col] === '') {
+                board[row][col] = currentPlayer;
+                cell.innerHTML = currentPlayer;
+                if (checkWinner()) {
+                    setTimeout(() => alert(currentPlayer + ' wins!'), 10);
+                    resetBoard();
+                } else if (isDraw()) {
+                    setTimeout(() => alert('Draw!'), 10);
+                    resetBoard();
+                } else {
+                    currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
+                }
+            }
+        }
 
-        // 3. Select box change event
-        document.getElementById('selectBox').addEventListener('change', function() {
-            alert(`You selected: ${this.value}`);
-        });
+        function checkWinner() {
+            // Rows, columns, diagonals check
+            for (let i = 0; i < 3; i++) {
+                if (board[i][0] === currentPlayer && board[i][1] === currentPlayer && board[i][2] === currentPlayer) {
+                    return true;
+                }
+                if (board[0][i] === currentPlayer && board[1][i] === currentPlayer && board[2][i] === currentPlayer) {
+                    return true;
+                }
+            }
+            if (board[0][0] === currentPlayer && board[1][1] === currentPlayer && board[2][2] === currentPlayer) {
+                return true;
+            }
+            if (board[0][2] === currentPlayer && board[1][1] === currentPlayer && board[2][0] === currentPlayer) {
+                return true;
+            }
+            return false;
+        }
 
-        // 4. Mouse over event
-        document.getElementById('hoverArea').addEventListener('mouseover', function() {
-            this.style.backgroundColor = '#e0e0e0';
-        });
+        function isDraw() {
+            return board.flat().every(cell => cell !== '');
+        }
 
-        // 5. Mouse out event
-        document.getElementById('hoverArea').addEventListener('mouseout', function() {
-            this.style.backgroundColor = '';
-        });
-
-        // 6. Checkbox change event
-        document.getElementById('checkBox').addEventListener('change', function() {
-            const info = this.checked ? 'Checkbox is checked!' : 'Checkbox is unchecked!';
-            document.getElementById('inputInfo').innerText = info;
-        });
-
-        // 7. Range input event
-        document.getElementById('rangeInput').addEventListener('input', function() {
-            document.getElementById('rangeValue').innerText = `Range value: ${this.value}`;
-        });
-
-        // 8. Reset button click event
-        document.getElementById('resetButton').addEventListener('click', function() {
-            document.getElementById('textInput').value = '';
-            document.getElementById('selectBox').selectedIndex = 0;
-            document.getElementById('checkBox').checked = false;
-            document.getElementById('inputInfo').innerText = '';
-            document.getElementById('rangeInput').value = 50;
-            document.getElementById('rangeValue').innerText = 'Range value: 50';
-            document.getElementById('message').innerText = '';
-        });
+        function resetBoard() {
+            for (let i = 0; i < 3; i++) {
+                for (let j = 0; j < 3; j++) {
+                    board[i][j] = '';
+                }
+            }
+            document.querySelectorAll('td').forEach(cell => cell.innerHTML = '');
+        }
     </script>
 </body>
 </html>
