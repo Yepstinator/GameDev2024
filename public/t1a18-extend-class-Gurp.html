@@ -1,4 +1,4 @@
-html>
+<html>
 <head>
     <link rel="stylesheet" type="text/css" href="css-Gurp.css">
 </head>
@@ -22,6 +22,28 @@ html>
                 document.getElementById('myDiv01').innerHTML = this.myName + ' is a great cat <br>';
             }
         } // end extended class MyCat
+
+        class MyFish extends MyAnimal {
+            myShow() {
+                document.getElementById('myDiv01').innerHTML = this.myName + ' is a fish <br>Who is ' + this.myAge + ' years old';
+            }
+        } 
+
+        class MyJohn { //awesome class that I made
+            constructor(passName, passAge) {
+                this.myName = passName;
+                this.myAge = passAge;
+            }
+            myShow() {
+                document.getElementById('myDiv01').innerHTML = 'He is Johnathon ' + this.myName + '<br>';
+            }
+        }
+
+        class MyJoseph extends MyJohn {
+            myShow() {
+                document.getElementById('myDiv01').innerHTML = this.myName + ' He is the Joseph <br>Who is ' + this.myAge + ' years old';
+            }
+        }
     </script>
 
     <input type="button" value="Example Class Set and Show Class Animal" onClick="{
@@ -35,6 +57,24 @@ html>
         myPet = new MyCat('Fluffy', 14);
         myPet.myShow();
     }"><br><br>
+
+    <input type="button" value="Example Extend Class Animal as Fishie" onClick="{
+        myPet = new MyFish('Johnathon', 20);
+        myPet.myShow();
+        }"><br>
+
+        <input type="button" value="Johnathon" onClick="{
+            myJohn = new MyJohn('Smith', 10);
+            myJohn.myShow();
+        }"><br><br>
+
+        <input type="button" value="Example Extend Johnathon" onClick="{
+            myPet = new MyJohn('Joseph Smith', 20);
+            myPet.myShow();
+            }"><br>
+    
+
+    
 
     <div id="myDiv01">...</div>
 </body>
