@@ -35,7 +35,8 @@
                 this.myAge = passAge;
             }
             myShow() {
-                document.getElementById('myDiv01').innerHTML = 'He is Johnathon ' + this.myName + '<br>';
+                johns.push(`Johnathan ${this.myName}`);
+                document.getElementById('myDiv01').innerHTML = 'He is Johnathon ' + this.myName + ` the ${johns.length}<br>`;
             }
         }
 
@@ -44,7 +45,14 @@
                 document.getElementById('myDiv01').innerHTML = this.myName + ' He is the Joseph <br>Who is ' + this.myAge + ' years old';
             }
         }
-    </script>
+
+        johns = []
+        
+        function getJohns(){
+            return johns;
+        }
+        
+        </script>
 
     <input type="button" value="Example Class Set and Show Class Animal" onClick="{
         myDog = new MyAnimal('Snickers', 5);
