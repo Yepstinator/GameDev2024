@@ -8,6 +8,27 @@ Input:<input type=text id="myFirstName" value="infact a masterpiece">
   document.getElementById('myDiv01').innerHTML = str + 'goofball' + str  +
       document.getElementById('myFirstName').value
 }">
+    <input type="text" id="userInput" placeholder="Type something...">
+    <button id="submitButton">Submit</button>
+
+    <div id="output"></div>
+
+    <script>
+        document.getElementById('submitButton').addEventListener('click', function() {
+            const userInput = document.getElementById('userInput').value;
+            const outputDiv = document.getElementById('output');
+
+            if (userInput) {
+                outputDiv.textContent = `You entered: ${userInput}`;
+            } else {
+                outputDiv.textContent = 'Please enter something!';
+            }
+            document.getElementById('userInput').value = '';
+        });
+    </script>
+
+</body>
+</html>
 
 <div id="myDiv01">...</div>
 
