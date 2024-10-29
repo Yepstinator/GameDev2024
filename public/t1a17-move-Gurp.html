@@ -1,0 +1,53 @@
+<h1 align="center">t1a17-move-Gurp</h1>
+
+<script>
+// global variables
+let myClock02;
+</script>
+
+
+<input type="button" id="myButton02" value="Image Right" onclick="{
+    document.getElementById('myImage01').style.left =
+ parseInt(document.getElementById('myImage01').style.left) + 10 + 'px';
+ }"><br><br>
+
+<input type="button" value="Auto Move Right" onclick="{
+    document.getElementById('myImage01').style.left = 0;
+    clearInterval(myClock02);
+    myClock02 = setInterval(function() {
+         document.getElementById('myButton02').click()
+          }, 30) // activates click every 30ms
+          
+}"><br><br>
+
+<img id="myImage01" style="position:relative; width:100px; height:80px; top:0px;
+ left:0px;" src="myImage01.jpg">
+
+<input type="button" id="myButtonUpLeft" value="Up-Left" onclick="{
+    document.getElementById('myImage01').style.left = parseInt(document.getElementById('myImage01').style.left) - 7 + 'px';
+    document.getElementById('myImage01').style.top = parseInt(document.getElementById('myImage01').style.top) - 7 + 'px';
+}">
+
+<input type="button" id="myButtonUpRight" value="Up-Right" onclick="{
+    document.getElementById('myImage01').style.left = parseInt(document.getElementById('myImage01').style.left) + 7 + 'px';
+    document.getElementById('myImage01').style.top = parseInt(document.getElementById('myImage01').style.top) - 7 + 'px';
+}">
+
+<input type="button" id="myButtonLeft" value="Left" onclick="{
+    document.getElementById('myImage01').style.left = parseInt(document.getElementById('myImage01').style.left) - 10 + 'px';
+}">
+
+<input type="button" id="myButtonDown" value="Down" onclick="{
+    document.getElementById('myImage01').style.top = parseInt(document.getElementById('myImage01').style.top) + 10 + 'px';
+}">
+
+<input type="button" id="myButtonDownRight" value="Down-Right" onclick="{
+    document.getElementById('myImage01').style.left = parseInt(document.getElementById('myImage01').style.left) + 7 + 'px';
+    document.getElementById('myImage01').style.top = parseInt(document.getElementById('myImage01').style.top) + 7 + 'px';
+}">
+<input type="button" id="myButtonDownLeft" value="Down-Left" onclick="{
+    document.getElementById('myImage01').style.left = parseInt(document.getElementById('myImage01').style.left) - 7 + 'px';
+    document.getElementById('myImage01').style.top = parseInt(document.getElementById('myImage01').style.top) + 7 + 'px';
+}">
+<br><br><br><br><br><br>
+<b>Gurp Khela, 15, 33170 Cherry Ave</b>
