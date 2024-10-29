@@ -1,0 +1,52 @@
+<h1 align=center><t1a11-arrays-Gurp.html</h1>
+
+<script>
+    let myMax = 6
+    let myArray = new Array(myMax)
+</script>
+
+input:<input type=text id="myFirstName" value="Fred"><br>
+
+<input type=button value="Set Array" onclick="{
+    myArray[0] = 'Fred'
+    myArray[1] = 'Mary'
+    myArray[2] = 'Peter'
+
+    document.getElementById('myDiv01').innerHTML = 'You set the Array'
+}">
+
+<input type=button value="Show Array" onclick="{
+    document.getElementById('myDiv01').innerHTML = ''
+    for (myLoop=0;  myLoop < 3; myLoop++){
+        document.getElementById('myDiv01').innerHTML += 'myArray[' + myLoop + '] = ' +
+        myArray[myLoop] + '<br>'
+
+    }
+}"><br>
+
+<div id="myDiv01">...</div>
+
+   <body>
+
+    <div id="output"></div>
+
+    <button onclick="showItem(0)">Show First Item</button>
+    <button onclick="showItem(1)">Show Second Item</button>
+    <button onclick="showItem(2)">Show Third Item</button>
+
+    <script>
+        const items = ['Water', 'Bottled Water', 'Ground Water'];
+
+        // Function to display the item based on the index
+        function showItem(index) {
+            const outputDiv = document.getElementById('output');
+            if (index < items.length) {
+                outputDiv.textContent = `You clicked: ${items[index]}`;
+            } else {
+                outputDiv.textContent = 'Index out of range';
+            }
+        }
+    </script>
+
+</body>
+</html>

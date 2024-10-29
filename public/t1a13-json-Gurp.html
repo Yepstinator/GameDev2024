@@ -1,0 +1,53 @@
+<h1 align="center">t1a13-json-Gurp.html</h1>
+
+<script>
+    async function fetchData(myUrl) {
+        // Clear the div before fetching new data
+        document.getElementById('myDiv1').innerHTML = '';
+        
+        try {
+            const response = await fetch(myUrl);
+            const data = await response.json();
+            
+            // Convert data to formatted JSON string
+            const myJson = JSON.stringify(data, null, 2);
+            
+            // Display the JSON in the div
+            document.getElementById('myDiv1').innerHTML = `<pre>${myJson}</pre>`;
+        } catch (error) {
+            document.getElementById('myDiv1').innerHTML = `Error fetching data: ${error.message}`;
+        }
+    }
+
+    function myShowJSON() {
+        // This function can be used for additional functionality if needed
+    }
+
+</script>
+
+Explanation of JSON compared to Javascript objects formatted in this text area <br>
+
+<textarea cols="70" rows="5" readonly>
+JSON is a lightweight data interchange format that is easy for humans to read and write, and easy for machines to parse and generate. JSON is text, and can be converted to and from JavaScript objects. 
+
+JavaScript objects can contain functions and are more complex, while JSON is purely a data format consisting of key-value pairs. JSON keys must be strings, while JavaScript object keys can be strings or identifiers. JSON does not support comments, while JavaScript objects can include comments.
+</textarea><br><br>
+
+Enter a JSON returning URL: <input type="text" id="myText1" size="70" value="https://randomfox.ca/floof/">
+<input type="button" value="Show JSON" onclick="fetchData(document.getElementById('myText1').value)"><br><br>
+
+<select size="1" onchange="fetchData(this.value)">
+    <option value="https://randomfox.ca/floof/">Random Fox</option>
+    <option value="https://dog.ceo/api/breeds/image/random">Random Dog</option>
+    <option value="https://api.thecatapi.com/v1/images/search">Random Cat</option>
+    <option value="https://jsonplaceholder.typicode.com/posts/1">Sample JSON Post</option>
+    <option value="https://jsonplaceholder.typicode.com/users/1">Sample User JSON</option>
+    <option value="https://api.agify.io?name=michael">Agify API (name prediction)</option>
+    <option value="https://api.coindesk.com/v1/bpi/currentprice/BTC.json">Bitcoin Price Index</option>
+    <option value="https://jsonplaceholder.typicode.com/todos/1">Sample TODO</option>
+    <option value="https://api.openweathermap.org/data/2.5/weather?q=London&appid=YOUR_API_KEY">Weather API (replace with valid API key)</option>
+</select><br><br>
+
+<p>You can enter a JSON returning URL in the input field or select one from the dropdown:</p>
+
+<div id="myDiv1">...</div>

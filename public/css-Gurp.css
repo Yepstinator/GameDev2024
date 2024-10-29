@@ -1,0 +1,40 @@
+body{
+    background-color: #1d1e20;
+    color: whitesmoke;
+    font-family: verdana;
+    text-align: center;
+    position: relative;
+    text-decoration: none;
+}
+input {
+    border: 3px solid #000000;
+    border-radius: 10px;
+    padding: 3px;
+    margin: 2px;
+}
+input[type="text"] {
+    background-color: rgb(173, 214, 173);
+}
+input[type="number"] {
+    background-color: rgb(173, 198, 214);
+}
+input[type="button"] {
+    background-color: rgb(214, 173, 176);
+
+}
+input[type="button"]:hover {
+    background-color: rgb(243, 214, 216);
+    outline: 1px solid #fff;
+}
+button {
+    border: 3px solid #000000;
+    border-radius: 10px;
+    padding: 3px;
+    background-color: rgb(214, 173, 176);
+}
+select {
+    background-color: rgb(214, 208, 175);
+    border: 3px solid #000000;
+    border-radius: 10px;
+    padding: 3px;
+}

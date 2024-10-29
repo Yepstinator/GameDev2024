@@ -1,0 +1,60 @@
+<h2 align="center">t1a12-objects-structs-Gurp</h2>
+
+<h4> Example Objects code</h4>
+<pre>
+let myPerson = {
+"firstName": "John",
+"lastName": "Doe",
+"age": 50,
+"eyeColor": "blue"
+}
+</pre>
+
+<h4> Example working objects Code</h4>
+
+Nothing: <input type="text" id="myText01" value="Useless at the moment"><br>
+
+<input type="button" value="Example Object Set and Show" onClick="{
+
+    let myPerson = {
+        'firstName' : 'John',
+        'lastName'  : 'Doe',
+        'age'       : 50,
+        'eyeColor'  : 'blue'
+ 
+    }
+
+    document.getElementById('myDiv01').innerHTML = '<br>myPerson Object has properties: <br>'
+    document.getElementById('myDiv01').innerHTML += 'firstName: ' + myPerson.firstName + '<br>'
+    document.getElementById('myDiv01').innerHTML += 'You do the others <br> '
+}">
+
+<div id="myDiv01">...</div>
+
+
+<body>
+    <h1>Car Showcase</h1>
+    <button onclick="displayCarDetails()">Show Car Details</button>
+    <div id="carDetails"></div>
+    <script>
+        const cars = [
+            { brand: 'Tesla', model: 'Model S', year: 2022 },
+            { brand: 'Ford', model: 'Mustang', year: 2021 },
+            { brand: 'Chevrolet', model: 'Camaro', year: 2020 }
+        ];
+
+        function displayCarDetails() {
+            const carDetailsDiv = document.getElementById('carDetails');
+            carDetailsDiv.innerHTML = ''; // Clear previous details
+
+            cars.forEach(car => {
+                const carDiv = document.createElement('div');
+                carDiv.className = 'car';
+                carDiv.innerHTML = `<strong>Brand:</strong> ${car.brand} <br>
+                                    <strong>Model:</strong> ${car.model} <br>
+                                    <strong>Year:</strong> ${car.year}`;
+                carDetailsDiv.appendChild(carDiv);
+            });
+        }
+    </script>
+</body>

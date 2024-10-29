@@ -1,0 +1,99 @@
+<h1 align="center">t1a14-objects-and-arrays-Gurp.html</h1>
+
+Show your research about objects and arrays in the textarea here<br>
+<textarea rows="4" cols="70">
+    let myArray = [5, 2, 8, 2, 1];
+    let myObject = {name: 'John', age: 30, profession: 'Developer'};
+
+let myObject = {
+    name: 'Alice'
+    hobbies: ['reading', 'coding', 'hiking'], //Array inside
+  age: 25
+};
+
+ley myArray [
+{name: 'Bob', age: 28 }, //Object inside Array
+{name: 'Charlie', age: 32 }
+];
+
+</textarea><br><br>
+
+Make 2 buttons and a div. The first button labelled "Array with Object in it" and
+the 2nd button labelled "Objects with Arrays in it"<br><br>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Display Object Example</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        #output {
+            margin-top: 10px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <button id="showButton">Show Object</button>
+    <div id="output"></div>
+
+    <script>
+        const myArray = [
+            {
+                name: "John Doe",
+                age: 30,
+                occupation: "Software Developer"
+            }
+        ];
+        
+        document.getElementById('showButton').addEventListener('click', () => {
+            const outputDiv = document.getElementById('output');
+            const objectToShow = myArray[0];
+            outputDiv.innerHTML = `Name: ${objectToShow.name}, Age: ${objectToShow.age}, Occupation: ${objectToShow.occupation}`;
+        });
+    </script>
+
+
+
+    <p>Click the button to see the array items in the object.</p>
+    <button id="showArrayButton">Show Array Items</button>
+
+    <div id="output"></div>
+
+    <script>
+        // Create an object with an array
+        const myObject = {
+            name: "Sample Object",
+            items: ["Item 1", "Item 2", "Item 3", "Item 4", "Item 5"]
+        };
+
+        // Function to display the array items
+        function displayArrayItems() {
+            const outputDiv = document.getElementById('output');
+            outputDiv.innerHTML = ''; // Clear previous output
+
+            // Loop through the array and create a list
+            const ul = document.createElement('ul');
+            myObject.items.forEach(item => {
+                const li = document.createElement('li');
+                li.textContent = item;
+                ul.appendChild(li);
+            });
+
+            outputDiv.appendChild(ul);
+        }
+
+        // Add event listener to the button
+        document.getElementById('showArrayButton').addEventListener('click', displayArrayItems);
+    </script>
+
+</body>
+</html>
+
+</body>
+</html>

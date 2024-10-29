@@ -1,0 +1,120 @@
+<h1 align="center">T1a15-Events-Gurp</h1>
+
+
+
+<body>
+    <div id="coordinates">Move your mouse</div>
+
+    <script>
+        const coordinatesDiv = document.getElementById('coordinates');
+
+        document.addEventListener('mousemove', (event) => {
+            const x = event.clientX;
+            const y = event.clientY;
+            coordinatesDiv.textContent = `X: ${x}, Y: ${y}`;
+            console.log(`X: ${x}, Y: ${y}`);
+        });
+    </script>
+</body>
+</html>
+
+
+Input:<input type=text id="John" value="Hello">
+<input type=button value="Show On page" onclick="{
+    const length = 100000; 
+    const str = 'Hi '.repeat(52 / 2)
+  document.getElementById('myDiv1').innerHTML = str + 'goofball' + str  +
+      document.getElementById('John').value
+}">
+
+<div id="myDiv1">...</div>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; margin: 50px; }
+        #box { width: 200px; height: 200px; background-color: lightblue; margin: 0 auto; transition: background-color 0.3s; cursor: grab; }
+        #output { margin-top: 20px; max-height: 200px; overflow-y: auto; }
+        button { margin: 5px; padding: 10px; }
+        #dragArea { width: 100%; height: 50px; background-color: lightgreen; margin-top: 20px; text-align: center; line-height: 50px; }
+    </style>
+</head>
+<body>
+   
+    <div id="box" draggable="true">Drag Me!</div>
+    <div id="output"></div>
+    
+    <button id="reset">Reset</button>
+
+    <div id="dragArea">Drop Here!</div>
+
+    <script>
+        const box = document.getElementById('box');
+        const output = document.getElementById('output');
+        const resetButton = document.getElementById('reset');
+        const dragArea = document.getElementById('dragArea');
+
+        // Mouse events
+        box.addEventListener('mouseover', () => logEvent('Mouse Over!'));
+        box.addEventListener('mouseout', () => logEvent('Mouse Out!'));
+        box.addEventListener('click', () => logEvent('Box Clicked!'));
+
+        // Keyboard events
+        document.addEventListener('keydown', (event) => logEvent(`Key Pressed: ${event.key}`));
+
+        // Window events
+        window.addEventListener('resize', () => logEvent('Window Resized!'));
+        window.addEventListener('scroll', () => logEvent('Page Scrolled!'));
+
+        // Drag and drop events
+        box.addEventListener('dragstart', () => logEvent('Drag Started!'));
+        box.addEventListener('dragend', () => logEvent('Drag Ended!'));
+
+        dragArea.addEventListener('dragover', (event) => {
+            event.preventDefault(); // Necessary to allow dropping
+            logEvent('Drag Over Area!');
+        });
+
+        dragArea.addEventListener('drop', () => {
+            logEvent('Box Dropped!');
+        });
+
+        // Touch events
+        box.addEventListener('touchstart', () => logEvent('Touch Started!'));
+        box.addEventListener('touchend', () => logEvent('Touch Ended!'));
+
+        // Form events
+        const form = document.createElement('form');
+        const input = document.createElement('input');
+        input.type = 'text';
+        input.placeholder = 'Type something...';
+        form.appendChild(input);
+        document.body.appendChild(form);
+
+        form.addEventListener('submit', (event) => {
+            event.preventDefault(); // Prevent form submission
+            logEvent(`Form Submitted: ${input.value}`);
+            input.value = ''; // Clear input
+        });
+
+        // Reset button
+        resetButton.addEventListener('click', () => {
+            output.innerHTML = '';
+        });
+
+        function logEvent(message) {
+            const newEvent = document.createElement('div');
+            newEvent.textContent = message;
+            output.appendChild(newEvent);
+            // Keep only the last 10 events displayed
+            if (output.children.length > 10) {
+                output.removeChild(output.firstChild);
+            }
+        }
+
+
+    
+    </script>
+</body>
+</html>

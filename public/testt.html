@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Object with Array</title>
+</head>
+<body>
+    <button onclick="addItem()">Add Hobby</button>
+    <div id="hobbies"></div>
+
+    <script>
+        const person = {
+            name: 'Jane',
+            age: 25,
+            hobbies: ['reading', 'painting']
+        };
+
+        function displayHobbies() {
+            const hobbiesDiv = document.getElementById('hobbies');
+            hobbiesDiv.innerHTML = '';
+            person.hobbies.forEach((hobby, index) => {
+                hobbiesDiv.innerHTML += `<p>${index + 1}. ${hobby}</p>`;
+            });
+        }
+
+        function addItem() {
+            const newHobby = prompt('Enter a new hobby:');
+            if (newHobby) {
+                person.hobbies.push(newHobby);
+                displayHobbies();
+            }
+        }
+
+        // Display initial hobbies
+        displayHobbies();
+    </script>
+</body>
+</html>

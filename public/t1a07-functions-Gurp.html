@@ -1,0 +1,39 @@
+<h1 align=center> t1a07-functions-Gurp.html</h1>
+<script>
+function myVar(myIn){
+  return document.getElementById(myIn)
+ }
+</script>
+
+Input:<input type=text id="myFirstName" value="john">
+<input type=button value="Show on page" onclick="{
+  
+  myVar('myDiv01').innerHTML = 'Your name is ' + myVar('myFirstName').value
+}">
+<div id="myDiv01">...</div>
+
+<button onclick="showDate()">Show Date</button>
+
+<p id="date" class="hidden"></p>
+<button onclick="changeColor()">Change Background Color</button>
+
+<script>
+ function showDate() {
+            document.getElementById("date").innerText = new Date().toDateString();
+            document.getElementById("date").classList.remove("hidden");
+        }
+    function changeColor() {
+            document.body.style.backgroundColor = "lightblue";
+        }
+</script>
+
+    <button onclick="showMessage()">Click Me!</button>
+    <p id="message"></p>
+
+    <script>
+        let message = "Hey Mr.Ellis";
+
+        function showMessage() {
+            document.getElementById('message').innerText = message;
+        }
+    </script>
