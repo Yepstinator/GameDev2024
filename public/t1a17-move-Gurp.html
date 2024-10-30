@@ -1,4 +1,35 @@
 <h1 align="center">t1a17-move-Gurp</h1>
+<style>
+    body {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background-color: #f0f0f0;
+    }
+    #myImage01 {
+        position: relative;
+        width: 100px;
+        height: 80px;
+        top: 0px;
+        left: 0px;
+        transition: z-index 0.5s;
+    }
+    #myImage02 {
+        position: relative;
+        width: 100px;
+        height: 80px;
+        top: 0px;
+        left: 0px;
+        transition: z-index 0.5s;
+    }
+    .container {
+        position: relative;
+        width: 100px;
+        height: 80px;
+        margin-bottom: 20px;
+    }
+</style>
+</head>
 
 <script>
 // global variables
@@ -6,12 +37,12 @@ let myClock02;
 </script>
 
 
-<input type="button" id="myButton02" value="Image Right" onclick="{
+<input type="button" id="myButton02" value="Image Right" onclick="{ flipImage()
     document.getElementById('myImage01').style.left =
  parseInt(document.getElementById('myImage01').style.left) + 10 + 'px';
  }"><br><br>
 
-<input type="button" value="Auto Move Right" onclick="{
+<input type="button" value="Auto Move Right" onclick="{ flipImage()
     document.getElementById('myImage01').style.left = 0;
     clearInterval(myClock02);
     myClock02 = setInterval(function() {
@@ -20,24 +51,26 @@ let myClock02;
           
 }"><br><br>
 
-<img id="myImage01" style="position:relative; width:100px; height:80px; top:0px;
- left:0px;" src="NOT AVAILIBLE.jpg">
+<div class="container">
+    <img id="myImage01" src="Man right.jpg" alt="Image 1">
+    <img id="myImage02" src="Man left.jpg" alt="Image 2" style="position:absolute; top:0; left:0; z-index: 0; display:none;">
+</div>
 
 <table style="border: 1px solid white; margin: auto;">
     <tr>
         <td>
-            <input type="button" id="myButtonUpLeft" value="Up-Left" onclick="{
+            <input type="button" id="myButtonUpLeft" value="Up-Left" onclick="{ flipImage()
                 document.getElementById('myImage01').style.left = parseInt(document.getElementById('myImage01').style.left) - 7 + 'px';
                 document.getElementById('myImage01').style.top = parseInt(document.getElementById('myImage01').style.top) - 7 + 'px';
             }">
         </td>
         <td>
-            <input type="button" id="myButtonUp" value="Up" onclick="{
+            <input type="button" id="myButtonUp" value="Up" onclick="{ flipImage()
                 document.getElementById('myImage01').style.top = parseInt(document.getElementById('myImage01').style.top) - 10 + 'px';
             }">
         </td>
         <td>
-            <input type="button" id="myButtonUpRight" value="Up-Right" onclick="{
+            <input type="button" id="myButtonUpRight" value="Up-Right" onclick="{ flipImage()
                 document.getElementById('myImage01').style.left = parseInt(document.getElementById('myImage01').style.left) + 7 + 'px';
                 document.getElementById('myImage01').style.top = parseInt(document.getElementById('myImage01').style.top) - 7 + 'px';
             }">
@@ -45,38 +78,57 @@ let myClock02;
     </tr>
     <tr>
         <td>
-            <input type="button" id="myButtonLeft" value="Left" onclick="{
+            <input type="button" id="myButtonLeft" value="Left" onclick="{ flipImage()
                 document.getElementById('myImage01').style.left = parseInt(document.getElementById('myImage01').style.left) - 10 + 'px';
             }">
         </td>
         <td>
-            <input type="button" id="myResetMovement" value="reset movement" onclick="{
+            <input type="button" id="myResetMovement" value="reset movement" onclick="{ flipImage()
                 document.getElementById('myImage01').style.left = '0px';
                 document.getElementById('myImage01').style.top = '0px';
                 clearInterval(myClock02);
             }">
         </td>
         <td>
-            <input type="button" id="myButtonRight" value="Right" onclick="{
+            <input type="button" id="myButtonRight" value="Right" onclick="{ flipImage()
                 document.getElementById('myImage01').style.left = parseInt(document.getElementById('myImage01').style.left) + 10 + 'px';
             }">
         </td>
     </tr>
     <tr>
         <td>
-            <input type="button" id="myButtonDownLeft" value="Down-Left" onclick="{
+            <input type="button" id="myButtonDownLeft" value="Down-Left" onclick="{ flipImage()
                 document.getElementById('myImage01').style.left = parseInt(document.getElementById('myImage01').style.left) - 7 + 'px';
                 document.getElementById('myImage01').style.top = parseInt(document.getElementById('myImage01').style.top) + 7 + 'px';
             }">
         </td>
         <td>
-            <input type="button" id="myButtonDown" value="Down" onclick="{
+            <input type="button" id="myButtonDown" value="Down" onclick="{ flipImage()
                 document.getElementById('myImage01').style.top = parseInt(document.getElementById('myImage01').style.top) + 10 + 'px';
             }">
         </td>
         <td>
-            <input type="button" id="myButtonDownRight" value="Down-Right" onclick="{
+            <input type="button" id="myButtonDownRight" value="Down-Right" onclick="{ flipImage()
                 document.getElementById('myImage01').style.left = parseInt(document.getElementById('myImage01').style.left) + 7 + 'px';
                 document.getElementById('myImage01').style.top = parseInt(document.getElementById('myImage01').style.top) + 7 + 'px';
             }">
 <br><br><br><br><br><br>
+
+<script>
+function flipImage() {
+    const img1 = document.getElementById('myImage01');
+    const img2 = document.getElementById('myImage02');
+
+    if (img1.style.display === "none") {
+        img1.style.display = "block";
+        img2.style.display = "none";
+        img1.style.zIndex = "1";
+        img2.style.zIndex = "0";
+    } else {
+        img1.style.display = "none";
+        img2.style.display = "block";
+        img1.style.zIndex = "0";
+        img2.style.zIndex = "1";
+    }
+}
+</script>
