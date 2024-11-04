@@ -7,6 +7,20 @@
       document.getElementById('myDiv01').innerHTML = 'Your answer is ' + myTotal
   }">
 
+<input type=button value="Subtract" onclick="{
+    const myX = Number(document.getElementById('myIn01').value);
+    const myY = Number(document.getElementById('myIn02').value);
+    const myTotal = myX - myY;
+    document.getElementById('myDiv01').innerHTML = 'Subtraction result: ' + myTotal;
+}"><br>
+
+<input type=button value="Multiply" onclick="{
+    const myX = Number(document.getElementById('myIn01').value);
+    const myY = Number(document.getElementById('myIn02').value);
+    const myTotal = myX * myY;
+    document.getElementById('myDiv01').innerHTML = 'Multiplication result: ' + myTotal;
+}"><br>
+
   <div id="myDiv01">...</div>
 
 
