@@ -2,13 +2,13 @@
 <textarea id="myArea01" rows=4 cols=70>The quick brown fox jumps over the lazy dog</textarea><br> 
 
 <input type=button value="encrypt" onclick="{
-   let myTemp = ''
    let myString = document.getElementById('myArea01').value.toLowerCase().split('')
-   for (let myLoop=0; myLoop < myString.length; myLoop++){
-      myTemp = myString[myLoop]
-      if (myString[myLoop] == 'e') {myTemp = 'f'} 
-      if (myString[myLoop] == 'h') {myTemp = 'i'} 
-      myString[myLoop] = myTemp
+   for (let i = 0; i < myString.length; i++) {
+      switch (myString[i]) {
+         case 'e': myString[i] = 'f'; break;
+         case 'h': myString[i] = 'i'; break;
+         // Add more cases if needed
+      }
    }
    document.getElementById('myArea02').value = myString.join('')
 }"><br><br>
@@ -16,18 +16,15 @@
 <textarea id="myArea02" rows=4 cols=70></textarea><br> 
 
 <input type=button value="decrypt" onclick="{
-   let myTemp = ''
    let myString = document.getElementById('myArea02').value.toLowerCase().split('')
-   for (let myLoop=0; myLoop < myString.length; myLoop++){
-      myTemp = myString[myLoop]
-      if (myString[myLoop] == 'f') {myTemp = 'e'} 
-      if (myString[myLoop] == 'i') {myTemp = 'h'} 
-      myString[myLoop] = myTemp
+   for (let i = 0; i < myString.length; i++) {
+      switch (myString[i]) {
+         case 'f': myString[i] = 'e'; break;
+         case 'i': myString[i] = 'h'; break;
+         // Add more cases if needed
+      }
    }
    document.getElementById('myArea03').value = myString.join('')
 }"><br><br>
-
-<textarea id="myArea03" rows=4 cols=70></textarea><br>
-
 
 <textarea id="myArea03" rows=4 cols=70></textarea><br>
