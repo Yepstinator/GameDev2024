@@ -1,0 +1,210 @@
+<h2 align=center>t2a08-canvas by Fred</h2>
+You use loops and variables to make fast fancy drawings <br><br>
+
+<!-- Inputs for X and Y coordinates as sliders -->
+<label for="x1">X1:</label>
+<input type="range" id="x1" min="0" max="1000" value="80" step="1">
+<span id="x1Value">80</span> <br><br>
+
+<label for="y1">Y1:</label>
+<input type="range" id="y1" min="0" max="600" value="60" step="1">
+<span id="y1Value">60</span> <br><br>
+
+<label for="x2">X2:</label>
+<input type="range" id="x2" min="0" max="1000" value="100" step="1">
+<span id="x2Value">100</span> <br><br>
+
+<label for="y2">Y2:</label>
+<input type="range" id="y2" min="0" max="600" value="400" step="1">
+<span id="y2Value">400</span> <br><br>
+
+<!-- Color Picker to choose line color -->
+<label for="lineColor">Line Color:</label>
+<input type="color" id="lineColor" value="#000000"> <br><br>
+
+<!-- Slider for Line Width -->
+<label for="lineWidth">Line Width:</label>
+<input type="range" id="lineWidth" min="1" max="10" value="1" step="1">
+<span id="lineWidthValue">1</span> <br><br>
+
+<!-- Button to draw the line -->
+<input type=button value=".lineTo(30,200)" onclick="drawLine()">
+<br><br>
+
+<!-- Additional buttons for other shapes -->
+<input type=button value=".arc(95, 50, 40, 0, 2 * Math.PI)" onclick="drawArc()">
+<input type=button value=".fillText('Hello World', 400, 100)" onclick="drawText()">
+<input type=button value=".quadraticCurveTo(100,220,240,110)" onclick="drawQuadraticCurve()">
+<input type=button value=".createLinearGradient(100, 300, 200, 400)" onclick="createGradient()">
+<br><br>
+
+<input type=button value="clearRect(20, 20, 50, 50)" onclick="clearRectArea()">
+<input type=button value="Clear all" onclick="clearAll()"><br><br>
+
+<!-- Button to start animation -->
+<input type="button" value="Start Animation" onclick="startAnimation()"><br><br>
+
+<canvas id="myCoolTag" width="1000" height="600" style="border:1px solid #000000;"></canvas>
+
+<script>
+// Set up global variables
+let myCanvas = document.getElementById('myCoolTag');
+let myContext = myCanvas.getContext('2d');
+
+// Animation variables
+let circleX = 100;
+let circleY = 100;
+let circleRadius = 20;
+let velocityX = 3; // X velocity (speed of movement)
+let velocityY = 3; // Y velocity (speed of movement)
+
+// Function to update the position of the circle
+function updateCirclePosition() {
+  // Clear the canvas for the next frame
+  myContext.clearRect(0, 0, myCanvas.width, myCanvas.height);
+  
+  // Update circle's position
+  circleX += velocityX;
+  circleY += velocityY;
+  
+  // Check for collision with the walls
+  if (circleX + circleRadius > myCanvas.width || circleX - circleRadius < 0) {
+    velocityX = -velocityX; // Reverse the X direction
+  }
+  
+  if (circleY + circleRadius > myCanvas.height || circleY - circleRadius < 0) {
+    velocityY = -velocityY; // Reverse the Y direction
+  }
+  
+  // Draw the circle
+  myContext.beginPath();
+  myContext.arc(circleX, circleY, circleRadius, 0, 2 * Math.PI);
+  myContext.fillStyle = "blue";
+  myContext.fill();
+  myContext.stroke();
+  
+  // Request the next frame for the animation
+  requestAnimationFrame(updateCirclePosition);
+}
+
+// Function to start the animation
+function startAnimation() {
+  // Start the animation loop
+  updateCirclePosition();
+}
+
+// Update the span text when the slider value changes
+document.getElementById('x1').addEventListener('input', function() {
+  document.getElementById('x1Value').textContent = this.value;
+});
+document.getElementById('y1').addEventListener('input', function() {
+  document.getElementById('y1Value').textContent = this.value;
+});
+document.getElementById('x2').addEventListener('input', function() {
+  document.getElementById('x2Value').textContent = this.value;
+});
+document.getElementById('y2').addEventListener('input', function() {
+  document.getElementById('y2Value').textContent = this.value;
+});
+document.getElementById('lineColor').addEventListener('input', updatePreview);
+document.getElementById('lineWidth').addEventListener('input', updatePreview);
+
+// Function to update the preview of the line
+function updatePreview() {
+  let x1 = parseInt(document.getElementById('x1').value);
+  let y1 = parseInt(document.getElementById('y1').value);
+  let x2 = parseInt(document.getElementById('x2').value);
+  let y2 = parseInt(document.getElementById('y2').value);
+  let lineColor = document.getElementById('lineColor').value;
+  let lineWidth = parseInt(document.getElementById('lineWidth').value); // Get the line width from the slider
+  
+  // Update the line width display
+  document.getElementById('lineWidthValue').textContent = lineWidth;
+
+  // Clear the canvas to remove previous preview
+  myContext.clearRect(0, 0, myCanvas.width, myCanvas.height);
+
+  // Draw the line preview
+  myContext.beginPath();
+  myContext.lineWidth = lineWidth; // Apply the selected line width
+  myContext.strokeStyle = lineColor; // Apply the selected color to the line
+  myContext.moveTo(x1, y1);
+  myContext.lineTo(x2, y2);
+  myContext.stroke();
+}
+
+// Function to draw a line based on user input, selected color, and width
+function drawLine() {
+  let x1 = parseInt(document.getElementById('x1').value);
+  let y1 = parseInt(document.getElementById('y1').value);
+  let x2 = parseInt(document.getElementById('x2').value);
+  let y2 = parseInt(document.getElementById('y2').value);
+  let lineColor = document.getElementById('lineColor').value; // Get the color from the input
+  let lineWidth = parseInt(document.getElementById('lineWidth').value); // Get the width from the input
+  
+  // Draw the line when the button is clicked
+  myContext.beginPath();
+  myContext.lineWidth = lineWidth; // Apply the selected line width
+  myContext.strokeStyle = lineColor; // Apply the selected color to the line
+  myContext.moveTo(x1, y1);
+  myContext.lineTo(x2, y2);
+  myContext.stroke();
+}
+
+// Function to draw an arc
+function drawArc() {
+  myContext.beginPath();
+  myContext.lineWidth = 10;
+  myContext.strokeStyle = 'red';
+  myContext.arc(95, 50, 40, 0, 2 * Math.PI);
+  myContext.stroke();
+  myContext.beginPath();
+  myContext.lineWidth = 10;
+  myContext.strokeStyle = 'red';
+  myContext.arc(95, 50, 70, 70, 72 * Math.PI);
+  myContext.stroke();
+}
+
+// Function to draw text with rotation
+function drawText() {
+  myContext.font = '20px Arial';
+  myContext.fillText('Hello World', 400, 100);
+  myContext.translate(400, 100);  
+  myContext.rotate(60 * Math.PI / 180); 
+  myContext.fillText('Hello World', 10, 10);
+  myContext.stroke();
+  myContext.resetTransform();
+}
+
+// Function to draw a quadratic curve
+function drawQuadraticCurve() {
+  myContext.beginPath();
+  myContext.moveTo(300, 100);
+  myContext.quadraticCurveTo(100, 220, 240, 110);
+  myContext.stroke();
+}
+
+// Function to create a linear gradient
+function createGradient() {
+  let myGradient = myContext.createLinearGradient(100, 300, 200, 400);
+  myGradient.addColorStop(0, 'red');
+  myGradient.addColorStop(0.5, 'blue');
+  myGradient.addColorStop(1, 'yellow');
+
+  myContext.fillStyle = myGradient;
+  myContext.fillRect(100, 300, 200, 400);
+
+  // Reset fill style
+  myContext.fillStyle = 'black';
+}
+
+// Function to clear a specific rectangular area
+function clearRectArea() {
+  myContext.clearRect(20, 20, 50, 50);
+}
+
+// Function to clear the entire canvas
+function clearAll() {
+  myContext.clearRect(0, 0, myCanvas.width, myCanvas.height);
+}
+</script>
