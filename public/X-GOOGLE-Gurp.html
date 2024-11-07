@@ -1,1 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Google TWO!!!</title>
+  <style>
+    /* Global styles */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f8f8f8;
+      text-align: center;
+    }
 
+    h1 {
+      font-size: 3em;
+      color: #4285f4;
+      margin-top: 100px;
+    }
+
+    .search-container {
+      margin-top: 30px;
+    }
+
+    input[type="text"] {
+      width: 50%;
+      padding: 10px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 20px;
+      outline: none;
+      transition: 0.3s;
+    }
+
+    input[type="text"]:focus {
+      border-color: #4285f4;
+    }
+
+    button {
+      background-color: #4285f4;
+      color: white;
+      padding: 12px 20px;
+      font-size: 16px;
+      border: none;
+      border-radius: 20px;
+      cursor: pointer;
+      margin-left: 10px;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background-color: #357ae8;
+    }
+
+    /* Footer section */
+    footer {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      padding: 20px;
+      background-color: #f1f1f1;
+      text-align: center;
+      font-size: 14px;
+      color: #777;
+    }
+
+    footer a {
+      text-decoration: none;
+      color: #4285f4;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Main Title -->
+  <h1>Google TWO!!!</h1>
+
+  <!-- Search Container -->
+  <div class="search-container">
+    <input type="text" id="searchInput" placeholder="Search Google or type a URL">
+    <button onclick="googleSearch()">Google Search</button>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <p>Made by <a href="https://www.example.com">Your Name</a>. All rights reserved.</p>
+  </footer>
+
+  <script>
+    // Function to handle Google-like search behavior
+    function googleSearch() {
+      const query = document.getElementById('searchInput').value;
+      if (query.trim() !== "") {
+        // Redirect to a Google-like search result page
+        window.location.href = `https://www.google.com/search?q=${encodeURIComponent(query)}`;
+      } else {
+        alert("Please enter a search term!");
+      }
+    }
+
+    // You can also handle pressing 'Enter' as a form submission (Google-like behavior)
+    document.getElementById('searchInput').addEventListener('keydown', function(event) {
+      if (event.key === 'Enter') {
+        googleSearch();
+      }
+    });
+  </script>
+
+</body>
+</html>
