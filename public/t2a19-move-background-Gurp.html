@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flappy Bird Clone</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            background-image: url('rel bird.jpg');  /* Set the background image */
+            background-size: cover;  /* Cover the entire screen */
+            background-position: center;  /* Center the background */
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-repeat: no-repeat; /* Prevent repeating of background */
+        }
+        canvas {
+            position: absolute;  /* To ensure the canvas overlaps the background */
+            z-index: 1;  /* Make sure canvas is on top of the background */
+        }
+    </style>
+</head>
+<body>
+
+    <h1 align="center" style="position: absolute; color: white; z-index: 10;">Flappy Bird Clone with Matter.js</h1>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/matter-js/0.20.0/matter.min.js" integrity="sha512-6+7rTBmR6pRFe9fa0vCFjFaHZj/XYa7774bEBzRtxgdpIJOS++R3cKd6Prg/eJmxtsJotd8KAg4g57uuVQsZKA==" crossorigin="anonymous"></script>
+
+    <script>
+        // Set up the Matter.js engine, world, and renderer
+        const { Engine, Render, World, Bodies, Body, Events, Runner } = Matter;
+
+        // Create an engine and world
+        const engine = Engine.create();
+        const world = engine.world;
+
+        // Create a render object (for the canvas display)
+        const render = Render.create({
+            element: document.body,
+            engine: engine,
+            options: {
+                width: window.innerWidth,
+                height: window.innerHeight,
+                wireframes: false, // Disable wireframe rendering to show the actual sprite
+                background: 'transparent' // Set background of canvas to transparent so the body background is visible
+            }
+        });
+
+        // Run the renderer
+        Render.run(render);
+
+        // Create the runner for the physics engine
+        const runner = Runner.create();
+        Runner.run(runner, engine);
+
+        // Create the flappy bird (the player)
+        const birdWidth = 60;
+        const birdHeight = 100;
+        const bird = Bodies.rectangle(150, 200, birdWidth, birdHeight, {
+            render: {
+                sprite: {
+                    texture: 'Man right.jpg', // Use your image here
+                    xScale: 0.07,
+                    yScale: 0.07
+                }
+            }
+        });
+        World.add(world, bird);
+
+        // Apply gravity to the world
+        engine.world.gravity.y = 0.5;
+
+        // Set up the flapping/jumping action
+        const flapStrength = -7.2;
+
+        // Event listener for key press (flap action)
+        window.addEventListener('keydown', (event) => {
+            if (event.code === 'Space') {
+                // Make the bird jump by applying a force
+                Body.setVelocity(bird, { x: 0, y: flapStrength });
+            }
+        });
+
+        // Generate pipes
+        const pipeWidth = 50;
+        const pipeGap = 300;
+        const pipeSpeed = 3;
+
+        const pipes = [];
+        function createPipe() {
+            const pipeHeight = Math.floor(Math.random() * 300) + 100;
+            const bottomPipeHeight = window.innerHeight - pipeHeight - pipeGap;
+
+            // Bottom pipe
+            const bottomPipe = Bodies.rectangle(window.innerWidth, window.innerHeight - bottomPipeHeight + pipeGap, pipeWidth, bottomPipeHeight, {
+                isStatic: true
+            });
+            World.add(world, bottomPipe);
+
+            // Top pipe
+            const topPipe = Bodies.rectangle(window.innerWidth, pipeHeight, pipeWidth, pipeHeight, {
+                isStatic: true
+            });
+            World.add(world, topPipe);
+
+            pipes.push({ topPipe, bottomPipe });
+        }
+
+        // Move pipes and check for collisions
+        function movePipes() {
+            pipes.forEach((pipe) => {
+                Body.setPosition(pipe.topPipe, { x: pipe.topPipe.position.x - pipeSpeed, y: pipe.topPipe.position.y });
+                Body.setPosition(pipe.bottomPipe, { x: pipe.bottomPipe.position.x - pipeSpeed, y: pipe.bottomPipe.position.y });
+
+                if (pipe.topPipe.position.x < -pipeWidth) {
+                    World.remove(world, pipe.topPipe);
+                    World.remove(world, pipe.bottomPipe);
+                    pipes.splice(pipes.indexOf(pipe), 1); // Remove off-screen pipes
+                }
+            });
+        }
+
+        // Collision detection for the bird and pipes
+        Events.on(engine, 'collisionStart', function(event) {
+            const pairs = event.pairs;
+            pairs.forEach(pair => {
+                if (pair.bodyA === bird || pair.bodyB === bird) {
+                    // End the game on collision
+                    alert('Game Over!');
+                    location.reload(); // Restart the game
+                }
+            });
+        });
+
+        // Game loop
+        function gameLoop() {
+            movePipes();
+
+            // // Create new pipes every 2 seconds
+            // if (Math.random() < 0.01) {
+            //     createPipe();
+            // }
+        }
+
+        function spawnPipe(){
+            createPipe();
+        }
+
+        // Call the game loop every 16ms (~60 FPS)
+        setInterval(gameLoop, 16);
+        setInterval(spawnPipe, 3000)
+    </script>
+</body>
+</html>
