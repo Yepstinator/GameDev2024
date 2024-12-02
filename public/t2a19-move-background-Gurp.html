@@ -10,7 +10,7 @@
             overflow: hidden;
             background-image: url('rel bird.jpg');  /* Set the background image */
             background-size: cover;  /* Cover the entire screen */
-            background-position: center;  /* Center the background */
+            background-position: 0 0;  /* Start with the background at the top-left */
             height: 100vh;
             display: flex;
             justify-content: center;
@@ -25,7 +25,7 @@
 </head>
 <body>
 
-    <h1 align="center" style="position: absolute; color: white; z-index: 10;">Flappy Bird Clone with Matter.js</h1>
+    <h1 align="center" style="position: absolute; color: white; z-index: 10;"></h1>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/matter-js/0.20.0/matter.min.js" integrity="sha512-6+7rTBmR6pRFe9fa0vCFjFaHZj/XYa7774bEBzRtxgdpIJOS++R3cKd6Prg/eJmxtsJotd8KAg4g57uuVQsZKA==" crossorigin="anonymous"></script>
 
@@ -151,7 +151,22 @@
 
         // Call the game loop every 16ms (~60 FPS)
         setInterval(gameLoop, 16);
-        setInterval(spawnPipe, 3000)
+        setInterval(spawnPipe, 3000);
+
+        // Moving background effect
+        let backgroundPositionX = 0;
+        const backgroundSpeed = 1;  // Speed at which the background moves
+
+        function moveBackground() {
+            backgroundPositionX -= backgroundSpeed;  // Move background to the left
+            document.body.style.backgroundPosition = `${backgroundPositionX}px 0`;  // Update the position
+        }
+
+        // Call the background movement every 10ms to create a smooth effect
+        setInterval(moveBackground, 10);
     </script>
+</body>
+</html>
+
 </body>
 </html>
