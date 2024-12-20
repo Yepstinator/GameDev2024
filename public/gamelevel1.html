@@ -1,0 +1,187 @@
+<body id="myBody" style="background-repeat:repeat; background-size: 80%" background="myBackground01.jpg" onkeydown="{
+    let myKey = event.key.toLowerCase();  // Convert to lowercase for case-insensitive comparison
+    document.getElementById('myDiv01').innerHTML = myKey;
+
+    // Controls for first image (WASD)
+    if (myKey == 'd') {
+        myVelocityX += 1;  // Accelerate to the right
+    } 
+    else if (myKey == 'a') {
+        myVelocityX -= 1;  // Accelerate to the left
+    }
+    else if (myKey == 'w') {
+        myVelocityY -= 1;  // Accelerate upward (negative Y)
+    }
+    else if (myKey == 's') {
+        myVelocityY += 1;  // Accelerate downward (positive Y)
+    }
+
+    // Arrow key controls for the second image
+    if (event.key == 'ArrowRight') {
+        myVelocityX2 += 1;  // Accelerate to the right for second image
+    } 
+    else if (event.key == 'ArrowLeft') {
+        myVelocityX2 -= 1;  // Accelerate to the left for second image
+    }
+    else if (event.key == 'ArrowUp') {
+        myVelocityY2 -= 1;  // Accelerate upward for second image
+    }
+    else if (event.key == 'ArrowDown') {
+        myVelocityY2 += 1;  // Accelerate downward for second image
+    }
+}">
+
+<h1 align=center>t4a01-game-template-with-wasd-by-fred</h1>
+<br><br><br><br>
+
+<script>
+
+// Global variables
+let myVelocityX = 0;
+let myVelocityY = 0;
+let myVelocityX2 = 0;
+let myVelocityY2 = 0;
+let friction = 0.1;
+let gravitySpeed = 1;
+let topBarrier = 10;  // Top barrier distance
+
+function myHitOther(my1, my2) {
+    let left1 = parseInt(document.getElementById(my1).style.left);
+    let right1 = left1 + parseInt(document.getElementById(my1).style.width);
+    let top1 = parseInt(document.getElementById(my1).style.top);
+    let bottom1 = top1 + parseInt(document.getElementById(my1).style.height);
+    let left2 = parseInt(document.getElementById(my2).style.left);
+    let right2 = left2 + parseInt(document.getElementById(my2).style.width);
+    let top2 = parseInt(document.getElementById(my2).style.top);
+    let bottom2 = top2 + parseInt(document.getElementById(my2).style.height);
+
+    if ((right1 >= left2) && (bottom1 >= top2) && (left1 <= right2) && (top1 <= bottom2)) {
+        return true;
+    }
+    return false;
+}
+
+function myCheckHit() {
+    if (myHitOther('myImg01', 'myImg02')) {
+        alert('You lose');
+        document.getElementById('myImg01').style.left = '20px';
+        location = 't2a13-keydown.html';  // go to your next level or reset
+    }
+}
+// function that applies gravity to the images
+function applyGravity() {
+    let myImg01 = document.getElementById('myImg01');
+    let myImg02 = document.getElementById('myImg02');
+    let screenHeight = window.innerHeight;
+
+    // Gravity logic for both images
+    let bottom1 = parseInt(myImg01.style.top) + parseInt(myImg01.style.height);
+    let bottom2 = parseInt(myImg02.style.top) + parseInt(myImg02.style.height);
+
+    if (bottom1 < screenHeight) {
+        myImg01.style.top = parseInt(myImg01.style.top) + gravitySpeed + 'px';
+    } else {
+        myImg01.style.top = screenHeight - parseInt(myImg01.style.height) + 'px';
+    }
+    
+    if (bottom2 < screenHeight) {
+        myImg02.style.top = parseInt(myImg02.style.top) + gravitySpeed + 'px';
+    } else {
+        myImg02.style.top = screenHeight - parseInt(myImg02.style.height) + 'px';
+    }
+}
+
+function updatePosition() {
+    let myImg01 = document.getElementById('myImg01');
+    let myImg02 = document.getElementById('myImg02');
+
+    // First image movement
+    let newLeft1 = parseInt(myImg01.style.left) + myVelocityX;
+    let newTop1 = parseInt(myImg01.style.top) + myVelocityY;
+
+    // Apply friction to slow down the movement
+    if (Math.abs(myVelocityX) > friction) {
+        myVelocityX -= (myVelocityX > 0 ? friction : -friction);
+    } else {
+        myVelocityX = 0;
+    }
+
+    if (Math.abs(myVelocityY) > friction) {
+        myVelocityY -= (myVelocityY > 0 ? friction : -friction);
+    } else {
+        myVelocityY = 0;
+    }
+
+    // Prevent going out of the left boundary and top barrier for the first image
+    if (newLeft1 <= 0) {
+        newLeft1 = 0;
+    }
+
+    if (newTop1 <= topBarrier) {  // Prevent image from going above the top barrier
+        newTop1 = topBarrier;
+    }
+
+    myImg01.style.left = newLeft1 + 'px';
+    myImg01.style.top = newTop1 + 'px';
+
+    // Second image movement
+    let newLeft2 = parseInt(myImg02.style.left) + myVelocityX2;
+    let newTop2 = parseInt(myImg02.style.top) + myVelocityY2;
+
+    // Apply friction to the second image
+    if (Math.abs(myVelocityX2) > friction) {
+        myVelocityX2 -= (myVelocityX2 > 0 ? friction : -friction);
+    } else {
+        myVelocityX2 = 0;
+    }
+
+    if (Math.abs(myVelocityY2) > friction) {
+        myVelocityY2 -= (myVelocityY2 > 0 ? friction : -friction);
+    } else {
+        myVelocityY2 = 0;
+    }
+
+    // Prevent going out of the left boundary and top barrier for the second image
+    if (newLeft2 <= 0) {
+        newLeft2 = 0;
+    }
+
+    if (newTop2 <= topBarrier) {  // Prevent image from going above the top barrier
+        newTop2 = topBarrier;
+    }
+
+    myImg02.style.left = newLeft2 + 'px';
+    myImg02.style.top = newTop2 + 'px';
+
+    myCheckHit();  // Check for collisions after moving both images
+}
+
+// Start gravity effect
+setInterval(applyGravity, 1);  // Adjust gravity interval for smooth movement
+
+// Start updating positions
+setInterval(updatePosition, 16);  // 16ms for smooth movement (60 FPS)
+
+</script>
+
+<img id="myImg01" style="position:absolute; width:100px; height:80px; top:0px; left:50px;" src="myImage01.jpg">
+<img id="myImg02" style="position:absolute; width:100px; height:80px; top:0px; left:250px;" src="myImage02.jpg">
+
+<input type="button" value="Auto Background Left" onclick="{
+   clearInterval(myClock);
+   let myTemp = '100px 0px';
+   myClock = setInterval(function(){
+       myGlobalX -= 5;
+       myTemp =  myGlobalX + 'px 0px';
+       document.getElementById('myBody').style.backgroundPosition = myTemp;
+   }, 100);
+}">
+
+<input type="button" value="Image Right Fast Button" onclick="{
+   myVelocityX += 5;  // Accelerate right
+   myCheckHit();  // checks for all collisions
+}"><br><br>
+
+<div id="myDiv01" style="color:yellow">..</div>
+
+</body>
