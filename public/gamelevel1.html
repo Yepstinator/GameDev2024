@@ -41,9 +41,24 @@ let myVelocityX = 0;
 let myVelocityY = 0;
 let myVelocityX2 = 0;
 let myVelocityY2 = 0;
+let myVelocityX3 = 0;  // Velocity for third image
+let myVelocityY3 = 0;  // Velocity for third image
 let friction = 0.1;
 let gravitySpeed = 1;
 let topBarrier = 10;  // Top barrier distance
+
+// Function that initializes images at the ground level
+function initializePositions() {
+    let screenHeight = window.innerHeight;
+    let myImg01 = document.getElementById('myImg01');
+    let myImg02 = document.getElementById('myImg02');
+    let myImg03 = document.getElementById('myImg03');
+
+    // Set the initial position of images to the bottom of the screen
+    myImg01.style.top = screenHeight - parseInt(myImg01.style.height) + 'px';
+    myImg02.style.top = screenHeight - parseInt(myImg02.style.height) + 'px';
+    myImg03.style.top = screenHeight - parseInt(myImg03.style.height) + 'px';
+}
 
 function myHitOther(my1, my2) {
     let left1 = parseInt(document.getElementById(my1).style.left);
@@ -63,20 +78,36 @@ function myHitOther(my1, my2) {
 
 function myCheckHit() {
     if (myHitOther('myImg01', 'myImg02')) {
-        alert('You lose');
-        document.getElementById('myImg01').style.left = '20px';
-        location = 't2a13-keydown.html';  // go to your next level or reset
+        // When collision occurs, set the position of myImg02 to be the same as myImg01
+        var img01 = document.getElementById('myImg01');
+        var img02 = document.getElementById('myImg02');
+        img02.style.left = img01.style.left;
+        img02.style.top = img01.style.top;
+    }
+    
+    if (myHitOther('myImg02', 'myImg03')) {
+        var img02 = document.getElementById('myImg02');
+        var img03 = document.getElementById('myImg03');
+        img03.style.left = img02.style.left;
+        img03.style.top = img02.style.top;
+        
+        // When myImg02 collides with myImg03, redirect to another website
+        window.location.href = "https://www.example.com";  // Replace with your desired URL
     }
 }
-// function that applies gravity to the images
+
+
+// Function that applies gravity to the images
 function applyGravity() {
     let myImg01 = document.getElementById('myImg01');
     let myImg02 = document.getElementById('myImg02');
+    let myImg03 = document.getElementById('myImg03');
     let screenHeight = window.innerHeight;
 
-    // Gravity logic for both images
+    // Gravity logic for all images
     let bottom1 = parseInt(myImg01.style.top) + parseInt(myImg01.style.height);
     let bottom2 = parseInt(myImg02.style.top) + parseInt(myImg02.style.height);
+    let bottom3 = parseInt(myImg03.style.top) + parseInt(myImg03.style.height);
 
     if (bottom1 < screenHeight) {
         myImg01.style.top = parseInt(myImg01.style.top) + gravitySpeed + 'px';
@@ -89,11 +120,18 @@ function applyGravity() {
     } else {
         myImg02.style.top = screenHeight - parseInt(myImg02.style.height) + 'px';
     }
+
+    if (bottom3 < screenHeight) {
+        myImg03.style.top = parseInt(myImg03.style.top) + gravitySpeed + 'px';
+    } else {
+        myImg03.style.top = screenHeight - parseInt(myImg03.style.height) + 'px';
+    }
 }
 
 function updatePosition() {
     let myImg01 = document.getElementById('myImg01');
     let myImg02 = document.getElementById('myImg02');
+    let myImg03 = document.getElementById('myImg03');
 
     // First image movement
     let newLeft1 = parseInt(myImg01.style.left) + myVelocityX;
@@ -153,7 +191,36 @@ function updatePosition() {
     myImg02.style.left = newLeft2 + 'px';
     myImg02.style.top = newTop2 + 'px';
 
-    myCheckHit();  // Check for collisions after moving both images
+    // Third image movement
+    let newLeft3 = parseInt(myImg03.style.left) + myVelocityX3;
+    let newTop3 = parseInt(myImg03.style.top) + myVelocityY3;
+
+    // Apply friction to the third image
+    if (Math.abs(myVelocityX3) > friction) {
+        myVelocityX3 -= (myVelocityX3 > 0 ? friction : -friction);
+    } else {
+        myVelocityX3 = 0;
+    }
+
+    if (Math.abs(myVelocityY3) > friction) {
+        myVelocityY3 -= (myVelocityY3 > 0 ? friction : -friction);
+    } else {
+        myVelocityY3 = 0;
+    }
+
+    // Prevent going out of the left boundary and top barrier for the third image
+    if (newLeft3 <= 0) {
+        newLeft3 = 0;
+    }
+
+    if (newTop3 <= topBarrier) {  // Prevent image from going above the top barrier
+        newTop3 = topBarrier;
+    }
+
+    myImg03.style.left = newLeft3 + 'px';
+    myImg03.style.top = newTop3 + 'px';
+
+    myCheckHit();  // Check for collisions after moving all images
 }
 
 // Start gravity effect
@@ -162,10 +229,14 @@ setInterval(applyGravity, 1);  // Adjust gravity interval for smooth movement
 // Start updating positions
 setInterval(updatePosition, 16);  // 16ms for smooth movement (60 FPS)
 
+// Initialize positions when the page loads
+initializePositions();
+
 </script>
 
-<img id="myImg01" style="position:absolute; width:100px; height:80px; top:0px; left:50px;" src="myImage01.jpg">
-<img id="myImg02" style="position:absolute; width:100px; height:80px; top:0px; left:250px;" src="myImage02.jpg">
+<img id="myImg01" style="position:absolute; width:100px; height:80px; left:50px;" src="myImage01.jpg">
+<img id="myImg02" style="position:absolute; width:100px; height:80px; left:250px;" src="myImage02.jpg">
+<img id="myImg03" style="position:absolute; width:100px; height:80px; left:400px;" src="myImage03.jpg">
 
 <input type="button" value="Auto Background Left" onclick="{
    clearInterval(myClock);
