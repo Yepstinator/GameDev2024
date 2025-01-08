@@ -51,7 +51,7 @@ let topBarrier = 10;  // Top barrier distance
 function initializePositions() {
     let screenHeight = window.innerHeight;
     let myImg01 = document.getElementById('myImg01');
-    let myImg02 = document.getElementById('myImg02');
+    
     
 
     // Set the initial position of images to the bottom of the screen
@@ -110,7 +110,7 @@ function myCheckHit() {
 // Function that applies gravity to the images
 function applyGravity() {
     let myImg01 = document.getElementById('myImg01');
-    let myImg02 = document.getElementById('myImg02');
+
 
     let screenHeight = window.innerHeight;
 
@@ -125,11 +125,11 @@ function applyGravity() {
         myImg01.style.top = screenHeight - parseInt(myImg01.style.height) + 'px';
     }
     
-    if (bottom2 < screenHeight) {
-        myImg02.style.top = parseInt(myImg02.style.top) + gravitySpeed + 'px';
-    } else {
-        myImg02.style.top = screenHeight - parseInt(myImg02.style.height) + 'px';
-    }
+    // if (bottom2 < screenHeight) {
+    //     myImg02.style.top = parseInt(myImg02.style.top) + gravitySpeed + 'px';
+    // } else {
+    //     myImg02.style.top = screenHeight - parseInt(myImg02.style.height) + 'px';
+    // }
 
     // if (bottom3 < screenHeight) {
     //     myImg03.style.top = parseInt(myImg03.style.top) + gravitySpeed + 'px';
@@ -140,7 +140,7 @@ function applyGravity() {
 
 function updatePosition() {
     let myImg01 = document.getElementById('myImg01');
-    let myImg02 = document.getElementById('myImg02');
+
 
 
     // First image movement
@@ -245,7 +245,7 @@ initializePositions();
 </script>
 
 <img id="myImg01" style="position:absolute; width:100px; height:80px; left:50px;" src="myImage01.jpg">
-<img id="myImg02" style="position:absolute; width:100px; height:80px; left:250px;" src="Key.png">
+<img id="myImg02" style="position:absolute; width:100px; height:80px; TOP:350px; left:250px;" src="Key.png">
 <img id="myImg03" style="position:absolute; width:300px; height:160px; TOP:500px; left:500px;" src="Door.png.png">
 <img id="myImg04" style="position:absolute; width:120px; height:90px; TOP:400px; left:800px;" src="FourthImage.png">
 
@@ -300,6 +300,9 @@ initializePositions();
     }
 
     function decreaseSpeed() {
+        if (myImg04Speed > 1) myImg04Speed -= 1; // Prevent negative or zero speed
+    }
+</script>
         if (myImg04Speed > 1) myImg04Speed -= 1; // Prevent negative or zero speed
     }
 </script>
