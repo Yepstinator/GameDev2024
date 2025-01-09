@@ -88,8 +88,7 @@ function myCheckHit() {
     if (myHitOther('myImg02', 'myImg03')) {
         var img02 = document.getElementById('myImg02');
         var img03 = document.getElementById('myImg03');
-        img03.style.left = img02.style.left;
-        img03.style.top = img02.style.top;
+
         
         // When myImg02 collides with myImg03, redirect to another website
         window.location.href = "https://www.example.com";  // Replace with your desired URL
@@ -235,8 +234,8 @@ initializePositions();
 </script>
 
 <img id="myImg01" style="position:absolute; width:100px; height:80px; left:50px;" src="myImage01.jpg">
-<img id="myImg02" style="position:absolute; width:100px; height:80px; left:250px;" src="myImage02.jpg">
-<img id="myImg03" style="position:absolute; width:100px; height:80px; TOP:500px; left:500px;" src="myImage03.jpg">
+<img id="myImg02" style="position:absolute; width:100px; height:80px; left:250px;" src="Key.png">
+<img id="myImg03" style="position:absolute; width:300px; height:160px; TOP:500px; left:500px;" src="Door.png.png">
 
 <input type="button" value="Auto Background Left" onclick="{
    clearInterval(myClock);
