@@ -15,24 +15,8 @@
     else if (myKey == 's') {
         myVelocityY += 1;  // Accelerate downward (positive Y)
     }
-
-    // Arrow key controls for the second image
-    if (event.key == 'ArrowRight') {
-        myVelocityX2 += 1;  // Accelerate to the right for second image
-    } 
-    else if (event.key == 'ArrowLeft') {
-        myVelocityX2 -= 1;  // Accelerate to the left for second image
-    }
-    else if (event.key == 'ArrowUp') {
-        myVelocityY2 -= 1;  // Accelerate upward for second image
-    }
-    else if (event.key == 'ArrowDown') {
-        myVelocityY2 += 1;  // Accelerate downward for second image
-    }
 }">
 
-<h1 align=center>t4a01-game-template-with-wasd-by-fred</h1>
-<br><br><br><br>
 
 <script>
 
@@ -244,25 +228,12 @@ initializePositions();
 
 </script>
 
-<img id="myImg01" style="position:absolute; width:100px; height:80px; left:50px;" src="myImage01.jpg">
+<img id="myImg01" style="position:absolute; width:100px; height:80px; left:50px;" src="blob.png.png">
 <img id="myImg02" style="position:absolute; width:100px; height:80px; TOP:350px; left:250px;" src="Key.png">
 <img id="myImg03" style="position:absolute; width:300px; height:160px; TOP:500px; left:500px;" src="Door.png.png">
-<img id="myImg04" style="position:absolute; width:120px; height:90px; TOP:400px; left:800px;" src="FourthImage.png">
+<img id="myImg04" style="position:absolute; width:120px; height:90px; TOP:400px; left:800px;" src="Spike.png.png">
 
-<input type="button" value="Auto Background Left" onclick="{
-   clearInterval(myClock);
-   let myTemp = '100px 0px';
-   myClock = setInterval(function(){
-       myGlobalX -= 5;
-       myTemp =  myGlobalX + 'px 0px';
-       document.getElementById('myBody').style.backgroundPosition = myTemp;
-   }, 100);
-}">
 
-<input type="button" value="Image Right Fast Button" onclick="{
-   myVelocityX += 5;  // Accelerate right
-   myCheckHit();  // checks for all collisions
-}"><br><br>
 
 <div id="myDiv01" style="color:yellow">..</div>
 
@@ -303,6 +274,8 @@ initializePositions();
         if (myImg04Speed > 1) myImg04Speed -= 1; // Prevent negative or zero speed
     }
 </script>
-        if (myImg04Speed > 1) myImg04Speed -= 1; // Prevent negative or zero speed
-    }
-</script>
+
+<script>
+    document.body.style.backgroundColor = "lightblue";
+    
+    </script>
