@@ -2,6 +2,7 @@
     let myKey = event.key.toLowerCase();  // Convert to lowercase for case-insensitive comparison
     document.getElementById('myDiv01').innerHTML = myKey;
 
+    
     // Controls for first image (WASD)
     if (myKey == 'd') {
         myVelocityX += 1;  // Accelerate to the right
@@ -15,24 +16,8 @@
     else if (myKey == 's') {
         myVelocityY += 1;  // Accelerate downward (positive Y)
     }
-
-    // Arrow key controls for the second image
-    if (event.key == 'ArrowRight') {
-        myVelocityX2 += 1;  // Accelerate to the right for second image
-    } 
-    else if (event.key == 'ArrowLeft') {
-        myVelocityX2 -= 1;  // Accelerate to the left for second image
-    }
-    else if (event.key == 'ArrowUp') {
-        myVelocityY2 -= 1;  // Accelerate upward for second image
-    }
-    else if (event.key == 'ArrowDown') {
-        myVelocityY2 += 1;  // Accelerate downward for second image
-    }
 }">
 
-<h1 align=center>t4a01-game-template-with-wasd-by-fred</h1>
-<br><br><br><br>
 
 <script>
 
@@ -41,13 +26,13 @@ let myVelocityX = 0;
 let myVelocityY = 0;
 let myVelocityX2 = 0;
 let myVelocityY2 = 0;
-let myVelocityX3 = 0;  // Velocity for third image
-let myVelocityY3 = 0;  // Velocity for third image
+let myVelocityX3 = 0; 
+let myVelocityY3 = 0;  
 let friction = 0.1;
 let gravitySpeed = 1;
 let topBarrier = 10;  // Top barrier distance
 
-// Function that initializes images at the ground level
+// Function that sets images at the ground level
 function initializePositions() {
     let screenHeight = window.innerHeight;
     let myImg01 = document.getElementById('myImg01');
@@ -91,7 +76,7 @@ function myCheckHit() {
 
         
         // When myImg02 collides with myImg03, redirect to another website
-        window.location.href = "https://www.example.com";  // Replace with your desired URL
+        window.location.href = "https://www.example.com";  // url
     }
 }
 
@@ -119,6 +104,7 @@ function applyGravity() {
     } else {
         myImg02.style.top = screenHeight - parseInt(myImg02.style.height) + 'px';
     }
+    
 
     // if (bottom3 < screenHeight) {
     //     myImg03.style.top = parseInt(myImg03.style.top) + gravitySpeed + 'px';
@@ -131,6 +117,7 @@ function updatePosition() {
     let myImg01 = document.getElementById('myImg01');
     let myImg02 = document.getElementById('myImg02');
 
+    
 
     // First image movement
     let newLeft1 = parseInt(myImg01.style.left) + myVelocityX;
@@ -187,6 +174,8 @@ function updatePosition() {
         newTop2 = topBarrier;
     }
 
+    
+
     myImg02.style.left = newLeft2 + 'px';
     myImg02.style.top = newTop2 + 'px';
 
@@ -233,25 +222,20 @@ initializePositions();
 
 </script>
 
-<img id="myImg01" style="position:absolute; width:100px; height:80px; left:50px;" src="myImage01.jpg">
+<img id="myImg01" style="position:absolute; width:100px; height:80px; left:50px;" src="blob.png.png">
 <img id="myImg02" style="position:absolute; width:100px; height:80px; left:250px;" src="Key.png">
 <img id="myImg03" style="position:absolute; width:300px; height:160px; TOP:500px; left:500px;" src="Door.png.png">
 
-<input type="button" value="Auto Background Left" onclick="{
-   clearInterval(myClock);
-   let myTemp = '100px 0px';
-   myClock = setInterval(function(){
-       myGlobalX -= 5;
-       myTemp =  myGlobalX + 'px 0px';
-       document.getElementById('myBody').style.backgroundPosition = myTemp;
-   }, 100);
-}">
 
-<input type="button" value="Image Right Fast Button" onclick="{
-   myVelocityX += 5;  // Accelerate right
-   myCheckHit();  // checks for all collisions
-}"><br><br>
+
 
 <div id="myDiv01" style="color:yellow">..</div>
 
+</body>
+
+
+<script>
+document.body.style.backgroundColor = "lightblue";
+
+</script>
 </body>
