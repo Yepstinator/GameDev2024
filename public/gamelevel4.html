@@ -1,0 +1,366 @@
+<body id="myBody" style="background-repeat:repeat; background-size: 80%" background="myBackground01.jpg" onkeydown="{
+    let myKey = event.key.toLowerCase();  // Convert to lowercase for case-insensitive comparison
+    document.getElementById('myDiv01').innerHTML = myKey;
+
+    // Controls for first image (WASD)
+    if (myKey == 'd') {
+        myVelocityX += 1;  // Accelerate to the right
+    } 
+    else if (myKey == 'a') {
+        myVelocityX -= 1;  // Accelerate to the left
+    }
+    else if (myKey == 'w') {
+        myVelocityY -= 1;  // Accelerate upward (negative Y)
+    }
+    else if (myKey == 's') {
+        myVelocityY += 1;  // Accelerate downward (positive Y)
+    }
+}">
+
+
+
+<script>
+
+// Global variables
+let myVelocityX = 0;
+let myVelocityY = 0;
+let myVelocityX2 = 0;
+let myVelocityY2 = 0;
+let myVelocityX3 = 0;  // Velocity for third image
+let myVelocityY3 = 0;  // Velocity for third image
+let friction = 0.1;
+let gravitySpeed = 1;
+let topBarrier = 10;  // Top barrier distance
+
+// Function that initializes images at the ground level
+function initializePositions() {
+    let screenHeight = window.innerHeight;
+    let myImg01 = document.getElementById('myImg01');
+    
+    
+
+    // Set the initial position of images to the bottom of the screen
+    myImg01.style.top = screenHeight - parseInt(myImg01.style.height) + 'px';
+    myImg02.style.top = screenHeight - parseInt(myImg02.style.height) + 'px';
+
+}
+
+function myHitOther(my1, my2) {
+    let left1 = parseInt(document.getElementById(my1).style.left);
+    let right1 = left1 + parseInt(document.getElementById(my1).style.width);
+    let top1 = parseInt(document.getElementById(my1).style.top);
+    let bottom1 = top1 + parseInt(document.getElementById(my1).style.height);
+    let left2 = parseInt(document.getElementById(my2).style.left);
+    let right2 = left2 + parseInt(document.getElementById(my2).style.width);
+    let top2 = parseInt(document.getElementById(my2).style.top);
+    let bottom2 = top2 + parseInt(document.getElementById(my2).style.height);
+
+    if ((right1 >= left2) && (bottom1 >= top2) && (left1 <= right2) && (top1 <= bottom2)) {
+        return true;
+    }
+    return false;
+}
+
+function myCheckHit() {
+    // Check collision between myImg01 and myImg02
+    if (myHitOther('myImg01', 'myImg02')) {
+        var img01 = document.getElementById('myImg01');
+        var img02 = document.getElementById('myImg02');
+        img02.style.left = img01.style.left;
+        img02.style.top = img01.style.top;
+    }
+    
+    // Check collision between myImg02 and myImg03
+    if (myHitOther('myImg02', 'myImg03')) {
+        var img02 = document.getElementById('myImg02');
+        var img03 = document.getElementById('myImg03');
+        img03.style.left = img02.style.left;
+        img03.style.top = img02.style.top;
+        
+        // Redirect to another website
+        window.location.href = "https://www.example.com";  // Replace with your desired URL
+    }
+
+    // Check collision between myImg04 and myImg01
+    if (myHitOther('myImg04', 'myImg01')) {
+        var img01 = document.getElementById('myImg01');
+        // Reset myImg01 to its starting position
+        img01.style.left = '50px'; // Initial left position
+        img01.style.top = (window.innerHeight - parseInt(img01.style.height)) + 'px'; // Initial top position at the bottom
+    }
+
+    if (myHitOther('myImg05', 'myImg01')) {
+        var img01 = document.getElementById('myImg01');
+        // Reset myImg01 to its starting position
+        img01.style.left = '50px'; // Initial left position
+        img01.style.top = (window.innerHeight - parseInt(img01.style.height)) + 'px'; // Initial top position at the bottom
+    }
+
+    if (myHitOther('myImg06', 'myImg01')) {
+        var img01 = document.getElementById('myImg01');
+        // Reset myImg01 to its starting position
+        img01.style.left = '50px'; // Initial left position
+        img01.style.top = (window.innerHeight - parseInt(img01.style.height)) + 'px'; // Initial top position at the bottom
+    }
+
+    if (myHitOther('myImg07', 'myImg01')) {
+        var img01 = document.getElementById('myImg01');
+        // Reset myImg01 to its starting position
+        img01.style.left = '50px'; // Initial left position
+        img01.style.top = (window.innerHeight - parseInt(img01.style.height)) + 'px'; // Initial top position at the bottom
+    }
+}
+
+
+
+// Function that applies gravity to the images
+function applyGravity() {
+    let myImg01 = document.getElementById('myImg01');
+
+
+    let screenHeight = window.innerHeight;
+
+    // Gravity logic for all images
+    let bottom1 = parseInt(myImg01.style.top) + parseInt(myImg01.style.height);
+    let bottom2 = parseInt(myImg02.style.top) + parseInt(myImg02.style.height);
+    let bottom3 = parseInt(myImg03.style.top) + parseInt(myImg03.style.height);
+
+    if (bottom1 < screenHeight) {
+        myImg01.style.top = parseInt(myImg01.style.top) + gravitySpeed + 'px';
+    } else {
+        myImg01.style.top = screenHeight - parseInt(myImg01.style.height) + 'px';
+    }
+    
+    // if (bottom2 < screenHeight) {
+    //     myImg02.style.top = parseInt(myImg02.style.top) + gravitySpeed + 'px';
+    // } else {
+    //     myImg02.style.top = screenHeight - parseInt(myImg02.style.height) + 'px';
+    // }
+
+    // if (bottom3 < screenHeight) {
+    //     myImg03.style.top = parseInt(myImg03.style.top) + gravitySpeed + 'px';
+    // } else {
+    //     myImg03.style.top = screenHeight - parseInt(myImg03.style.height) + 'px';
+    // }
+}
+
+function updatePosition() {
+    let myImg01 = document.getElementById('myImg01');
+
+
+
+    // First image movement
+    let newLeft1 = parseInt(myImg01.style.left) + myVelocityX;
+    let newTop1 = parseInt(myImg01.style.top) + myVelocityY;
+
+    // Apply friction to slow down the movement
+    if (Math.abs(myVelocityX) > friction) {
+        myVelocityX -= (myVelocityX > 0 ? friction : -friction);
+    } else {
+        myVelocityX = 0;
+    }
+
+    if (Math.abs(myVelocityY) > friction) {
+        myVelocityY -= (myVelocityY > 0 ? friction : -friction);
+    } else {
+        myVelocityY = 0;
+    }
+
+    // Prevent going out of the left boundary and top barrier for the first image
+    if (newLeft1 <= 0) {
+        newLeft1 = 0;
+    }
+
+    if (newTop1 <= topBarrier) {  // Prevent image from going above the top barrier
+        newTop1 = topBarrier;
+    }
+
+    myImg01.style.left = newLeft1 + 'px';
+    myImg01.style.top = newTop1 + 'px';
+
+    // Second image movement
+    let newLeft2 = parseInt(myImg02.style.left) + myVelocityX2;
+    let newTop2 = parseInt(myImg02.style.top) + myVelocityY2;
+
+    // Apply friction to the second image
+    if (Math.abs(myVelocityX2) > friction) {
+        myVelocityX2 -= (myVelocityX2 > 0 ? friction : -friction);
+    } else {
+        myVelocityX2 = 0;
+    }
+
+    if (Math.abs(myVelocityY2) > friction) {
+        myVelocityY2 -= (myVelocityY2 > 0 ? friction : -friction);
+    } else {
+        myVelocityY2 = 0;
+    }
+
+    // Prevent going out of the left boundary and top barrier for the second image
+    if (newLeft2 <= 0) {
+        newLeft2 = 0;
+    }
+
+    if (newTop2 <= topBarrier) {  // Prevent image from going above the top barrier
+        newTop2 = topBarrier;
+    }
+
+    myImg02.style.left = newLeft2 + 'px';
+    myImg02.style.top = newTop2 + 'px';
+
+    // Third image movement
+    let newLeft3 = parseInt(myImg03.style.left) + myVelocityX3;
+    let newTop3 = parseInt(myImg03.style.top) + myVelocityY3;
+
+    // Apply friction to the third image
+    if (Math.abs(myVelocityX3) > friction) {
+        myVelocityX3 -= (myVelocityX3 > 0 ? friction : -friction);
+    } else {
+        myVelocityX3 = 0;
+    }
+
+    if (Math.abs(myVelocityY3) > friction) {
+        myVelocityY3 -= (myVelocityY3 > 0 ? friction : -friction);
+    } else {
+        myVelocityY3 = 0;
+    }
+
+    // Prevent going out of the left boundary and top barrier for the third image
+    if (newLeft3 <= 0) {
+        newLeft3 = 0;
+    }
+
+    if (newTop3 <= topBarrier) {  // Prevent image from going above the top barrier
+        newTop3 = topBarrier;
+    }
+
+    myImg03.style.left = newLeft3 + 'px';
+    myImg03.style.top = newTop3 + 'px';
+
+    myCheckHit();  // Check for collisions after moving all images
+}
+
+// Start gravity effect
+setInterval(applyGravity, 1);  // Adjust gravity interval for smooth movement
+
+// Start updating positions
+setInterval(updatePosition, 16);  // 16ms for smooth movement (60 FPS)
+
+// Initialize positions when the page loads
+initializePositions();
+
+</script>
+
+<img id="myImg01" style="position:absolute; width:100px; height:80px; left:50px;" src="blob.png.png">
+<img id="myImg02" style="position:absolute; width:100px; height:80px; TOP:250px; left:500px;" src="Key.png">
+<img id="myImg03" style="position:absolute; width:300px; height:160px; TOP:500px; left:500px;" src="Door.png.png">
+<img id="myImg04" style="position:absolute; width:120px; height:90px; TOP:400px; left:800px;" src="Spike.png.png">
+<img id="myImg05" style="position:absolute; width:120px; height:90px; TOP:400px; left:800px;" src="Spike.png.png">
+<img id="myImg06" style="position:absolute; width:120px; height:90px; TOP:10px; left:800px;" src="Spike.png.png">
+<img id="myImg07" style="position:absolute; width:120px; height:90px; TOP:10px; left:400px;" src="Spike.png.png">
+
+
+
+
+<div id="myDiv01" style="color:yellow">..</div>
+
+</body>
+
+<script>
+    // Variables for images
+    let myImg04Speed = 10; // Speed of movement for myImg04
+    let myImg04Direction = 1; // 1 for right, -1 for left
+    let myImg05Speed = 5; // Speed of movement for myImg05
+    let myImg05Direction = -3; // 1 for right, -1 for left
+    let myImg06Speed = 8; // Speed of movement for myImg06
+    let myImg06Direction = 1; // 1 for right, -1 for left
+    let myImg07Speed = 6; // Speed of movement for myImg07
+    let myImg07Direction = 1; // 1 for down, -1 for up
+
+    // General function to move images
+    function moveImages() {
+        let myImg04 = document.getElementById('myImg04');
+        let myImg05 = document.getElementById('myImg05');
+        let myImg06 = document.getElementById('myImg06');
+        let myImg07 = document.getElementById('myImg07');
+
+        let screenWidth = window.innerWidth;
+        let screenHeight = window.innerHeight;
+
+        // Move myImg04
+        let currentLeft04 = parseInt(myImg04.style.left) || 0;
+        currentLeft04 += myImg04Speed * myImg04Direction;
+        if (currentLeft04 + myImg04.offsetWidth >= screenWidth || currentLeft04 <= 0) {
+            myImg04Direction *= -1;
+        }
+        myImg04.style.left = currentLeft04 + 'px';
+
+        // Move myImg05
+        let currentLeft05 = parseInt(myImg05.style.left) || 0;
+        currentLeft05 += myImg05Speed * myImg05Direction;
+        if (currentLeft05 + myImg05.offsetWidth >= screenWidth || currentLeft05 <= 0) {
+            myImg05Direction *= -1;
+        }
+        myImg05.style.left = currentLeft05 + 'px';
+
+        // Move myImg06
+        let currentLeft06 = parseInt(myImg06.style.left) || 0;
+        currentLeft06 += myImg06Speed * myImg06Direction;
+        if (currentLeft06 + myImg06.offsetWidth >= screenWidth || currentLeft06 <= 0) {
+            myImg06Direction *= -1;
+        }
+        myImg06.style.left = currentLeft06 + 'px';
+
+        // Move myImg07 (up and down)
+        let currentTop07 = parseInt(myImg07.style.top) || 0;
+        currentTop07 += myImg07Speed * myImg07Direction;
+        if (currentTop07 + myImg07.offsetHeight >= screenHeight || currentTop07 <= 0) {
+            myImg07Direction *= -1;
+        }
+        myImg07.style.top = currentTop07 + 'px';
+    }
+
+    // Start the interval for images movement
+    setInterval(moveImages, 16); // 16ms for smooth animation (60 FPS)
+
+    // Buttons to adjust speed of myImg04
+    function increaseSpeedMyImg04() {
+        myImg04Speed += 1;
+    }
+
+    function decreaseSpeedMyImg04() {
+        if (myImg04Speed > 1) myImg04Speed -= 1; // Prevent negative or zero speed
+    }
+
+    // Buttons to adjust speed of myImg05
+    function increaseSpeedMyImg05() {
+        myImg05Speed += 1;
+    }
+
+    function decreaseSpeedMyImg05() {
+        if (myImg05Speed > 1) myImg05Speed -= 1; // Prevent negative or zero speed
+    }
+
+    // Buttons to adjust speed of myImg06
+    function increaseSpeedMyImg06() {
+        myImg06Speed += 1;
+    }
+
+    function decreaseSpeedMyImg06() {
+        if (myImg06Speed > 1) myImg06Speed -= 1; // Prevent negative or zero speed
+    }
+
+    // Buttons to adjust speed of myImg07
+    function increaseSpeedMyImg07() {
+        myImg07Speed += 1;
+    }
+
+    function decreaseSpeedMyImg07() {
+        if (myImg07Speed > 1) myImg07Speed -= 1; // Prevent negative or zero speed
+    }
+</script>
+
+
+<script>
+    document.body.style.backgroundColor = "lightblue";
+    
+    </script>
