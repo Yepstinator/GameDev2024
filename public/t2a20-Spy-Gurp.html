@@ -1,80 +1,137 @@
-<h1 align=center>t2a20-Gurp-name.html</h1>
-<textarea id="myArea01" rows=4 cols=70>Hello how are you</textarea><br> 
+<body>
+   <h1 align=center>t2a20-spy-Gurp</h1>
+   <div>
+      <textarea id="myArea01" rows=4 cols=70>The quick brown fox jumps over the lazy dog.</textarea><br>
 
 
-<input type=button value="encrypt" onclick="{
-   let myTemp = ''
-   myString = document.getElementById('myArea01').value.toLowerCase().split('')
+      <input type=button value="encrypt" onclick="{
+      let myTemp = ''
+      myString = document.getElementById('myArea01').value.toLowerCase().split('')
+      for (let myLoop=0;   myLoop < myString.length; myLoop++){
+         myTemp = myString[myLoop]
+         if (myString[myLoop] == 'e') {myTemp  = 'f'} 
+         if (myString[myLoop] == 'h') {myTemp  = 'i'}
+         if (myString[myLoop] == 'f') {myTemp  = 'h'} 
+         if (myString[myLoop] == 'i') {myTemp  = 'e'} 
+         myString[myLoop] = myTemp
+      }
+      document.getElementById('myArea02').value = myString.join('')
+   }"><br>
+
+
+
+      <textarea id="myArea02" rows=4 cols=70></textarea><br>
+
+      <input type=button value="decrypt" onclick="{
    for (let myLoop=0;   myLoop < myString.length; myLoop++){
-      myTemp = myString[myLoop]
-      if (myString[myLoop] == 'e') {myTemp  = 'f'} 
-      if (myString[myLoop] == 'h') {myTemp  = 'i'} 
-      myString[myLoop] = myTemp
-   }
-   document.getElementById('myArea02').value = myString.join('')
-}"><br><br>
-
-
-
-<textarea id="myArea02" rows=4 cols=70></textarea><br> 
-
-<input type=button value="decrypt" onclick="{
-   let myTemp = ''
-   myString = document.getElementById('myArea01').value.toLowerCase().split('')
-   for (let myLoop=0;   myLoop < myString.length; myLoop++){
-      myTemp = myString[myLoop]
+      let myTemp = myString[myLoop]
       if (myString[myLoop] == 'f') {myTemp  = 'e'} 
-      if (myString[myLoop] == 'i') {myTemp  = 'h'} 
+      if (myString[myLoop] == 'i') {myTemp  = 'h'}
+      if (myString[myLoop] == 'h') {myTemp  = 'f'} 
+      if (myString[myLoop] == 'e') {myTemp  = 'i'} 
       myString[myLoop] = myTemp
    }
    document.getElementById('myArea03').value = myString.join('')
-}"><br><br>
+}"><br>
 
 
-<textarea id="myArea03" rows=4 cols=70></textarea><br> 
+      <textarea id="myArea03" rows=4 cols=70></textarea>
+   </div>
 
-<h2 align="center">MY COOLER CIPHER</h2>
+   <div>
+      <h2>Caesar Cipher</h2>
+      Shift Distance: <input type="number" id="shift" value="1" min="-29" max="29"><br>
+      <textarea id="myArea04" rows="4" cols="70">The quick brown fox jumps over the lazy dog.</textarea><br>
+
+      <input type="button" value="Encrypt" onclick="{
+         let myString = document.getElementById('myArea04').value.toLowerCase();
+         let encryptedText = '';
+         let shift = parseInt(document.getElementById('shift').value);  // Caesar shift value
+   
+         for (let myLoop = 0; myLoop < myString.length; myLoop++) {
+            let char = myString[myLoop];
+            let charCode;
+   
+            // Map characters to extended alphabet positions
+            if (char >= 'a' && char <= 'z') {
+               charCode = char.charCodeAt(0) - 'a'.charCodeAt(0); // a=0, b=1, ..., z=25
+            } else if (char === ' ') {
+               charCode = 26;  // Space is 27th
+            } else if (char === '.') {
+               charCode = 27;  // Period is 28th
+            } else if (char === ',') {
+               charCode = 28;  // Comma is 29th
+            } else {
+               encryptedText += char;  // If not a letter, space, period, or comma, keep it as is
+               continue;
+            }
+   
+            // Apply Caesar shift and wrap around the extended character set
+            let shiftedCode = (charCode + shift + 29) % 29;
+   
+            // Map shiftedCode back to a character
+            if (shiftedCode >= 0 && shiftedCode <= 25) {
+               encryptedText += String.fromCharCode(shiftedCode + 'a'.charCodeAt(0));
+            } else if (shiftedCode === 26) {
+               encryptedText += ' ';
+            } else if (shiftedCode === 27) {
+               encryptedText += '.';
+            } else if (shiftedCode === 28) {
+               encryptedText += ',';
+            }
+         }
+   
+         document.getElementById('myArea05').value = encryptedText;
+      }"><br>
+
+      <textarea id="myArea05" rows="4" cols="70"></textarea><br>
+
+      <input type="button" value="Decrypt" onclick="{
+         let myString = document.getElementById('myArea05').value.toLowerCase();
+         let decryptedText = '';
+         let shift = parseInt(document.getElementById('shift').value);  // Caesar shift value
+   
+         for (let myLoop = 0; myLoop < myString.length; myLoop++) {
+            let char = myString[myLoop];
+            let charCode;
+   
+            // Map characters to extended alphabet positions
+            if (char >= 'a' && char <= 'z') {
+               charCode = char.charCodeAt(0) - 'a'.charCodeAt(0); // a=0, b=1, ..., z=25
+            } else if (char === ' ') {
+               charCode = 26;  // Space is 27th
+            } else if (char === '.') {
+               charCode = 27;  // Period is 28th
+            } else if (char === ',') {
+               charCode = 28;  // Comma is 29th
+            } else {
+               decryptedText += char;  // If not a letter, space, period, or comma, keep it as is
+               continue;
+            }
+   
+            // Apply reverse Caesar shift and wrap around the extended character set
+            let shiftedCode = (charCode - shift + 29) % 29;
+   
+            // Map shiftedCode back to a character
+            if (shiftedCode >= 0 && shiftedCode <= 25) {
+               decryptedText += String.fromCharCode(shiftedCode + 'a'.charCodeAt(0));
+            } else if (shiftedCode === 26) {
+               decryptedText += ' ';
+            } else if (shiftedCode === 27) {
+               decryptedText += '.';
+            } else if (shiftedCode === 28) {
+               decryptedText += ',';
+            }
+         }
+   
+         document.getElementById('myArea06').value = decryptedText;
+      }"><br>
+
+      <textarea id="myArea06" rows="4" cols="70" readonly></textarea>
+   </div>
 
 
-<textarea id="myArea04" rows=4 cols=70>Hello how are you</textarea><br> 
-
-
-<input type=button value="encrypt" onclick="{
-   let myTemp = ''
-   myString = document.getElementById('myArea04').value.toLowerCase().split('')
-   for (let myLoop=0;   myLoop < myString.length; myLoop++){
-      myTemp = myString[myLoop]
-      if (myString[myLoop] == 'e') {myTemp  = 'a'} 
-      if (myString[myLoop] == 'n') {myTemp  = 'm'} 
-      if (myString[myLoop] == 'r') {myTemp  = 't'} 
-      if (myString[myLoop] == 'o') {myTemp  = 'e'} 
-      if (myString[myLoop] == 'a') {myTemp  = 'o'} 
-      if (myString[myLoop] == 'h') {myTemp  = 'i'} 
-      myString[myLoop] = myTemp
-   }
-   document.getElementById('myArea05').value = myString.join('')
-}"><br><br>
-
-
-
-<textarea id="myArea05" rows=4 cols=70></textarea><br> 
-
-<input type=button value="decrypt" onclick="{
-   let myTemp = ''
-   myString = document.getElementById('myArea05').value.toLowerCase().split('')
-   for (let myLoop=0;   myLoop < myString.length; myLoop++){
-      myTemp = myString[myLoop]
-      if (myString[myLoop] == 'a') {myTemp  = 'e'} 
-      if (myString[myLoop] == 'm') {myTemp  = 'n'} 
-      if (myString[myLoop] == 't') {myTemp  = 'r'} 
-      if (myString[myLoop] == 'e') {myTemp  = 'o'} 
-      if (myString[myLoop] == 'o') {myTemp  = 'a'} 
-      if (myString[myLoop] == 'i') {myTemp  = 'a'} 
-      myString[myLoop] = myTemp
-   }
-   document.getElementById('myArea06').value = myString.join('')
-}"><br><br>
-
+   <div>
 
 <textarea id="myArea06" rows=4 cols=70></textarea><br> 
 
