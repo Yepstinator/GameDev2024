@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Local Storage Example</title>
+  <script>
+    function isLocalStorageAvailable() {
+      try {
+        const testKey = "test";
+        localStorage.setItem(testKey, "testValue");
+        localStorage.removeItem(testKey);
+        return true;
+      } catch (e) {
+        alert("Local storage is not available. Please check your browser settings.");
+        return false;
+      }
+    }
+
+    // Load stored text on page load
+    window.onload = function () {
+      if (isLocalStorageAvailable()) {
+        const storedText = localStorage.getItem("myStoredText");
+        if (storedText !== null) {
+          document.getElementById("myText1").value = storedText;
+        }
+      }
+    };
+
+    // Save text to local storage on page unload
+    window.onunload = function () {
+      if (isLocalStorageAvailable()) {
+        const textInput = document.getElementById("myText1").value;
+        localStorage.setItem("myStoredText", textInput);
+      }
+    };
+
+    // Clear the stored text
+    function clearStoredText() {
+      if (isLocalStorageAvailable()) {
+        localStorage.removeItem("myStoredText");
+        alert("Stored text has been cleared.");
+        document.getElementById("myText1").value = "";
+      }
+    }
+  </script>
+</head>
+<body>
+  <h2>Local Storage Example</h2>
+
+  <label for="myText1">Text example:</label>
+  <input id="myText1" type="text" size="70" placeholder="Write here to store"><br><br>
+
+  <input type="button" value="Store Text" onClick="{
+    if (isLocalStorageAvailable()) {
+      const textInput = document.getElementById('myText1').value;
+      if (textInput.trim() !== '') {
+        localStorage.setItem('myStoredText', textInput);
+        alert(textInput + ' \nHas been stored');
+        document.getElementById('myText1').value = '';
+      } else {
+        alert('Please write something before storing.');
+      }
+    }
+  }">
+
+  <input type="button" value="Retrieve Text" onClick="{
+    if (isLocalStorageAvailable()) {
+      const storedText = localStorage.getItem('myStoredText');
+      if (storedText !== null) {
+        document.getElementById('myText1').value = storedText;
+      } else {
+        alert('No text found in storage.');
+      }
+    }
+  }">
+
+  <input type="button" value="Clear Stored Text" onClick="clearStoredText()">
+</body>
+</html>
