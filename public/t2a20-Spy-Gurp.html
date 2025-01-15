@@ -1,3 +1,4 @@
+
 <body>
    <h1 align=center>t2a20-spy-Gurp</h1>
    <div>
@@ -13,6 +14,10 @@
          if (myString[myLoop] == 'h') {myTemp  = 'i'}
          if (myString[myLoop] == 'f') {myTemp  = 'h'} 
          if (myString[myLoop] == 'i') {myTemp  = 'e'} 
+         if (myString[myLoop] == 'a') {myTemp  = '?'} 
+         if (myString[myLoop] == 'l') {myTemp  = '!'} 
+         if (myString[myLoop] == 'y') {myTemp  = ';'} 
+         if (myString[myLoop] == 'o') {myTemp  = '+'} 
          myString[myLoop] = myTemp
       }
       document.getElementById('myArea02').value = myString.join('')
@@ -29,6 +34,11 @@
       if (myString[myLoop] == 'i') {myTemp  = 'h'}
       if (myString[myLoop] == 'h') {myTemp  = 'f'} 
       if (myString[myLoop] == 'e') {myTemp  = 'i'} 
+      if (myString[myLoop] == '?') {myTemp  = 'a'} 
+      if (myString[myLoop] == '!') {myTemp  = 'l'} 
+      if (myString[myLoop] == ';') {myTemp  = 'y'} 
+      if (myString[myLoop] == '+') {myTemp  = 'o'} 
+
       myString[myLoop] = myTemp
    }
    document.getElementById('myArea03').value = myString.join('')
@@ -132,6 +142,3 @@
 
 
    <div>
-
-<textarea id="myArea06" rows=4 cols=70></textarea><br> 
-
