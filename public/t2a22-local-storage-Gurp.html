@@ -1,74 +1,105 @@
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+    #status {
+      margin-top: 10px;
+      color: green;
+    }
+    #charCount {
+      font-size: 12px;
+      color: gray;
+    }
+  </style>
+</head>
+<body onload="loadStoredText()">
+
+  <h2>t2a09-local-storage-name by Fred - Enhanced</h2>
+
+  <label for="myText1">Text Example:</label>
+  <input id="myText1" type="text" size="70" placeholder="Write here to store" oninput="updateCharCount()">
+  <span id="charCount">0 characters</span>
+  <br><br>
+
+  <input type="button" value="Store Text" onclick="storeText()">
+  <input type="button" value="Retrieve Text" onclick="retrieveText()">
+  <input type="button" value="Clear Stored Text" onclick="clearStoredText()">
+  <br><br>
+
+  <label>
+    <input id="autoSaveToggle" type="checkbox" onclick="toggleAutoSave()"> Enable Auto-save
+  </label>
+  <div id="status"></div>
+
   <script>
-    function isLocalStorageAvailable() {
-      try {
-        const testKey = "test";
-        localStorage.setItem(testKey, "testValue");
-        localStorage.removeItem(testKey);
-        return true;
-      } catch (e) {
-        alert("Local storage is not available. Please check your browser settings.");
-        return false;
+    let autoSaveEnabled = false;
+
+    function loadStoredText() {
+      const storedText = localStorage.getItem('myStoredText');
+      if (storedText) {
+        document.getElementById('myText1').value = storedText;
+        updateCharCount();
+        setStatus('Stored text loaded.');
       }
     }
 
-    // Load stored text on page load
-    window.onload = function () {
-      if (isLocalStorageAvailable()) {
-        const storedText = localStorage.getItem("myStoredText");
-        if (storedText !== null) {
-          document.getElementById("myText1").value = storedText;
-        }
+    function storeText() {
+      const text = document.getElementById('myText1').value;
+      if (text.trim() === '') {
+        alert('Cannot store empty text.');
+        return;
       }
-    };
+      localStorage.setItem('myStoredText', text);
+      setStatus(`"${text}" has been stored.`);
+      document.getElementById('myText1').value = '';
+      updateCharCount();
+    }
 
-    // Save text to local storage on page unload
-    window.onunload = function () {
-      if (isLocalStorageAvailable()) {
-        const textInput = document.getElementById("myText1").value;
-        localStorage.setItem("myStoredText", textInput);
+    function retrieveText() {
+      const storedText = localStorage.getItem('myStoredText');
+      if (storedText) {
+        document.getElementById('myText1').value = storedText;
+        updateCharCount();
+        setStatus('Stored text retrieved.');
+      } else {
+        setStatus('No text found in local storage.', true);
       }
-    };
+    }
 
-    // Clear the stored text
     function clearStoredText() {
-      if (isLocalStorageAvailable()) {
-        localStorage.removeItem("myStoredText");
-        alert("Stored text has been cleared.");
-        document.getElementById("myText1").value = "";
+      localStorage.removeItem('myStoredText');
+      document.getElementById('myText1').value = '';
+      updateCharCount();
+      setStatus('Stored text cleared.');
+    }
+
+    function updateCharCount() {
+      const textLength = document.getElementById('myText1').value.length;
+      document.getElementById('charCount').textContent = `${textLength} characters`;
+    }
+
+    function toggleAutoSave() {
+      autoSaveEnabled = document.getElementById('autoSaveToggle').checked;
+      setStatus(autoSaveEnabled ? 'Auto-save enabled.' : 'Auto-save disabled.');
+      if (autoSaveEnabled) {
+        document.getElementById('myText1').addEventListener('input', autoSave);
+      } else {
+        document.getElementById('myText1').removeEventListener('input', autoSave);
       }
+    }
+
+    function autoSave() {
+      const text = document.getElementById('myText1').value;
+      localStorage.setItem('myStoredText', text);
+      setStatus('Text auto-saved.');
+    }
+
+    function setStatus(message, isError = false) {
+      const statusElement = document.getElementById('status');
+      statusElement.textContent = message;
+      statusElement.style.color = isError ? 'red' : 'green';
     }
   </script>
-</head>
-<body>
-  <h2>Local Storage Example</h2>
-
-  <label for="myText1">Text example:</label>
-  <input id="myText1" type="text" size="70" placeholder="Write here to store"><br><br>
-
-  <input type="button" value="Store Text" onClick="{
-    if (isLocalStorageAvailable()) {
-      const textInput = document.getElementById('myText1').value;
-      if (textInput.trim() !== '') {
-        localStorage.setItem('myStoredText', textInput);
-        alert(textInput + ' \nHas been stored');
-        document.getElementById('myText1').value = '';
-      } else {
-        alert('Please write something before storing.');
-      }
-    }
-  }">
-
-  <input type="button" value="Retrieve Text" onClick="{
-    if (isLocalStorageAvailable()) {
-      const storedText = localStorage.getItem('myStoredText');
-      if (storedText !== null) {
-        document.getElementById('myText1').value = storedText;
-      } else {
-        alert('No text found in storage.');
-      }
-    }
-  }">
-
-  <input type="button" value="Clear Stored Text" onClick="clearStoredText()">
 </body>
-</html>
